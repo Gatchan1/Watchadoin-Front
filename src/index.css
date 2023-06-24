@@ -1,7 +1,7 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
-.modal{
+/* .modal{
   z-index: 1000000000;
 }
 
@@ -16,13 +16,13 @@
 .my-events{
 width: 100%;
 margin-top: 10%;
-}
+} */
 
 /* .own-profile{
   display: flex;
   flex-direction: row;
 } */
-button.save-changes{
+/* button.save-changes{
   border: 2px solid orange;
   text-transform: uppercase;
   color: orange;
@@ -79,9 +79,9 @@ align-self: auto;
 .my-events {
   background-color: #fff;
   padding: 20px;
-  border-radius: 4px;
+  border-radius: 4px; */
   /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
-}
+/* }
 .my-events h2 {
   margin-top: 0;
   margin-bottom: 20px;
@@ -121,11 +121,11 @@ div#FriendsAll{
 div.Calendar{
   display: none;
 }
-div.ConfirmedEvents{
+div.ConfirmedEvents{ */
 /* border: 2px solid rgb(255, 242, 216); */
-background-color: #fff;
+/* background-color: #fff; */
 /* border-radius: 10px; */
-margin: 1em;
+/* margin: 1em;
 padding: 0.5em;
 }
 
@@ -205,10 +205,10 @@ img.friendIcon {
   max-width: 50px;
 }
 
-div.new-event{
+div.new-event{ */
   /* border: 2px solid rgb(255, 221, 158);
   border-radius: 10px; */
-  margin: 1em;
+  /* margin: 1em;
 padding: 0.5em;
 }
 
@@ -442,4 +442,4 @@ hr.events{
   flex-direction: row;
   justify-content: space-between;
 }
-}
+} */
