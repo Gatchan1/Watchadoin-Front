@@ -31,7 +31,7 @@ export default function DashboardPage() {
       <Navbar />
       <hr></hr>
       <header className="dashboard">
-      {/* <img id="profilePicture" src={currentUser.picture} alt="profile picture"></img> */}
+      {/* <img id="profile-picture" src={currentUser.picture} alt="profile picture"></img> */}
         <p className="welcome">Welcome, {user ? user.username : "anon"}! 👋</p>
         {/* {user && <Link to={`/${user.username}`}>Go to your profile page</Link>}
         {user && <Link to="/Testuser">Go to Testuser page</Link>} */}

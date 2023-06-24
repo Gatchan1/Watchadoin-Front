@@ -3,11 +3,16 @@
 } */
 
 .search-form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
-#namelink{
+/* .name-link{
     text-decoration: none;
     color: beige;
+} */
+
+.friend-icon-container {
+  display: inline-block;
+  width: 55px;
 }

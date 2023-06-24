@@ -1,5 +1,5 @@
 .nav {
-  color: white;
+  /* color: white; */
   font-size: 30px;
   display: flex;
   margin-right: 50px;
@@ -40,10 +40,10 @@ header {
   background-color: rgb(215, 114, 255);
 }
 
-#profilePicture{
+/* #profile-picture{
   width: 10%;
   max-width: 80px;
-}
+} */
 
 
 .fa-lemon{
