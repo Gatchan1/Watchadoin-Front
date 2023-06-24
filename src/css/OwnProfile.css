@@ -15,14 +15,31 @@
   }
   
   #FriendsPending img,
-  .friendIcon {
+  .friend-icon {
     height: 40px;
     max-width: 50px;
   }
   
-  .mediumSizeAvatar {
+  .medium-size-avatar {
     height: 100px;
     max-width: 120px;
+  }
+
+  .bigSizeAvatar {
+    height: 200px;
+    max-width: 240px;
+  }
+  .event-buttons {
+    display: flex;
+  }
+  .edit-button {
+    height: 30px;
+  }
+  button .smallIcon {
+    height: 1.2rem;
+    width: 1.2rem;
+    display: flex;
+    
   }
   
   #FriendsPending p {
@@ -34,17 +51,17 @@
     height: 150px;
   }
   
-  .toggleFriendsOverview {
+  /* .toggleFriendsOverview {
     width: 200px;
-  }
+  } */
   
-  #OwnProfile .leftRow {
+  #OwnProfile .left-row {
     display: flex;
     flex-direction: column;
-    width: 30%; /* changeLater: in mobile view it should occupy the whole width */
+    /* width: 30%; changeLater: in mobile view it should occupy the whole width */
   }
   
-  .rowFlex {
+  .row-flex {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -64,22 +81,22 @@
   
   #FriendsOverview,
   #FriendsAll,
-  .inviteUsers {
+  .invite-users {
     display: flex;
     flex-wrap: wrap;
   }
   
-  .fewFriends img,
+  .few-friends img,
   .friend img,
-  .inviteUsers img {
+  .invite-users img {
     display: block;
     margin-left: auto;
     margin-right: auto;
   }
   
-  .fewFriends,
+  .few-friends,
   .friend,
-  .inviteUser {
+  .invite-user {
     padding: 10px 3px;
   }
   
@@ -102,9 +119,9 @@
   }
   
   /* EVENT DETAILS */
-  .eventCreator,
-  .eventBody,
-  .inviteUsers {
+  .event-creator,
+  .event-body,
+  .invite-users {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -114,34 +131,34 @@
       margin: 2px;
   }
   
-  .inviteUsers {
+  .invite-users {
       padding: 0;
       justify-content: center;
   }
   
-  .inviteUsers p {
+  .invite-users p {
       align-self: start;
       padding-top: 10px;
       padding-left: 10px;
   }
   
-  .eventMain {
+  .event-main {
       display: flex;
       align-items: center;
       justify-content: center;
   }
   
-  .eventCreator {    
+  .event-creator {    
       width: 27vw
   }
   
-  .eventBody {
+  .event-body {
       width: 68vw; /* changeLater */
       justify-content: center;
   }
   
-  .eventTitle {
+  /* .event-title {
       font-size: 25px;
       font-weight: bold;
-  }
+  } */
   

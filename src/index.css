@@ -200,7 +200,7 @@ div.NewEvents{
   margin-left: 1rem;
 
 }
-img.friendIcon {
+img.friend-icon {
   height: 40px;
   max-width: 50px;
 }
@@ -282,25 +282,25 @@ div.moreinfo{
   font-size: smaller;
 }
 
-.eventCreator{
+.event-creator{
   border: none;
 }
 
-.eventMain{
+.event-main{
   margin-top: 5%;
 }
 
-.eventBody{
+.event-body{
   border: none;
 }
-.inviteUsers{
+.invite-users{
   border: none;
 }
-.invitados{
+.invitees{
   border-top: 2px solid orange;
   margin: 2% 5%;
 }
-.inviteUsers p{
+.invite-users p{
   margin-left: 5%;
 }
 
@@ -329,25 +329,24 @@ button.boton-create{
 
 div.card{
   border: none;
-}
+} */
 
 .edit-button{
-  background-color: #fff !important;
+  /* background-color: #fff !important;
   color: orange;
   text-transform:uppercase;
   font-size: 1em;
-  border: none;
-  letter-spacing: 1px;
+  border: none; */
   margin-left: 5%;
-  margin-right: 2%;
 }
-.edit-button img{
+/* .edit-button img{
   width: 1rem;
   height: 1rem;
  margin-left: 0;
  padding: 0;
-}
+} */
 
+/*
 .event-title{
   text-decoration: none;
   border: none;
@@ -388,7 +387,7 @@ button.current-friends{
   color: black;
 }
 
-img.mediumSizeAvatar{
+img.medium-size-avatar{
   width: 20%;
 }
 
@@ -408,7 +407,7 @@ img.mediumSizeAvatar{
   div#FriendsOverview{
     padding: 0;
   }
-  div.leftRow{
+  div.left-row{
     display: flex;
     flex-direction: column;
     width: 30rem;
@@ -437,7 +436,7 @@ img.mediumSizeAvatar{
 hr.events{
   width: 100%;
 }
-.eventMain{
+.event-main{
   display: flex;
   flex-direction: row;
   justify-content: space-between;

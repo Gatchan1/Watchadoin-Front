@@ -24,7 +24,7 @@ export default function OwnProfilePage() {
       <div className="own-profile">
       <div className="left-row">
       <div className="header image-container">
-        <img src={currentUser.picture}/>
+        <img src={currentUser.picture} className="bigSizeAvatar"/>
         <Link to={`/${username}/edit`}>Edit Profile</Link>
         <div className="friends">
       <Friends userData={currentUser} />

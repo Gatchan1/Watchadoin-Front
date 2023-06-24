@@ -20,7 +20,7 @@ export default function FriendsPending({ userData }) {
       {userData.friendsPending.map((friendRequest) => {
         return (
           <div key={friendRequest._id}>
-            <div className="rowFlex">
+            <div className="row-flex">
               <img src={friendRequest.picture} alt={friendRequest.username} />
               <Link onClick={() => {window.location.href=`/${friendRequest.username}`}}> {friendRequest.username} </Link>
               <button onClick={() => acceptFriend(friendRequest._id)} type="submit" className="btn btn-success">

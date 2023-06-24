@@ -58,32 +58,32 @@ export default function EventDetailPage() {
           <Navbar />
           <hr></hr>
           <div>
-            <div className="eventMain">
-              <div className="eventCreator">
+            <div className="event-main">
+              <div className="event-creator">
                 <p>Organized by</p>
-                <img className="mediumSizeAvatar" src={event.creator.picture} alt={event.creator.username} />
-                <p className="eventCreatorName">{event.creator.username}</p>
+                <img className="medium-size-avatar" src={event.creator.picture} alt={event.creator.username} />
+                <p className="event-creator-name">{event.creator.username}</p>
               </div>
-              <div className="eventBody">
-                <p className="eventTitle">{event.title}</p>
-                <p className="eventDescription">{event.description}</p>
-                <p className="eventDescription">{new Date(event.dateTime).toLocaleString()}</p>
+              <div className="event-body">
+                <p className="event-title">{event.title}</p>
+                <p className="event-description">{event.description}</p>
+                <p className="event-description">{new Date(event.dateTime).toLocaleString()}</p>
               </div>
             </div>
-            <hr className="invitados"></hr>
-            <div className="inviteUsers">
+            <hr className="invitees"></hr>
+            <div className="invite-users">
             <p>Check out who will be there </p>
               {event.confirmedJoiners.map((joiner) => {
                 return (
-                  <div className="inviteUser" key={joiner._id}>
-                    <img className="friendIcon" src={joiner.picture} alt={joiner.username} />
+                  <div className="invite-user" key={joiner._id}>
+                    <img className="friend-icon" src={joiner.picture} alt={joiner.username} />
                     <a href={`/${joiner.username}`}> {joiner.username} </a>
                   </div>
                 );
               })}
 
             </div>
-            <hr className="invitados"></hr>
+            <hr className="invitees"></hr>
 
             {GoogleMap(event.coordinates)}
           </div>

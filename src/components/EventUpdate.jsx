@@ -7,7 +7,7 @@ import AutoComplete from "react-google-autocomplete";
 
 
 export default function EventUpdate({ eventInfo }) {
-  //._id} eventTitle={event.title} eventDescription={event.description} eventLocation={event.location} eventDateTime={event.dateTime} eventConfirmedJoiners={event.confirmedJoiners
+  //._id} event-title={event.title} event-description={event.description} eventLocation={event.location} eventDateTime={event.dateTime} eventConfirmedJoiners={event.confirmedJoiners
   console.log('-----', eventInfo)
   const { baseUrl, getUserInfo, getHeaders } =
     useContext(authContext);

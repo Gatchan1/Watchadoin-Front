@@ -20,8 +20,8 @@ export default function FriendsOverview() {
       {!loadingUserInfo &&
         fewFriends.map((friend) => {
           return (
-            <div className="fewFriends" key={friend._id}>
-              <img className="friendIcon" src={friend.picture} alt={friend.username} />
+            <div className="few-friends" key={friend._id}>
+              <img className="friend-icon" src={friend.picture} alt={friend.username} />
               <Link onClick={() => {window.location.href=`/${friend.username}`}}> {friend.username} </Link>
             </div>
           );

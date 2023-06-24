@@ -49,12 +49,14 @@ export default function MyEvents({ events }) {
           return (
             <div key={event._id} className="card" style={{ width: "25rem" }}>
               <div className="card-body">
+                <div className="event-buttons">
                 <button type="button" className="event-title">
                   {event.title}
                 </button>
                 <button type="button" className="edit-button" data-bs-toggle="modal" data-bs-target="#eventUpdate">
-                <img src="../../public/edit.png"/>
+                <img className="smallIcon" src="../../public/edit.png"/>
                 </button>
+                </div>
                 <EventUpdate eventInfo={event} />
                 {/* <img className="card-text" src={event.icon} alt="event icon"/> */}
                 <p className="card-text">{event.description}</p>

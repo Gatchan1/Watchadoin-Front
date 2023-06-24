@@ -11,7 +11,7 @@ export default function FriendsAll() {
         currentUser.friendsConfirmed.map((friend) => {
           return (
             <div className="friend" key={friend._id}>
-              <img className="friendIcon" src={friend.picture} alt={friend.username} />
+              <img className="friend-icon" src={friend.picture} alt={friend.username} />
               <Link className="friend-user" onClick={() => {window.location.href=`/${friend.username}`}}> {friend.username} </Link>
             </div>
           );

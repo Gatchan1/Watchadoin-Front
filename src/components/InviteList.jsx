@@ -26,10 +26,10 @@ export default function InviteList() {
       {currentUser.inviteLists[0] ? <div className="lists">
         {currentUser.inviteLists.map((list)=>{
             return <div className="list" key={list._id}>
-            <h5>{list.title}</h5> <div className="inviteUsers">{list.users.map((user)=>{
+            <h5>{list.title}</h5> <div className="invite-users">{list.users.map((user)=>{
                 return (
-                    <div className="inviteUser" key={user._id}>
-                    <img className="friendIcon" src={user.picture} alt={user.username} />
+                    <div className="invite-user" key={user._id}>
+                    <img className="friend-icon" src={user.picture} alt={user.username} />
                     <a href={`/${user.username}`}> {user.username} </a>
                     </div>
                 )
