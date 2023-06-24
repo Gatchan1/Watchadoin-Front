@@ -20,7 +20,7 @@ export default function OwnProfilePage() {
   return (
     <div id="OwnProfile">
       <Navbar />
-      <hr></hr>
+      {/* <hr></hr> */}
       <div className="own-profile">
       <div className="left-row">
       <div className="header image-container">

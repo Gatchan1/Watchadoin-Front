@@ -16,3 +16,26 @@
   display: inline-block;
   width: 55px;
 }
+
+.search-form {
+    position: relative;
+}
+
+.search-dropdown {
+    background-color: white;
+    position: absolute;
+    top: 35px;
+    /* z-index: 1; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-style: solid;
+        border-radius: 10px;
+        border-color: rgba(255, 125, 125, 0.5);
+        margin: 2px;
+        padding: 10px
+}
+
+.navbar {
+    border-bottom: 1px solid #828282;
+}

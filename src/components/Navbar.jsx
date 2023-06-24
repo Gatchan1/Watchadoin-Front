@@ -91,15 +91,14 @@ export default function Navbar() {
                 </ul>
               </li> */}
           </ul>
-          <div className=" search-form">
+          <div className="search-form">
             <form className="d-flex">
               <input className="form-control me-2" type="search" placeholder="Search users" aria-label="Search" value={text} onChange={(e) => setText(e.target.value)} />
-              {/* <button className="btn btn-outline-success">X</button> */}
             </form>
 
             {searchResults.length === 0 || (searchResults.length === allUsers.length && "")}
             {searchResults.length > 0 && (
-              <ul className="" aria-labelledby="searchDropdown">
+              <ul className="search-dropdown" aria-label="search dropdown">
                 {searchResults.map((user) => (
                   <li className="dropdown-item" key={user._id}>
                     <span className="friend-icon-container">
@@ -108,7 +107,6 @@ export default function Navbar() {
                     <Link className="name-link" to={`/${user.username}`}>
                       {user.username}
                     </Link>
-                    {/* <button className="add-friend-button">Add Friend</button> */}
                   </li>
                 ))}
               </ul>
