@@ -54,7 +54,7 @@ export default function MyEvents({ events }) {
                   {event.title}
                 </button>
                 <button type="button" className="edit-button" data-bs-toggle="modal" data-bs-target="#eventUpdate">
-                <img className="smallIcon" src="../../public/edit.png"/>
+                <img className="smallIcon" src="/edit.png"/>
                 </button>
                 </div>
                 <EventUpdate eventInfo={event} />

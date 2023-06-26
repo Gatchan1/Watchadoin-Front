@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import GoogleMapReact from "google-map-react";
+import "../css/OwnProfile.css"; // I still don't understand why if I don't import this css here it's still applied...
 
 export default function EventDetailPage() {
   const { loading, baseUrl, getHeaders } = useContext(authContext);
@@ -15,7 +16,7 @@ export default function EventDetailPage() {
 
   const AnyReactComponent = () => (
     <div>
-      <img style={{ height: "25px" }} src="../../public/marker.png" alt="marker" />
+      <img style={{ height: "25px" }} src="/marker.png" alt="marker" />
     </div>
   );
 
