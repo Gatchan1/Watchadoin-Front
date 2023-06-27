@@ -61,7 +61,7 @@ export default function CreateInviteList() {
         </div>
         <div className="col-6">
           <label htmlFor="users">Add Friends:</label>
-          <Select defaultValue={value} onChange={setValue} options={options} isMulti={true} />
+          <Select defaultValue={value} closeMenuOnSelect={false} onChange={setValue} options={options} isMulti={true} />
         </div>
 
         <button type="submit">Create new InviteList</button>

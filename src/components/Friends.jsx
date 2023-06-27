@@ -6,74 +6,47 @@ import FriendsPending from "./FriendsPending";
 
 //This component manages the profile components of: on one hand FriendsLists and on the other hand FriendsOverview and FriendsAll.
 
-export default function Friends({userData}) {
-  const [showFriendsLists, setShowFriendsLists] = useState(false);
-  const [showFriendsOverview, setShowFriendsOverview] = useState(true);
-  const [showAllFriends, setShowAllFriends] = useState(false);
-  const [showFriendsPending, setShowFriendsPending] = useState(false);
-
-  function toggleFriendsLists() {
-    showFriendsLists ? setShowFriendsLists(false) : setShowFriendsLists(true);
-  }
-  function toggleFriendsOverview() {
-    if (showFriendsOverview) {
-      console.log("userdata:", userData)
-      setShowFriendsOverview(false);
-      setShowAllFriends(true);
-      setShowFriendsPending(false);
-    } else {
-      setShowFriendsOverview(true);
-      setShowAllFriends(false);
-      setShowFriendsPending(false);
-    }
-  }
-  function toggleFriendsPending() {
-    if (showFriendsPending) {
-      setShowFriendsPending(false);
-      setShowAllFriends(true);
-    } else {
-      setShowFriendsPending(true);
-      setShowAllFriends(false);
-    }
-  }
+export default function Friends({ userData }) {
 
   return (
     <div id="Friends" className="left-row">
-    <div className="friends-buttons">
-      <button className="friends" onClick={() => toggleFriendsLists()}>
-        Friends Circles
-      </button>
-      {/* changeLater. What is the definitive name we want for the inviteLists/friendsLists/inviteGroups..? */}
-      <div>{showFriendsLists && <InviteList />}</div>
-      <div className="row-flex space-between">
-        <p>
-          {/* {showFriendsOverview && "Friends"}
-          {showAllFriends && "All Your Friends"} */}
-          {showFriendsPending && "Friendship Requests"}
-        </p>
-        <button className="all-friends" onClick={() => toggleFriendsOverview()}>
-          {showFriendsOverview ? "Show All Friends" : "Back to abridged view"}
-        </button>
-      </div>
-      {showFriendsOverview && <FriendsOverview />}
-      </div>
-      <div>
-      {showAllFriends && (
-        <div>
-          <FriendsAll />
-          <button className="all-friends" onClick={() => toggleFriendsPending()}>
-            See friendship requests
-          </button>
+      <div className="accordion" id="accordionExample">
+        <div className="accordion-item">
+          <h2 className="accordion-header">
+            <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Friendship Requests
+            </button>
+          </h2>
+          <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div className="accordion-body">
+              <FriendsPending userData={userData} />
+            </div>
+          </div>
         </div>
-      )}
-      {showFriendsPending && (
-        <div>
-          <FriendsPending userData={userData} />
-          <button className="current-friends" onClick={() => toggleFriendsPending()}>
-            See current friends
-          </button>
+        <div className="accordion-item">
+          <h2 className="accordion-header">
+            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Current Friends
+            </button>
+          </h2>
+          <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div className="accordion-body">
+              <FriendsAll />
+            </div>
+          </div>
         </div>
-      )}
+        <div className="accordion-item">
+          <h2 className="accordion-header">
+            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Friends Circles
+            </button>
+          </h2>
+          <div id="collapseThree" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div className="accordion-body">
+              <InviteList />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

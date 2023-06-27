@@ -50,7 +50,7 @@ export default function MyEvents({ events }) {
             <div key={event._id} className="card" style={{ width: "25rem" }}>
               <div className="card-body">
                 <div className="event-buttons">
-                <button type="button" className="event-title">
+                <button type="button" className="my-event-title">
                   {event.title}
                 </button>
                 <button type="button" className="edit-button" data-bs-toggle="modal" data-bs-target="#eventUpdate">
