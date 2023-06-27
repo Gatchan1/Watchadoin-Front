@@ -15,7 +15,6 @@ export default function CreateEvent({ toggleCreateEvent }) {
   const [lat, setLat] = useState("");
   const [lng, setLng] = useState("");
   const [location, setLocation] = useState("");
-  const [initialDropdownDataFriends, setInitialDropdownDataFriends] = useState([]);
   const [dropdownDataFriends, setDropdownDataFriends] = useState([]);
   const [initialDropdownDataLists, setInitialDropdownDataLists] = useState([]);
   const [dropdownDataLists, setDropdownDataLists] = useState([]);
@@ -111,7 +110,6 @@ export default function CreateEvent({ toggleCreateEvent }) {
     axios
       .get(baseUrl + `/users/${username}`)
       .then(({ data }) => {
-        setInitialDropdownDataFriends(data.friendsConfirmed);
         setDropdownDataFriends(data.friendsConfirmed);
         setInitialDropdownDataLists(data.inviteLists);
         setDropdownDataLists(data.inviteLists);

@@ -29,7 +29,6 @@ export default function DashboardPage() {
   return (
     <>
       <Navbar />
-      <hr></hr>
       <header className="dashboard">
       {/* <img id="profile-picture" src={currentUser.picture} alt="profile picture"></img> */}
         <p className="welcome">Welcome, {user ? user.username : "anon"}! 👋</p>
@@ -38,7 +37,7 @@ export default function DashboardPage() {
       </header>
       <div className="dashboardComponents">
         <div className="row1">
-          <h2>Upcomig events</h2>
+          <h2>Upcoming events</h2>
         <hr className="events"></hr>
 
           <ConfirmedEvents />

@@ -38,3 +38,7 @@
 .navbar {
   border-bottom: 1px solid #828282;
 }
+
+.navbar-brand img {
+  max-width: 200px;
+}

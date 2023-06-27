@@ -7,6 +7,7 @@ export default function ConfirmedEvents() {
 
   return (
     <div className="ConfirmedEvents">
+      {!currentUser.eventsJoined && <p>You haven't confirmed assistance to any event.</p>}
       {currentUser.eventsJoined && currentUser.eventsJoined.map((event)=>{
         return (<div key={event._id}>
           <h4>{event.title}</h4>
