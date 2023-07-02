@@ -1,15 +1,15 @@
 import axios from "axios";
 import { authContext } from "../contexts/auth.context";
 import { Link } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 
-export default function FriendsPending({ userData }) {
-  const { user, baseUrl, loading, getHeaders, getUserInfo } = useContext(authContext);
+export default function FriendsPending() {
+  const { currentUser, baseUrl, getHeaders, getUserInfo } = useContext(authContext);
 
   function acceptFriend(friendId) {
     axios
       .post(baseUrl + "/friendstatus/" + friendId + "/" + "accept", {}, getHeaders())
-      .then((resp) => {
+      .then(() => {
         getUserInfo();
       })
       .catch((err) => console.log(err));
@@ -17,7 +17,7 @@ export default function FriendsPending({ userData }) {
 
   return (
     <div id="FriendsPending">
-      {userData.friendsPending.map((friendRequest) => {
+      {currentUser.friendsPending.map((friendRequest) => {
         return (
           <div key={friendRequest._id}>
             <div className="row-flex">
@@ -30,7 +30,7 @@ export default function FriendsPending({ userData }) {
           </div>
         );
       })}
-      {!userData.friendsPending[0] && <p>You have no new friendship requests</p>}
+      {!currentUser.friendsPending[0] && <p>You have no new friendship requests</p>}
     </div>
   );
 }

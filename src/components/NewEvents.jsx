@@ -1,50 +1,18 @@
 import axios from "axios";
 import "../css/DashboardPage.css";
 import { authContext } from "../contexts/auth.context";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 
 export default function NewEvents() {
-  const [loadingNewEvents, setLoadingNewEvents] = useState(true);
-  const [newEvents, setNewEvents] = useState(null);
-  const [currentUser, setCurrentUser] = useState({});
-  const [joinedEvents, setJoinedEvents] = useState([]);
-  const { isLoggedIn, user, loading, baseUrl, getHeaders } = useContext(authContext);
-  const [updateTrigger, setUpdateTrigger] = useState(false);
-
-  useEffect(()=>{
-    axios.get(baseUrl + "/users/" + user.username)
-    .then(({data}) => {
-      setCurrentUser(data);
-      setNewEvents(data.eventsPending)
-      setLoadingNewEvents(false)
-    })
-    .then(()=>{
-      console.log("newEvents:", newEvents)
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  },[loading])
-
-
+  const { currentUser, getUserInfo, baseUrl, getHeaders } = useContext(authContext);
+  
 //------------- FUNCTIONS FOR BUTTONS --------------------
   const joinEvent = (eventId)=>{
-    console.log("********fdf*****", eventId)
     axios.post(baseUrl + "/events/" + eventId + "/accept", {}, getHeaders())
-    .then(({data}) => {
-      setJoinedEvents(prevJoinedEvents => [...prevJoinedEvents, eventId])
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
-
-  const unJoinEvent = (eventId)=>{
-    axios.post(baseUrl + "/events/" + eventId + "/unjoin", {}, getHeaders())
-    .then(({data}) => {
-      setJoinedEvents(prevJoinedEvents => prevJoinedEvents.filter(id => id !== eventId));
+    .then(() => {
+      getUserInfo()
     })
     .catch((err) => {
       console.log(err);
@@ -53,10 +21,8 @@ export default function NewEvents() {
 
   const rejectEvent = (eventId)=>{
     axios.post(baseUrl + "/events/" + eventId + "/reject", {}, getHeaders())
-    .then(({data}) => {
-      let newArray = [...newEvents]
-      setNewEvents(newArray.filter(event => event._id !== eventId))
-      setUpdateTrigger(!updateTrigger);
+    .then(() => {
+      getUserInfo()
     })
     .catch((err) => {
       console.log(err);
@@ -67,27 +33,23 @@ export default function NewEvents() {
   return (
     <div className="NewEvents">
     
-    {/* {loadingNewEvents && <p className="fa-solid fa-lemon fa-shake"></p>} */}
-    
-    {!loadingNewEvents && newEvents.length == 0 && <p>No events yet</p>}
+    {/* We don't need to use a loading state here because these components only render after loading. (See DashboardPage) */}
+    {currentUser.eventsPending.length == 0 && <p>No new events</p>}
 
-    {newEvents && newEvents.map((event, k) => <div className='new-event' key={event._id, k}>
+    {currentUser.eventsPending.length !== 0 && currentUser.eventsPending.map((event) => <div className='new-event' key={event._id}>
         <h4>{event.title}</h4>
         <p>{event.description}</p>
         <p>{event.location}</p>
         <p>{ new Date(event.dateTime).toLocaleString()}</p>
 
-        {/* ------- Button to either join or unjoin ---------- */}
-        {joinedEvents.includes(event._id) ? 
-        <button type="button" className="unjoin" onClick={ () => unJoinEvent(event._id)}>Unjoin</button> : <> <button type="button" className="join" onClick={ () => joinEvent(event._id)}>Join</button>
-        <button type="button" className="reject" onClick={() => rejectEvent(event._id)}>Reject</button></>}
+        <button type="button" className="join" onClick={ () => joinEvent(event._id)}>Join</button>
+        <button type="button" className="reject" onClick={() => rejectEvent(event._id)}>Reject</button>
 
         <div className="moreinfo">
         <Link to={`/events/${event._id}`}>More details</Link>
         </div>
-        <hr className="newevents"></hr>
-        {/* ----- Button to reject event and make it disappear from the list ------- */}
-        
+        <hr className="newevents" />
+                
       </div>)}
 
     </div> 

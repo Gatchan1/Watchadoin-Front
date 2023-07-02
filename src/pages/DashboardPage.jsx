@@ -1,29 +1,17 @@
-import axios from "axios";
 import "../css/DashboardPage.css";
 import "../../src/index.css"
 import { authContext } from "../contexts/auth.context";
-import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Calendar from "../components/Calendar";
 import ConfirmedEvents from "../components/ConfirmedEvents";
 import NewEvents from "../components/NewEvents";
 
 export default function DashboardPage() {
-  const [loadingDashboard, setLoadingDashboard] = useState(true)
-  const [currentUser, setCurrentUser] = useState({}) //info of current user, populated on the backend route
-  const { isLoggedIn, user, loading, baseUrl } = useContext(authContext);
+  const { isLoggedIn, loading, user, getUserInfo, loadingPopulated } = useContext(authContext);
 
   useEffect(()=>{
-    console.log("user", user)
-    axios.get(baseUrl + "/users/" + user.username)
-    .then(({data}) => {
-      setCurrentUser(data);
-      // setLoadingDashboard(false)
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    getUserInfo()
   },[loading])
 
   return (
@@ -31,21 +19,19 @@ export default function DashboardPage() {
       <Navbar />
       <header className="dashboard">
       {/* <img id="profile-picture" src={currentUser.picture} alt="profile picture"></img> */}
-        <p className="welcome">Welcome, {user ? user.username : "anon"}! 👋</p>
-        {/* {user && <Link to={`/${user.username}`}>Go to your profile page</Link>}
-        {user && <Link to="/Testuser">Go to Testuser page</Link>} */}
+        <p className="welcome">Welcome, {user.username}! 👋</p>
       </header>
       <div className="dashboardComponents">
         <div className="row1">
           <h2>Upcoming events</h2>
         <hr className="events"></hr>
 
-          <ConfirmedEvents />
+          {!loadingPopulated && <ConfirmedEvents />}
         </div>
         <div className="row2">
         <h2>Possible plans</h2>
         <hr className="events"></hr>
-          <NewEvents />
+        {!loadingPopulated && <NewEvents />}
         </div>
       </div>
     </>

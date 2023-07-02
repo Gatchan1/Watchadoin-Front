@@ -9,31 +9,27 @@ import MyEvents from "../../components/MyEvents";
 
 export default function OwnProfilePage() {
   const { username } = useParams();
-  const { user, baseUrl, loading, getUserInfo, currentUser, loadingUserInfo } = useContext(authContext);
+  const { user, baseUrl, loading, getUserInfo, currentUser, loadingPopulated } = useContext(authContext);
 
   // Retrieve current user data at mounting phase.
-  useEffect(()=>{
-    getUserInfo()
-  }, [loading])
-
+  useEffect(() => {
+    getUserInfo();
+  }, [loading]);
 
   return (
     <div id="OwnProfile">
       <Navbar />
       <div className="own-profile">
-      <div className="left-row">
-      <div className="header image-container">
-        <img src={currentUser.picture} className="bigSizeAvatar"/>
-        <Link to={`/${username}/edit`}>Edit Profile</Link>
-        <div className="friends">
-      {!loadingUserInfo && <Friends userData={currentUser} />}
-      </div>
-      </div>
-      </div>
+        <div className="first-section">
+          <img src={currentUser.picture} className="bigSizeAvatar" />
+          <div className="edit-profile">
+          <Link to={`/${username}/edit`}>Edit Profile</Link>
+          </div>
 
-      <div className="my-events">
-      {!loadingUserInfo && <MyEvents events={currentUser.eventsCreated} />}
-      </div>
+          {!loadingPopulated && <Friends />}
+        </div>
+
+        {!loadingPopulated && <MyEvents />}
       </div>
     </div>
   );

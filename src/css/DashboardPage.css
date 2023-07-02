@@ -29,16 +29,6 @@ header {
   background-color: yellowgreen;
 }
 
-.ConfirmedEvents {
-  height: 200px;
-  background-color: rgb(255, 174, 0);
-}
-
-.NewEvents {
-  height: 200px;
-  background-color: rgb(215, 114, 255);
-}
-
 /* #profile-picture{
   width: 10%;
   max-width: 80px;

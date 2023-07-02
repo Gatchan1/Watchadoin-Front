@@ -67,11 +67,11 @@ export default function CreateEvent({ toggleCreateEvent }) {
   };
 
   // So that the list of friends that we can invite is displayed in alphabetical order:
-  function compare(a, b) {
+  function compareFriends (a, b) {
     if (a.username.toLowerCase() < b.username.toLowerCase()) {
       return -1;
     }
-    if (a.username.toLowerCase() < b.username.toLowerCase()) {
+    if (a.username.toLowerCase() > b.username.toLowerCase()) {
       return 1;
     }
     return 0;
@@ -192,7 +192,7 @@ export default function CreateEvent({ toggleCreateEvent }) {
             Invite friends
           </button>
           <div className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            {dropdownDataFriends.sort(compare).map((item) => (
+            {dropdownDataFriends.sort(compareFriends).map((item) => (
               <button type="button" className="dropdown-item" key={item._id} onClick={() => handleItemSelectedFriends(item)}>
                 {item.username}
               </button>

@@ -9,7 +9,7 @@ import FriendsPending from "./FriendsPending";
 export default function Friends({ userData }) {
 
   return (
-    <div id="Friends" className="left-row">
+    <div id="Friends" >
       <div className="accordion" id="accordionExample">
         <div className="accordion-item">
           <h2 className="accordion-header">
@@ -19,7 +19,7 @@ export default function Friends({ userData }) {
           </h2>
           <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
             <div className="accordion-body">
-              <FriendsPending userData={userData} />
+              <FriendsPending />
             </div>
           </div>
         </div>

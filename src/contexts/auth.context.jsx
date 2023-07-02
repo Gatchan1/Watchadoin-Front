@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const authContext = createContext();
 
@@ -14,6 +15,8 @@ function AuthProviderWrapper({ children }) {
   const [loadingRaw, setLoadingRaw] = useState(true);
   const [loadingUserInfo, setLoadingUserInfo] = useState(true);
   const [currentUserRaw, setCurrentUserRaw] = useState({});
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     isAuthenticated();
@@ -49,7 +52,7 @@ function AuthProviderWrapper({ children }) {
           setIsLoggedIn(false);
           setUser(null);
           setLoading(false);
-          console.log(err);
+          navigate("/login");
         });
     } else {
       setIsLoggedIn(false);
@@ -106,6 +109,7 @@ function AuthProviderWrapper({ children }) {
     currentUserRaw,
     loadingUserInfo,
     loadingRaw,
+    loadingPopulated
   };
   return <authContext.Provider value={exposedValues}>{children}</authContext.Provider>;
 }

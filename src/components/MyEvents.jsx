@@ -6,8 +6,8 @@ import axios from "axios";
 import { authContext } from "../contexts/auth.context";
 // import { useParams } from "react-router-dom";
 
-export default function MyEvents({ events }) {
-  const { baseUrl, getHeaders, getUserInfo } = useContext(authContext);
+export default function MyEvents() {
+  const { baseUrl, getHeaders, getUserInfo, currentUser } = useContext(authContext);
   const [showCreateEvent, setShowCreateEvent] = useState(false);
   // const { username } = useParams();
   // const [error, setError] = useState("");
@@ -28,62 +28,57 @@ export default function MyEvents({ events }) {
 
   return (
     <div id="MyEvents">
-    <div className="create-event">
-      <h4>Events created by you</h4>
+      <div className="create-event">
+        <h4>Events created by you</h4>
 
-      <button
-        className="boton-create"
-        onClick={(e) => {
-          e.preventDefault();
-          toggleCreateEvent();
-        }}
-      >
-        {!showCreateEvent ? <img style={{ width: "20px" }} src="plus.png" alt="create event" /> : <img style={{ width: "20px" }} src="minus.png" alt="roll up create event" />}
-      </button>
+        <button
+          className="boton-create"
+          onClick={(e) => {
+            e.preventDefault();
+            toggleCreateEvent();
+          }}
+        >
+          {!showCreateEvent ? <img style={{ width: "20px" }} src="plus.png" alt="create event" /> : <img style={{ width: "20px" }} src="minus.png" alt="roll up create event" />}
+        </button>
       </div>
-      <hr className="events"></hr>
+      <hr className="events" />
+      <div className="event-cards">
+        {showCreateEvent && <CreateEvent toggleCreateEvent={toggleCreateEvent} />}
+        {currentUser.eventsCreated[0] &&
+          currentUser.eventsCreated.map((event) => {
+            return (
+              <div key={event._id} className="card" style={{ width: "25rem", breakInside: "avoid-column" }}>
+                <div className="card-body">
+                  <div className="my-event-title">
+                    <h5>{event.title}</h5>
+                    <button type="button" className="edit-button btn btn-light" data-bs-toggle="modal" data-bs-target="#eventUpdate">
+                      <img className="smallIcon" src="/edit.png" />
+                    </button>
+                  </div>
+                  <EventUpdate eventInfo={event} />
+                  {/* <img className="card-text" src={event.icon} alt="event icon"/> */}
+                  <p className="card-text">{event.description}</p>
+                  <p className="card-text">{event.location}</p>
+                  <p className="card-text">{new Date(event.dateTime).toLocaleString()}</p>
+                  <p className="card-text">{event.confirmedJoiners}</p>
 
-      {showCreateEvent && <CreateEvent toggleCreateEvent={toggleCreateEvent} />}
-      {events &&
-        events.map((event) => {
-          return (
-            <div key={event._id} className="card" style={{ width: "25rem" }}>
-              <div className="card-body">
-                <div className="event-buttons">
-                <button type="button" className="my-event-title">
-                  {event.title}
-                </button>
-                <button type="button" className="edit-button" data-bs-toggle="modal" data-bs-target="#eventUpdate">
-                <img className="smallIcon" src="/edit.png"/>
-                </button>
+                  <form>
+                    <button
+                      type="submit"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        deleteHandler(event);
+                      }}
+                      className="btn btn-outline-danger"
+                    >
+                      Delete
+                    </button>
+                  </form>
                 </div>
-                <EventUpdate eventInfo={event} />
-                {/* <img className="card-text" src={event.icon} alt="event icon"/> */}
-                <p className="card-text">{event.description}</p>
-                <p className="card-text">{event.location}</p>
-                <p className="card-text">{new Date(event.dateTime).toLocaleString()}</p>
-                <p className="card-text">{event.confirmedJoiners}</p>
               </div>
-              <div>
-                <form>
-                  <button
-                    type="submit"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      console.log("fjjjjjjj",event)
-                      deleteHandler(event);
-                    }}
-                    className="delete"
-                  >
-                    Delete
-                  </button>
-                </form>
-                <hr className="newevents"></hr>
-
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
+      </div>
     </div>
   );
 }
