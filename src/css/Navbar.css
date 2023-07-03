@@ -33,6 +33,7 @@
   border-color: rgba(255, 125, 125, 0.5);
   margin: 2px;
   padding: 10px;
+  z-index: 1;
 }
 
 .navbar {

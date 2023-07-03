@@ -132,26 +132,26 @@ export default function CreateEvent({ toggleCreateEvent }) {
   }, []);
 
   return (
-    <>
-      <h1>Create new event</h1>
+    <div id="CreateEvent">
+      <h2>Create new event</h2>
       <form onSubmit={submitHandler}>
         <div className="mb-3">
           <label htmlFor="title" className="form-label">
-            Title
+            Title:
           </label>
-          <input type="text" className="form-control" value={title} required onChange={(e) => setTitle(e.target.value)} />
+          <input id="title" type="text" className="form-control" value={title} required onChange={(e) => setTitle(e.target.value)} />
         </div>
         <div className="mb-3">
           <label htmlFor="description" className="form-label">
-            Description
+            Description:
           </label>
-          <input type="text" className="form-control" value={description} onChange={(e) => setDescription(e.target.value)} />
+          <textarea id="description" className="form-control" rows="5" value={description} onChange={(e) => setDescription(e.target.value)} />
         </div>
-        <div className="mb-3">
+        <div className="mb-3 dateTime">
           <label htmlFor="dateTime" className="form-label">
             When?
           </label>
-          <input type="datetime-local" className="form-control" value={dateTime} onChange={(e) => setDateTime(e.target.value)} />
+          <input id="dateTime" type="datetime-local" className="form-control" value={dateTime} onChange={(e) => setDateTime(e.target.value)} />
         </div>
         {/* <div className="mb-3">
           <label htmlFor="date" className="form-label">What time?</label>
@@ -160,11 +160,11 @@ export default function CreateEvent({ toggleCreateEvent }) {
 
         {/* Select location, using Google places API */}
         <div className="mb-3">
-          <label htmlFor="location" className="form-label">
+          <label htmlFor="location" className="form-label location">
             Where?
           </label>
           <AutoComplete
-            apiKey={"AIzaSyDs5I5np83v56WXBt2JMvkUJSx_BWZETQw"}
+            apiKey={"AIzaSyCB7SClI1uSfffRXZwDN8HMT9yQNe_pD8k"}
             options={{
               componentRestrictions: { country: "es" },
               fields: ["address_components", "geometry", "icon", "name"],
@@ -177,6 +177,7 @@ export default function CreateEvent({ toggleCreateEvent }) {
               setLng(place.geometry.location.lng());
               console.log("address: ", place);
             }}
+            id="location"
           />
         </div>
 
@@ -251,6 +252,6 @@ export default function CreateEvent({ toggleCreateEvent }) {
           Create
         </button>
       </form>
-    </>
+    </div>
   );
 }

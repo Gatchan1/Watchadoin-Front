@@ -29,10 +29,10 @@ export default function MyEvents() {
   return (
     <div id="MyEvents">
       <div className="create-event">
-        <h4>Events created by you</h4>
+        <h3>Events created by you</h3>
 
         <button
-          className="boton-create"
+          className="btn btn-outline-primary"
           onClick={(e) => {
             e.preventDefault();
             toggleCreateEvent();
@@ -41,9 +41,10 @@ export default function MyEvents() {
           {!showCreateEvent ? <img style={{ width: "20px" }} src="plus.png" alt="create event" /> : <img style={{ width: "20px" }} src="minus.png" alt="roll up create event" />}
         </button>
       </div>
+      {showCreateEvent && <CreateEvent toggleCreateEvent={toggleCreateEvent} />}
       <hr className="events" />
-      <div className="event-cards">
-        {showCreateEvent && <CreateEvent toggleCreateEvent={toggleCreateEvent} />}
+      <div className="event-cards-container">
+      <div className="event-cards row">
         {currentUser.eventsCreated[0] &&
           currentUser.eventsCreated.map((event) => {
             return (
@@ -78,6 +79,7 @@ export default function MyEvents() {
               </div>
             );
           })}
+      </div>
       </div>
     </div>
   );

@@ -28,7 +28,7 @@ export default function OwnProfilePage() {
 
           {!loadingPopulated && <Friends />}
         </div>
-
+        <hr />
         {!loadingPopulated && <MyEvents />}
       </div>
     </div>

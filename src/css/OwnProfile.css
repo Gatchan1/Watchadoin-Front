@@ -51,17 +51,43 @@ button .smallIcon {
   margin: 0;
 }
 
+/* CreateEvent */
+#CreateEvent {
+  max-width: 500px;
+  margin: auto;
+}
+
+div.dateTime {
+  display: flex;
+}
+
+div.dateTime label {
+  padding-right: 10px;
+}
+
+div.dateTime input {
+  width: 180px;
+}
+
+label.location {
+  padding-right: 10px;
+}
+
 #MyEvents {
-  background-color: rgb(255, 246, 233);
   margin: auto;
   width: 80%;
 }
 
-#MyEvents .event-cards {
+/* Alternative way of displaying columns. In the end I opted for a bootstrap trick */
+/* #MyEvents .event-cards {
   columns: 2;
   -webkit-columns: 2;
   -moz-columns: 2;
   break-inside: avoid-column;
+} */
+
+#MyEvents .event-cards {
+  margin-left: 8vw;
 }
 
 #welcome {
