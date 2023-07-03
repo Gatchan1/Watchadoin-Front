@@ -6,7 +6,7 @@ import FriendsPending from "./FriendsPending";
 
 //This component manages the profile components of: on one hand FriendsLists and on the other hand FriendsOverview and FriendsAll.
 
-export default function Friends({ userData }) {
+export default function Friends() {
 
   return (
     <div id="Friends" >

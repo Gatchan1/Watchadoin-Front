@@ -7,7 +7,7 @@ export default function FriendsAll() {
 
   return (
     <div id="FriendsAll" >
-      {!loadingUserInfo &&
+      {currentUser.friendsConfirmed[0] ?
         currentUser.friendsConfirmed.map((friend) => {
           return (
             <div className="friend" key={friend._id}>
@@ -15,7 +15,7 @@ export default function FriendsAll() {
               <Link className="friend-user" onClick={() => {window.location.href=`/${friend.username}`}}> {friend.username} </Link>
             </div>
           );
-        })}
+        }) : "No friends confirmed yet"}
     </div>
   );
 }
