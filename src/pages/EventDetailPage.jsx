@@ -32,7 +32,7 @@ export default function EventDetailPage() {
     return (
       // Important! Always set the container height explicitly
       <div style={{ height: "300px", width: "100%" }}>
-        <GoogleMapReact bootstrapURLKeys={{ key: "" }} defaultCenter={defaultProps.center} defaultZoom={defaultProps.zoom}>
+        <GoogleMapReact bootstrapURLKeys={{ key: import.meta.env.VITE_GOOGLE_MAPS }} defaultCenter={defaultProps.center} defaultZoom={defaultProps.zoom}>
           <AnyReactComponent lat={coordinates.lat} lng={coordinates.lng} text="My Marker" />
         </GoogleMapReact>
       </div>

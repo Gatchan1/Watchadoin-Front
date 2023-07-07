@@ -164,7 +164,7 @@ export default function CreateEvent({ toggleCreateEvent }) {
             Where?
           </label>
           <AutoComplete
-            apiKey={"AIzaSyCB7SClI1uSfffRXZwDN8HMT9yQNe_pD8k"}
+            apiKey={import.meta.env.VITE_GOOGLE_MAPS}
             options={{
               componentRestrictions: { country: "es" },
               fields: ["address_components", "geometry", "icon", "name"],

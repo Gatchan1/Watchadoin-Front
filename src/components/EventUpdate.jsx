@@ -97,7 +97,7 @@ export default function EventUpdate({ eventInfo }) {
                   Where?
                 </label>
                 <AutoComplete className="autocomplete" 
-                  apiKey={"AIzaSyDs5I5np83v56WXBt2JMvkUJSx_BWZETQw"}
+                  apiKey={import.meta.env.VITE_GOOGLE_MAPS}
                   options={{
                     componentRestrictions: { country: "es" },
                     fields: ["address_components", "geometry", "icon", "name"],
