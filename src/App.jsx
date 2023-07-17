@@ -20,6 +20,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={isLoggedIn ? <DashboardPage/> : <HomePage/>} />
+        <Route path="/home" element={isLoggedIn ? <DashboardPage/> : <HomePage/>} />
         <Route path="/signup" element={<SignUpPage/>} />
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/logout" element={<LogoutPage/>} />

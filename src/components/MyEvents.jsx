@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import CreateEvent from "./CreateEvent";
 // import EventDetail from "./EventDetail";
 import EventUpdate from "./EventUpdate";
@@ -12,6 +12,8 @@ export default function MyEvents() {
   // const { username } = useParams();
   // const [error, setError] = useState("");
 
+  const [modalEvent, setModalEvent] = useState("");
+ 
   function toggleCreateEvent() {
     showCreateEvent ? setShowCreateEvent(false) : setShowCreateEvent(true);
   }
@@ -25,6 +27,7 @@ export default function MyEvents() {
       })
       .catch((err) => console.log(err) /* setError("Could not finish the process, try again", err) */);
   }
+
 
   return (
     <div id="MyEvents">
@@ -45,6 +48,9 @@ export default function MyEvents() {
       <hr className="events" />
       <div className="event-cards-container">
       <div className="event-cards row">
+
+      <EventUpdate eventInfo={modalEvent} />
+
         {currentUser.eventsCreated[0] &&
           currentUser.eventsCreated.map((event) => {
             return (
@@ -52,11 +58,10 @@ export default function MyEvents() {
                 <div className="card-body">
                   <div className="my-event-title">
                     <h5>{event.title}</h5>
-                    <button type="button" className="edit-button btn btn-light" data-bs-toggle="modal" data-bs-target="#eventUpdate">
+                    <button type="button" className="edit-button btn btn-light" data-bs-toggle="modal" data-bs-target="#eventUpdate" onClick={()=> setModalEvent(event)}>
                       <img className="smallIcon" src="/edit.png" />
                     </button>
-                  </div>
-                  <EventUpdate eventInfo={event} />
+                  </div>                  
                   {/* <img className="card-text" src={event.icon} alt="event icon"/> */}
                   <p className="card-text">{event.description}</p>
                   <p className="card-text">{event.location}</p>

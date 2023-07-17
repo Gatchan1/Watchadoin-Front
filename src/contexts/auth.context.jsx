@@ -52,7 +52,7 @@ function AuthProviderWrapper({ children }) {
           setIsLoggedIn(false);
           setUser(null);
           setLoading(false);
-          navigate("/login");
+          navigate("/home");
         });
     } else {
       setIsLoggedIn(false);

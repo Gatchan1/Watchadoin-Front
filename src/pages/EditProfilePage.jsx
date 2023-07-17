@@ -1,23 +1,29 @@
 import { authContext } from "../contexts/auth.context";
-import { useContext} from "react";
+import { useState, useContext} from "react";
 import Navbar from "../components/Navbar"
 
 export default function EditProfilePage() {
-  const { isLoggedIn, user, loading, baseUrl } = useContext(authContext);
+  const { isLoggedIn, currentUser, loading, baseUrl } = useContext(authContext);
+
+  const [username, setUsername] = useState(currentUser.username);
+  const [description, setDescription] = useState(currentUser.description);
+
+  const submitUsername = (e) => {
+    e.preventDefault();
+const userData = {}
+
+
+  } 
 
   return (
   !loading && <div>
     <Navbar/>
     <div><form className="container">
-  <div className="mb-3">
-    <label htmlFor="usernameField" className="form-label">Email address</label>
-    <input type="text" className="form-control" id="usernameField" aria-describedby="changeUsername" />
+  <div className="mb-3 col-6">
+    <label htmlFor="usernameField" className="form-label">Username</label>
+    <input type="text" className="form-control" id="usernameField" />
   </div>
-  <div className="mb-3">
-    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-    <input type="text" className="form-control" id="exampleInputPassword1"/>
-  </div>
-  <button type="submit" className="btn btn-primary ">Submit</button>
+  <button onSubmit={submitUsername} type="submit" className="btn btn-primary">Submit</button>
 </form></div>
     </div>
   )

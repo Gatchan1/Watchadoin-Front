@@ -153,10 +153,6 @@ export default function CreateEvent({ toggleCreateEvent }) {
           </label>
           <input id="dateTime" type="datetime-local" className="form-control" value={dateTime} onChange={(e) => setDateTime(e.target.value)} />
         </div>
-        {/* <div className="mb-3">
-          <label htmlFor="date" className="form-label">What time?</label>
-          <input type="time" className="form-control" value={time} onChange={(e) => setTime(e.target.value)}/>
-        </div> */}
 
         {/* Select location, using Google places API */}
         <div className="mb-3">

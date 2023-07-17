@@ -90,6 +90,9 @@ label.location {
   margin-left: 8vw;
 }
 
+/* this is so that the google-autocomplete dropdown is shown inside the modal, and not behind it */
+div.pac-container { z-index: 99999999999 !important; }
+
 #welcome {
   padding-right: 30px;
 }
@@ -208,3 +211,4 @@ label.location {
   font-size: 20px;
   font-weight: bold;
 }
+
