@@ -40,7 +40,7 @@ export default function LoginPage() {
     <div id="login">
   <h2>Log In</h2>
   <form onSubmit={submitHandler} className="signup-form container">
-  {error != '' && <Alert message={error} />}
+  {error != '' && <Alert message={error} setError={setError}/>}
   <div className="col-3">
     <label htmlFor="username"> Username</label>
       <input id="username" type="text" name="username" value={username} onChange={(e)=>setUsername(e.target.value)}/>

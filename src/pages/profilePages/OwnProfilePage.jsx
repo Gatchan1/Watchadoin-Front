@@ -21,9 +21,9 @@ export default function OwnProfilePage() {
       <Navbar />
       <div className="own-profile">
         <div className="first-section">
-          <img src={currentUser.picture} className="bigSizeAvatar" />
           <div className="edit-profile">
-          <Link to={`/${username}/edit`}>Edit Profile</Link>
+            <img src={currentUser.picture} className="bigSizeAvatar" />
+            <Link to={`/${username}/edit`}>Change profile picture</Link>
           </div>
 
           {!loadingPopulated && <Friends />}

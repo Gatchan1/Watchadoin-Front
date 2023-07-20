@@ -46,11 +46,6 @@ export default function ProfilePage() {
         </div>
       )}
 
-      {!loading && (username != user.username) && publicUserData.username && (
-        <div>
-          <PublicProfilePage publicUserData={publicUserData}  />
-        </div>
-      )}
     </div>
   );
 }

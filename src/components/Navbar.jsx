@@ -28,11 +28,6 @@ export default function Navbar() {
     }
   }, [loading]);
 
-  useEffect(() => {
-    console.log("********allUsers: ", allUsers);
-    console.log("********Searchresults: ", searchResults);
-  }, [allUsers, searchResults]);
-
   //Filter for search bar
   const formOnChangeHandle = (text) => {
     // Without this "if" when we delete a search it would list a complete list of all our friends.
@@ -40,7 +35,6 @@ export default function Navbar() {
       setSearchResults([]);
       return;
     }
-
     let searchFilter = allUsers.filter((user) => {
       return user.username.toLowerCase().includes(text.toLowerCase());
     });
@@ -49,7 +43,6 @@ export default function Navbar() {
 
   useEffect(() => {
     formOnChangeHandle(text);
-    console.log("");
   }, [text]);
 
   return (

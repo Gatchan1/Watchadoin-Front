@@ -112,14 +112,15 @@ div.pac-container { z-index: 99999999999 !important; }
 
 #OwnProfile .first-section {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.edit-profile {
-  padding-top: 120px;
-}
-
-#Friends {
-  margin: auto;
+#OwnProfile .edit-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 5%;
 }
 
 .accordion-item {
@@ -212,3 +213,8 @@ div.pac-container { z-index: 99999999999 !important; }
   font-weight: bold;
 }
 
+#Alert {
+  background-color: rgb(255, 221, 221);
+  padding: 10px 15px;
+  border-radius: 10px;
+}

@@ -57,7 +57,7 @@ export default function EventUpdate({ eventInfo }) {
           </div>
           <div className="modal-body">
             <form onSubmit={submitHandler}>
-              {error != "" && <Alert message={error} />}
+              {error != "" && <Alert message={error} setError={setError}/>}
               <label>Title</label>
               <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
 

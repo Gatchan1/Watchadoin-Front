@@ -1,23 +1,16 @@
-export default function AlertModal(props) {
-  let {title, message} = props
+import "../css/OwnProfile.css";
 
+export default function AlertModal({ message, setError }) {
   const dismissErrorHandler = () => {
-    props.onErrorClick();
+    setError("");
   };
 
   return (
-    <div>
-      <div className='' onClick={dismissErrorHandler} />
-        <header className=''>
-          <h2>{props.title}</h2>
-        </header>
-        <div className=''>
-          <p>{props.message}</p>
-        </div>
-        <footer className=''>
-          <button onClick={dismissErrorHandler}>Okay</button>
-        </footer>
+    <div id="Alert">
+      <p>{message}</p>
+      <button type="button" className="btn btn-outline-dark" onClick={dismissErrorHandler}>
+        Okay
+      </button>
     </div>
   );
-};
-
+}

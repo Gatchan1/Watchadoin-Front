@@ -54,7 +54,7 @@ export default function CreateInviteList() {
   return (
     <div>
       <form onSubmit={submitHandler} className="container">
-        {error != "" && <Alert message={error} />}
+        {error != "" && <Alert message={error} setError={setError}/>}
         <div className="col-6">
           <label htmlFor="title">Title of the Friends Circle:</label>
           <input type="text" id="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} />

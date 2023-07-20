@@ -1,26 +1,26 @@
 import "../css/auth.css";
-import axios from "axios"
-import { authContext } from '../contexts/auth.context';
-import {Navigate, useNavigate} from 'react-router-dom';
+import axios from "axios";
+import { authContext } from "../contexts/auth.context";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-import Alert from '../components/Alert';
+import Alert from "../components/Alert";
 import NavbarLoggedOut from "../components/NavbarLoggedOut";
-const baseUrl = import.meta.env.VITE_API_URL
+const baseUrl = import.meta.env.VITE_API_URL;
 
 export default function SignUpPage() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordRepeat, setPasswordRepeat] = useState('');
+  const [passwordRepeat, setPasswordRepeat] = useState("");
   const [picture, setPicture] = useState("");
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [loadingPic, setLoadingPic] = useState(false);
   const navigate = useNavigate();
-  const {isLoggedIn, loading, baseUrl} = useContext(authContext);
+  const { isLoggedIn, loading, baseUrl } = useContext(authContext);
 
   const handleFileUpload = (e) => {
     // console.log("The file to be uploaded is: ", e.target.files[0]);
-    setLoadingPic(true)
+    setLoadingPic(true);
     const uploadData = new FormData(); //FormData sirve para simular el objeto que recibiríamos de un formulario pero sin necesidad de tener un formulario.
 
     // imageUrl => this name has to be the same as in the model since we pass
@@ -28,12 +28,13 @@ export default function SignUpPage() {
     uploadData.append("picture", e.target.files[0]);
     setPicture("uploading");
     //service //call to axios
-    axios.post(baseUrl + "/auth/upload", uploadData)
+    axios
+      .post(baseUrl + "/auth/upload", uploadData)
       .then((response) => {
         console.log("response is: ", response);
         // response carries "fileUrl" which we can use to update the state
         setPicture(response.data.fileUrl);
-        setLoadingPic(false)
+        setLoadingPic(false);
       })
       .catch((err) => console.log("Error while uploading the file: ", err));
   };
@@ -43,31 +44,40 @@ export default function SignUpPage() {
 
     //do submit things:
 
-    if(username == '' || password == '' || passwordRepeat == '') {
+    if (username == "" || password == "" || passwordRepeat == "") {
       console.log("error: fields missing");
-      setError("error: fields missing")
+      setError("error: fields missing");
       return;
-    } 
-    if(password != passwordRepeat) {
+    }
+    if (password != passwordRepeat) {
       console.log("passwords should match");
-      setError("error: passwords should match")
+      setError("error: passwords should match");
       return;
     }
 
-    const user = {username, email, password, passwordRepeat, picture};
-    console.log("useeeeeer: ", user)
-    if(!loadingPic){
-    axios.post(baseUrl + '/auth/signup', user)
-    .then(resp => {
-      console.log(resp);
-      navigate('/login');
-    })
-    .catch(err => setError('Could not finish the process, try again', err))
+    const user = { username, email, password, passwordRepeat, picture };
 
-  }
-  }
+    axios
+      .get(baseUrl + "/users/" + username + "/raw")
+      .then(({ data }) => {
+        if (data.username) {
+          console.log("username already taken");
+          setError("username already taken");
+          return;
+        } else if (!loadingPic) {
+          axios.post(baseUrl + "/auth/signup", user)
+          .then((resp) => {
+            console.log(resp);
+            navigate("/login");
+          })
+          .catch((err) => setError("Could not finish the process, try again", err));
+        }
+      })
+      .catch((err) => setError("Could not finish the process, try again", err));
+      
+  };
 
-  if(!loading && isLoggedIn) return <Navigate to="/dashboard" />
+  if (!loading && isLoggedIn) return <Navigate to="/dashboard" />;
 
   return (
     <>
@@ -75,24 +85,24 @@ export default function SignUpPage() {
       <div id="signUp">
         <h2>Sign Up</h2>
         <form onSubmit={submitHandler} className="container signup-form">
-        {error != '' && <Alert message={error} />}
+          {error != "" && <Alert message={error} setError={setError}/>}
           <div className="col-3">
             <label htmlFor="username">Username</label>
-            <input type="text" id="username" name="username" placeholder="Your username" value={username} onChange={(e)=>setUsername(e.target.value)}/>
+            <input type="text" id="username" name="username" placeholder="Your username" value={username} onChange={(e) => setUsername(e.target.value)} />
           </div>
           <div className="col-3">
             <label htmlFor="email">Email</label>
-            <input id="email" type="email" name="email" placeholder="Your email" value={email} onChange={(e)=>setEmail(e.target.value)}/>
+            <input id="email" type="email" name="email" placeholder="Your email" value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
           <div className="col-3">
             <label htmlFor="password">Password</label>
-            <input id="password" type="password" name="password" placeholder="Your password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
+            <input id="password" type="password" name="password" placeholder="Your password" value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
           <div className="col-3">
             <label htmlFor="passwordRepeat">Password Repeat</label>
-            <input id="passwordRepeat" type="password" name="passwordRepeat" placeholder="Repeat your password" value={passwordRepeat} onChange={(e)=>setPasswordRepeat(e.target.value)}/>
+            <input id="passwordRepeat" type="password" name="passwordRepeat" placeholder="Repeat your password" value={passwordRepeat} onChange={(e) => setPasswordRepeat(e.target.value)} />
           </div>
-          
+
           <label>Image:</label>
           <input type="file" onChange={(e) => handleFileUpload(e)} />
           {loadingPic && <p>Image is loading.....</p>}
