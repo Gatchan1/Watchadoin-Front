@@ -33,19 +33,19 @@ export default function SignUpPage() {
 
     const user = { username, email, password, passwordRepeat };
 
-    axios.get(baseUrl + "/users/" + username + "/find")
-    .then(({ data }) => {
+    axios.get(baseUrl + "/users/" + username + "/find").then(({ data }) => {
       if (data[0].username) {
         console.log("username already taken");
         setError("username already taken");
         return;
       }
-    return axios.post(baseUrl + "/auth/signup", user)
-    .then((resp) => {
+      return axios
+        .post(baseUrl + "/auth/signup", user)
+        .then((resp) => {
           console.log(resp);
           navigate("/login");
         })
-    .catch((err) => setError("Could not finish the process, try again", err));
+        .catch((err) => setError("Could not finish the process, try again", err));
     });
   };
 
@@ -54,31 +54,49 @@ export default function SignUpPage() {
   return (
     <>
       <NavbarLoggedOut />
-      <div id="signUp">
-        <h2>Sign Up</h2>
-        <form onSubmit={submitHandler} className="container signup-form">
-          {error != "" && <Alert message={error} setError={setError} />}
-          <div className="col-3">
-            <label htmlFor="username">Username</label>
-            <input type="text" id="username" name="username" placeholder="Your username" value={username} onChange={(e) => setUsername(e.target.value)} />
-          </div>
-          <div className="col-3">
-            <label htmlFor="email">Email</label>
-            <input id="email" type="email" name="email" placeholder="Your email" value={email} onChange={(e) => setEmail(e.target.value)} />
-          </div>
-          <div className="col-3">
-            <label htmlFor="password">Password</label>
-            <input id="password" type="password" name="password" placeholder="Your password" value={password} onChange={(e) => setPassword(e.target.value)} />
-          </div>
-          <div className="col-3">
-            <label htmlFor="passwordRepeat">Password Repeat</label>
-            <input id="passwordRepeat" type="password" name="passwordRepeat" placeholder="Repeat your password" value={passwordRepeat} onChange={(e) => setPasswordRepeat(e.target.value)} />
-          </div>
-
-          <button type="submit" className="signup">
-            SIGN UP
-          </button>
-        </form>
+      <div className="signup-container">
+        <div id="brief">
+          <p>Do you want to see what your friends are up to?</p>
+          <p>Leave every worry aside, you are welcome to every plan you see!</p>
+          <p>Join in now and enjoy an easier and more fulfilling social life. ✨</p>
+        </div>
+        <div id="signUp">
+          <h2>Sign Up</h2>
+          <form onSubmit={submitHandler} className="container signup-form">
+            {error != "" && <Alert message={error} setError={setError} />}
+            <div className="row">
+              <div>
+                <label htmlFor="username" className="form-label">
+                  Username
+                </label>
+                <input type="text" id="username" className="form-control" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+              </div>
+              <div>
+                <label htmlFor="email" className="form-label">
+                  Email
+                </label>
+                <input id="email" className="form-control" type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+              </div>
+              <div>
+                <label htmlFor="password" className="form-label">
+                  Password
+                </label>
+                <input id="password" className="form-control" type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+              </div>
+              <div>
+                <label htmlFor="passwordRepeat" className="form-label">
+                  Password Repeat
+                </label>
+                <input id="passwordRepeat" className="form-control" type="password" name="passwordRepeat" value={passwordRepeat} onChange={(e) => setPasswordRepeat(e.target.value)} />
+              </div>
+              <div className="auth">
+                <button type="submit" className="signup btn btn-primary">
+                  SIGN UP
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </>
   );

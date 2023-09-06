@@ -19,8 +19,8 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={isLoggedIn ? <DashboardPage/> : <HomePage/>} />
-        <Route path="/home" element={isLoggedIn ? <DashboardPage/> : <HomePage/>} />
+        <Route path="/" element={isLoggedIn ? <DashboardPage/> : <SignUpPage/>} />
+        <Route path="/home" element={isLoggedIn ? <DashboardPage/> : <SignUpPage/>} />
         <Route path="/signup" element={<SignUpPage/>} />
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/logout" element={<LogoutPage/>} />

@@ -10,25 +10,51 @@
   background-color: rgb(170, 249, 249)
 } */
 
-  #signUp input,
-  #login input {
-    margin-bottom: 10px;
-  }
+.signup-container {
+  display: flex;
+}
 
-  #signUp form,
-  #login form {
-    display: flex;
-    flex-direction: column;
-  }
+#brief {
+  padding: 50px 70px;
+}
 
-  #signUp div
-   #signUp div {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+#signUp {
+  padding-left: 5%;
+}
 
-  #signUp button,
-  #login button {
-    width: 200px
-  }
+#signUp h2{
+  padding: 12px;
+}
+#login h2 {
+  padding: 10px 0 10px 50px;
+}
+
+#signUp input,
+#login input {
+  margin-bottom: 10px;
+}
+
+#signUp form,
+#login form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+#signUp div,
+#login div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#signUp button,
+#login button {
+  margin-top: 20px;
+  width: 150px;
+}
+
+div.auth {
+  display: flex;
+  align-items: center;
+}
