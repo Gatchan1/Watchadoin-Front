@@ -15,6 +15,10 @@ header {
   align-items: center;
 }
 
+.welcome {
+  padding: 10px 0 0 50px;
+}
+
 .link {
   padding: 20px;
 }
@@ -22,6 +26,24 @@ header {
 .dashboardComponents {
   display: flex;
   justify-content: space-around;
+}
+
+.red-border {
+  border-style: solid;
+  border-radius: 10px;
+  border-color: rgba(255, 125, 125, 0.5);
+}
+
+.upcomingEvents h2 {
+  background-color: rgba(255, 125, 125, 0.5);
+  color: white;
+  font-weight: bold;
+  border-radius: 7px 7px 0 0;
+  padding: 20px;
+}
+
+.upcoming {
+  padding: 0 20px;
 }
 
 .Calendar {

@@ -112,7 +112,6 @@ div.pac-container { z-index: 99999999999 !important; }
 
 #OwnProfile .first-section {
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
@@ -121,6 +120,7 @@ div.pac-container { z-index: 99999999999 !important; }
   flex-direction: column;
   align-items: center;
   padding-right: 5%;
+  padding-top: 10px;
 }
 
 .accordion-item {
@@ -158,6 +158,10 @@ div.pac-container { z-index: 99999999999 !important; }
 
 .list p {
   margin: 0;
+}
+
+.dropdown.invite {
+  padding-bottom: 1px;
 }
 
 #map {

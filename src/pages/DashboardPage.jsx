@@ -23,9 +23,6 @@ export default function DashboardPage() {
       </header>
       <div className="dashboardComponents">
         <div className="row1">
-          <h2>Upcoming events</h2>
-        <hr className="events"></hr>
-
           {!loadingPopulated && <ConfirmedEvents />}
         </div>
         <div className="row2">

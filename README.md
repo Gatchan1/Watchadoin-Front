@@ -27,7 +27,7 @@ $ npm start
 ## Routes
 | Route                                     | Privacy         | Renders                  |
 | ------------------------------------------| :-------------: | ------------------------ |
-| /                                         | only logged out | HomePage                 |
+| /                                         | only logged out | SignupPage                 |
 | /signup                                   | only logged out | SignupPage               |
 | /login                                    | only logged out | LoginPage                |
 | /logout                                   | private         | LogoutPage, it redirects to login |

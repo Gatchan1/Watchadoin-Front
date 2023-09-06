@@ -11,9 +11,6 @@ export default function PublicProfilePage() {
   const [publicUserRaw, setPublicUserRaw] = useState({});
   const [loadingPublicUser, setLoadingPublicUser] = useState(true);
   const [friendshipStatus, setFriendshipStatus] = useState("");
- 
-
-  
 
   function getPublicUserDataRaw() {
     axios
@@ -79,7 +76,7 @@ export default function PublicProfilePage() {
   return (
     <div>
       <Navbar />
-      <h4>Public Profile Page of {username}</h4>
+      <h4>Public profile page of {username} <img src={publicUserRaw.picture}/></h4>      
 
       {friendshipStatus == "TOSEND" && (
         <button

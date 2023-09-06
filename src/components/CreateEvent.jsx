@@ -184,7 +184,7 @@ export default function CreateEvent({ toggleCreateEvent }) {
 
         {/* Dropdown to select friends to invite */}
 
-        <div className="dropdown">
+        <div className="dropdown invite">
           <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
             Invite friends
           </button>

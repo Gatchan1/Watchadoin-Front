@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { authContext } from './contexts/auth.context';
 import { useContext } from "react";
-import HomePage from "./pages/HomePage";
 import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import LogoutPage from "./pages/LogoutPage";
