@@ -12,6 +12,7 @@ export default function EditProfilePage() {
   const navigate = useNavigate();
   const [image, setImage] = useState("");
   const [loadingPic, setLoadingPic] = useState(false);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     if (username !== currentUser.username) {
@@ -20,6 +21,7 @@ export default function EditProfilePage() {
   }, []);
 
   const uploadImage = (e) => {
+    setMessage("");
     e.preventDefault();
     let imageUrl;
     setLoadingPic(true);
@@ -44,6 +46,7 @@ export default function EditProfilePage() {
         console.log("imagen actualizada:", resp);
         getUserInfo();
         setLoadingPic(false);
+        setMessage("Your profile image has been changed ✔️");
       })
       .catch((err) => console.log(err));
   };
@@ -58,6 +61,7 @@ export default function EditProfilePage() {
             <div className="mb-3 col-6">
               <input onChange={(e) => setImage(e.target.files[0])} type="file" className="form-control" />
             </div>
+            {message && <p className="goodMessage">{message}</p>}
             {loadingPic && <p>Image is loading.....</p>}
             <button onClick={uploadImage} type="submit" className="btn btn-primary">
               Upload image

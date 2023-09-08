@@ -50,12 +50,12 @@ export default function ConfirmedEvents() {
           return (
             <div className="upcoming" key={event._id}>
               <h4>{event.title}</h4>
-              <p>{event.description}</p>
-              <p>{event.location}</p>
+              <p className="description">{event.description}</p>
+              <p>Location: {event.location ? event.location : "unknown"}</p>
               <p>{new Date(event.dateTime).toLocaleString()}</p>
 
               {event.creator !== currentUser._id && (
-                <button type="button" className="join" onClick={() => unjoinEvent(event._id)}>
+                <button type="button" className="btn btn-outline-danger" onClick={() => unjoinEvent(event._id)}>
                   Unjoin
                 </button>
               )}

@@ -10,8 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@googlemaps/react-wrapper": "^1.1.35",
     "axios": "^1.4.0",
     "google-map-react": "^2.2.1",
+    "mapbox-gl": "^2.15.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-google-autocomplete": "^2.7.3",

@@ -1,10 +1,13 @@
 import axios from "axios";
 import { authContext } from "../contexts/auth.context";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useRef, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import GoogleMapReact from "google-map-react";
-import "../css/OwnProfile.css"; // I still don't understand why if I don't import this css here it's still applied...
+import "../css/OwnProfile.css"; // I still don't quite understand why if I don't import this css here it's still applied...
+import "mapbox-gl/dist/mapbox-gl.css";
+import mapboxgl from "mapbox-gl";
+
+mapboxgl.accessToken = "pk.eyJ1IjoiaGFja2F0aG9uMiIsImEiOiJjbGo0aGx0MWQwMmo3M2tsYWJhdXB2eW92In0.cCWhykKYdYmDuEeG4-U8cw";
 
 export default function EventDetailPage() {
   const { loading, baseUrl, getHeaders } = useContext(authContext);
@@ -12,32 +15,12 @@ export default function EventDetailPage() {
 
   const [event, setEvent] = useState(null);
   const [loadingEvent, setLoadingEvent] = useState(true);
-  const [markerPosition, setMarkerPosition] = useState({ lat: 0, lng: 0 });
 
-  const AnyReactComponent = () => (
-    <div>
-      <img style={{ height: "25px" }} src="/marker.png" alt="marker" />
-    </div>
-  );
-
-  function GoogleMap(coordinates) {
-    const defaultProps = {
-      center: {
-        lat: coordinates.lat,
-        lng: coordinates.lng,
-      },
-      zoom: 14,
-    };
-
-    return (
-      // Important! Always set the container height explicitly
-      <div style={{ height: "300px", width: "100%" }}>
-        <GoogleMapReact bootstrapURLKeys={{ key: import.meta.env.VITE_GOOGLE_MAPS }} defaultCenter={defaultProps.center} defaultZoom={defaultProps.zoom}>
-          <AnyReactComponent lat={coordinates.lat} lng={coordinates.lng} text="My Marker" />
-        </GoogleMapReact>
-      </div>
-    );
-  }
+  const mapContainer = useRef(null);
+  const map = useRef(null);
+  const [lng, setLng] = useState(null);
+  const [lat, setLat] = useState(null);
+  const [zoom, setZoom] = useState(13);
 
   useEffect(() => {
     axios
@@ -46,11 +29,29 @@ export default function EventDetailPage() {
         console.log("response: ", data);
         setEvent(data);
         setLoadingEvent(false);
+        setLat(data.coordinates.lat);
+        setLng(data.coordinates.lng);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [loading]);
+
+  useEffect(() => {
+    if (map.current) return; // initialize map only once
+    if (!mapContainer.current) return;
+    if (lat && lng) {
+      map.current = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: "mapbox://styles/mapbox/streets-v12",
+        center: [lng, lat],
+        zoom: zoom,
+      });
+
+      new mapboxgl.Marker().setLngLat({ lng, lat }).addTo(map.current);
+      map.current.addControl(new mapboxgl.NavigationControl(), "top-right");
+    }
+  }, [loadingEvent])
 
   return (
     <>
@@ -73,7 +74,7 @@ export default function EventDetailPage() {
             </div>
             <hr className="invitees"></hr>
             <div className="invite-users">
-            <p>Check out who will be there </p>
+              <p>Check out who will be there </p>
               {event.confirmedJoiners.map((joiner) => {
                 return (
                   <div className="invite-user" key={joiner._id}>
@@ -82,11 +83,10 @@ export default function EventDetailPage() {
                   </div>
                 );
               })}
-
             </div>
             <hr className="invitees"></hr>
 
-            {GoogleMap(event.coordinates)}
+            {lat && <div ref={mapContainer} className="map-container" />}
           </div>
         </div>
       )}

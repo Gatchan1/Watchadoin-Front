@@ -1,0 +1,9 @@
+.publicAvatar {
+    max-width: 150px;
+    max-height: 150px;
+    padding-left: 20px;
+}
+
+#publicProfile {
+    padding-left: 10%;
+}

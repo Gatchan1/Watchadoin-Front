@@ -31,19 +31,21 @@ export default function NewEvents() {
 
 //-------------------------- RETURN ------------------------------
   return (
-    <div className="NewEvents">
-    
+    <div className="newEvents red-border">
+    <h2>Possible plans</h2>
     {/* We don't need to use a loading state here because these components only render after loading. (See DashboardPage) */}
-    {currentUser.eventsPending.length == 0 && <p>No new events</p>}
+    {currentUser.eventsPending.length == 0 && <p className="noEvents">No new events</p>}
 
     {currentUser.eventsPending.length !== 0 && currentUser.eventsPending.map((event) => <div className='new-event' key={event._id}>
         <h4>{event.title}</h4>
-        <p>{event.description}</p>
-        <p>{event.location}</p>
+        <p className="description">{event.description}</p>
+        <p>Location: {event.location}</p>
         <p>{ new Date(event.dateTime).toLocaleString()}</p>
 
-        <button type="button" className="join" onClick={ () => joinEvent(event._id)}>Join</button>
-        <button type="button" className="reject" onClick={() => rejectEvent(event._id)}>Reject</button>
+        <div className="btn-group">
+        <button type="button" className="join btn btn-primary" onClick={ () => joinEvent(event._id)}>Join</button>
+        <button type="button" className="reject btn btn-danger" onClick={() => rejectEvent(event._id)}>Reject</button>
+        </div>
 
         <div className="moreinfo">
         <Link to={`/events/${event._id}`}>More details</Link>

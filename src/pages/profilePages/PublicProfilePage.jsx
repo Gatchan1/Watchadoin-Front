@@ -76,45 +76,49 @@ export default function PublicProfilePage() {
   return (
     <div>
       <Navbar />
-      <h4>Public profile page of {username} <img src={publicUserRaw.picture}/></h4>      
+      <div id="publicProfile">
+        <h4>
+          Public profile page of {username} {!loadingPublicUser && <img className="publicAvatar" src={publicUserRaw.picture} />}
+        </h4>
 
-      {friendshipStatus == "TOSEND" && (
-        <button
-          onClick={() => {
-            addFriend();
-          }}
-          type="button"
-          className="btn btn-primary"
-        >
-          Send friendship request
-        </button>
-      )}
-      {friendshipStatus == "TOACCEPT" && (
-        <button
-          onClick={() => {
-            acceptFriend();
-          }}
-          type="button"
-          className="btn btn-success"
-        >
-          Accept friend request
-        </button>
-      )}
-      {friendshipStatus == "REQUESTED" && (
-        <button disabled className="btn btn-secondary">
-          Friendship requested
-        </button>
-      )}
-      {friendshipStatus == "TOREVOKE" && (
-        <button
-          onClick={() => {
-            removeFriend();
-          }}
-          className="btn btn-warning"
-        >
-          Revoke friendship
-        </button>
-      )}
+        {!loadingPublicUser && friendshipStatus == "TOSEND" && (
+          <button
+            onClick={() => {
+              addFriend();
+            }}
+            type="button"
+            className="btn btn-primary"
+          >
+            Send friendship request
+          </button>
+        )}
+        {!loadingPublicUser && friendshipStatus == "TOACCEPT" && (
+          <button
+            onClick={() => {
+              acceptFriend();
+            }}
+            type="button"
+            className="btn btn-success"
+          >
+            Accept friend request
+          </button>
+        )}
+        {!loadingPublicUser && friendshipStatus == "REQUESTED" && (
+          <button disabled className="btn btn-secondary">
+            Friendship requested
+          </button>
+        )}
+        {!loadingPublicUser && friendshipStatus == "TOREVOKE" && (
+          <button
+            onClick={() => {
+              removeFriend();
+            }}
+            className="btn btn-warning"
+          >
+            Revoke friendship
+          </button>
+        )}
+      </div>
     </div>
   );
 }

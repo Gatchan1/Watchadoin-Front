@@ -26,8 +26,6 @@ export default function DashboardPage() {
           {!loadingPopulated && <ConfirmedEvents />}
         </div>
         <div className="row2">
-        <h2>Possible plans</h2>
-        <hr className="events"></hr>
         {!loadingPopulated && <NewEvents />}
         </div>
       </div>

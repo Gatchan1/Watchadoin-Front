@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import OwnProfilePage from "./OwnProfilePage";
 import PublicProfilePage from "./PublicProfilePage";
+import "../../css/PublicProfile.css";
 
 export default function ProfilePage() {
   const { user, baseUrl, loading } = useContext(authContext);
