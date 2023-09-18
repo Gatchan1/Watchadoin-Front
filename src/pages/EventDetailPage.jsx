@@ -1,13 +1,13 @@
 import axios from "axios";
 import { authContext } from "../contexts/auth.context";
 import { useContext, useRef, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import "../css/OwnProfile.css"; // I still don't quite understand why if I don't import this css here it's still applied...
 import "mapbox-gl/dist/mapbox-gl.css";
 import mapboxgl from "mapbox-gl";
 
-mapboxgl.accessToken = "pk.eyJ1IjoiaGFja2F0aG9uMiIsImEiOiJjbGo0aGx0MWQwMmo3M2tsYWJhdXB2eW92In0.cCWhykKYdYmDuEeG4-U8cw";
+mapboxgl.accessToken = import.meta.env.VITE_MAPBOX;
 
 export default function EventDetailPage() {
   const { loading, baseUrl, getHeaders } = useContext(authContext);
