@@ -1,10 +1,9 @@
 import { authContext } from "../contexts/auth.context";
-import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
 import CreateInviteList from "./CreateInviteList";
 
 export default function InviteList() {
-  const { currentUser, baseUrl } = useContext(authContext);
+  const { currentUser } = useContext(authContext);
 
   const [showCreateList, setShowCreateList] = useState(false);
   function toggleCreateList() {
@@ -23,21 +22,29 @@ export default function InviteList() {
         {!showCreateList ? <img style={{ width: "20px" }} src="plus.png" alt="create event" /> : <img style={{ width: "20px" }} src="minus.png" alt="roll up create event" />}
       </button>
       {showCreateList && <CreateInviteList />}
-      {currentUser.inviteLists[0] ? <div className="lists">
-        {currentUser.inviteLists.map((list)=>{
-            return <div className="list" key={list._id}>
-            <h5>{list.title}</h5> <div className="invite-users">{list.users.map((user)=>{
-                return (
-                    <div className="invite-user" key={user._id}>
-                    <img className="friend-icon" src={user.picture} alt={user.username} />
-                    <a href={`/${user.username}`}> {user.username} </a>
-                    </div>
-                )
-            })}
-            </div>
-            </div>
-        })}
-      </div> : "No Friend Circles to show"}
+      {currentUser.inviteLists[0] ? (
+        <div className="lists">
+          {currentUser.inviteLists.map((list) => {
+            return (
+              <div className="list" key={list._id}>
+                <h5>{list.title}</h5>
+                <div className="row-of-friends">
+                  {list.users.map((user) => {
+                    return (
+                      <div className="friend-icon-container" key={user._id}>
+                        <img className="friend-icon" src={user.picture} alt={user.username} />
+                        <a href={`/${user.username}`}> {user.username} </a>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        "No Friend Circles to show"
+      )}
     </div>
   );
 }

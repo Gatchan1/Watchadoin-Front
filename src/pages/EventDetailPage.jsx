@@ -73,11 +73,11 @@ export default function EventDetailPage() {
               </div>
             </div>
             <hr className="invitees"></hr>
-            <div className="invite-users">
-              <p>Check out who will be there </p>
+            <div className="row-of-friends">
+              <p>Check out who will be there: </p>
               {event.confirmedJoiners.map((joiner) => {
                 return (
-                  <div className="invite-user" key={joiner._id}>
+                  <div className="friend-icon-container" key={joiner._id}>
                     <img className="friend-icon" src={joiner.picture} alt={joiner.username} />
                     <a href={`/${joiner.username}`}> {joiner.username} </a>
                   </div>

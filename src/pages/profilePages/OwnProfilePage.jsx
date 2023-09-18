@@ -1,15 +1,14 @@
-import axios from "axios";
 import "../../css/OwnProfile.css";
 import { authContext } from "../../contexts/auth.context";
 import { useParams, Link } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import Navbar from "../../components/Navbar";
-import Friends from "../../components/Friends";
+import FriendsAccordion from "../../components/FriendsAccordion";
 import MyEvents from "../../components/MyEvents";
 
 export default function OwnProfilePage() {
   const { username } = useParams();
-  const { user, baseUrl, loading, getUserInfo, currentUser, loadingPopulated } = useContext(authContext);
+  const { loading, getUserInfo, currentUser, loadingPopulated } = useContext(authContext);
 
   // Retrieve current user data at mounting phase.
   useEffect(() => {
@@ -26,7 +25,7 @@ export default function OwnProfilePage() {
             <Link to={`/${username}/edit`}>Change profile picture</Link>
           </div>
 
-          {!loadingPopulated && <Friends />}
+          {!loadingPopulated && <FriendsAccordion />}
         </div>
         <hr />
         {!loadingPopulated && <MyEvents />}

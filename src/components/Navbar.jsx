@@ -5,7 +5,7 @@ import "../css/Navbar.css";
 import axios from "axios";
 
 export default function Navbar() {
-  const { user, baseUrl, loading, currentUser } = useContext(authContext);
+  const { user, baseUrl, loading, currentUser, getHeaders } = useContext(authContext);
   const { username } = user;
 
   const [allUsers, setAllUsers] = useState([]);
@@ -16,11 +16,11 @@ export default function Navbar() {
   useEffect(() => {
     {
       axios
-        .get(baseUrl + "/users/all")
+        .get(baseUrl + "/users/all", getHeaders())
         .then(({ data }) => {
           setAllUsers(
-            data.filter((user) => {
-              return user.username != currentUser.username;
+            data.filter((foundUser) => {
+              return foundUser.username != currentUser.username;
             })
           );
         })
@@ -35,8 +35,8 @@ export default function Navbar() {
       setSearchResults([]);
       return;
     }
-    let searchFilter = allUsers.filter((user) => {
-      return user.username.toLowerCase().includes(text.toLowerCase());
+    let searchFilter = allUsers.filter((foundUser) => {
+      return foundUser.username.toLowerCase().includes(text.toLowerCase());
     });
     setSearchResults(searchFilter);
   };
@@ -57,8 +57,11 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to={`/${username}`}>
+              <a className="nav-link active" aria-current="page" href={`/${username}`}>
                 Profile
+              </a>
+              <Link className="nav-link active" aria-current="page" to={`/${username}`}>
+                Profileee
               </Link>
             </li>
             <li>
@@ -92,14 +95,14 @@ export default function Navbar() {
             {searchResults.length === 0 || (searchResults.length === allUsers.length && "")}
             {searchResults.length > 0 && (
               <ul className="search-dropdown" aria-label="search dropdown">
-                {searchResults.map((user) => (
-                  <li className="dropdown-item" key={user._id}>
+                {searchResults.map((searchUser) => (
+                  <li className="dropdown-item" key={searchUser._id}>
                     <span className="friend-icon-container">
-                      <img className="friend-icon" src={user.picture} alt={user.username} />
+                      <img className="friend-icon" src={searchUser.picture} alt={searchUser.username} />
                     </span>
-                    <Link className="name-link" to={`/${user.username}`}>
-                      {user.username}
-                    </Link>
+                    <a className="name-link" href={`/${searchUser.username}`}>
+                      {searchUser.username}
+                    </a>
                   </li>
                 ))}
               </ul>

@@ -44,11 +44,11 @@ export default function ConfirmedEvents() {
     <div className="upcomingEvents red-border">
     <h2>Upcoming events</h2>
       {/* We don't need to use a loading state here because these components only render after loading. (See DashboardPage) */}
-      {!confirmedEvents[0] && <p>You haven`t confirmed assistance to any event</p>}
+      {!confirmedEvents[0] && <p className="noConfirmed">You haven`t confirmed assistance to any event</p>}
       {confirmedEvents[0] &&
         confirmedEvents.map((event) => {
           return (
-            <div className="upcoming" key={event._id}>
+            <div className="upcomingEv" key={event._id}>
               <h4>{event.title}</h4>
               <p className="description">{event.description}</p>
               <p>Location: {event.location ? event.location : "unknown"}</p>

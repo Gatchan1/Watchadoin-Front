@@ -36,7 +36,7 @@ export default function NewEvents() {
     {/* We don't need to use a loading state here because these components only render after loading. (See DashboardPage) */}
     {currentUser.eventsPending.length == 0 && <p className="noEvents">No new events</p>}
 
-    {currentUser.eventsPending.length !== 0 && currentUser.eventsPending.map((event) => <div className='new-event' key={event._id}>
+    {currentUser.eventsPending.length !== 0 && currentUser.eventsPending.map((event) => <div className='newEv' key={event._id}>
         <h4>{event.title}</h4>
         <p className="description">{event.description}</p>
         <p>Location: {event.location}</p>

@@ -13,7 +13,7 @@ export default function MyEvents() {
   // const [error, setError] = useState("");
 
   const [modalEvent, setModalEvent] = useState("");
- 
+
   function toggleCreateEvent() {
     showCreateEvent ? setShowCreateEvent(false) : setShowCreateEvent(true);
   }
@@ -27,7 +27,6 @@ export default function MyEvents() {
       })
       .catch((err) => console.log(err) /* setError("Could not finish the process, try again", err) */);
   }
-
 
   return (
     <div id="MyEvents">
@@ -47,44 +46,43 @@ export default function MyEvents() {
       {showCreateEvent && <CreateEvent toggleCreateEvent={toggleCreateEvent} />}
       <hr className="events" />
       <div className="event-cards-container">
-      <div className="event-cards row">
+        <div className="event-cards row">
+          <EventUpdate eventInfo={modalEvent} />
 
-      <EventUpdate eventInfo={modalEvent} />
+          {currentUser.eventsCreated[0] &&
+            currentUser.eventsCreated.map((event) => {
+              return (
+                <div key={event._id} className="card" style={{ width: "25rem", breakInside: "avoid-column" }}>
+                  <div className="card-body my-event">
+                    <div className="title">
+                      <h5>{event.title}</h5>
+                      <button type="button" className="edit-button btn btn-light" data-bs-toggle="modal" data-bs-target="#eventUpdate" onClick={() => setModalEvent(event)}>
+                        <img className="smallIcon" src="/edit.png" />
+                      </button>
+                    </div>
+                    {/* <img className="card-text" src={event.icon} alt="event icon"/> */}
+                    <p className="card-text description">{event.description}</p>
+                    <p className="card-text">Location: {event.location}</p>
+                    <p className="card-text">{new Date(event.dateTime).toLocaleString()}</p>
+                    <p className="card-text">Confirmed atendees: {event.confirmedJoiners.length}</p>
 
-        {currentUser.eventsCreated[0] &&
-          currentUser.eventsCreated.map((event) => {
-            return (
-              <div key={event._id} className="card" style={{ width: "25rem", breakInside: "avoid-column" }}>
-                <div className="card-body">
-                  <div className="my-event-title">
-                    <h5>{event.title}</h5>
-                    <button type="button" className="edit-button btn btn-light" data-bs-toggle="modal" data-bs-target="#eventUpdate" onClick={()=> setModalEvent(event)}>
-                      <img className="smallIcon" src="/edit.png" />
-                    </button>
-                  </div>                  
-                  {/* <img className="card-text" src={event.icon} alt="event icon"/> */}
-                  <p className="card-text">{event.description}</p>
-                  <p className="card-text">{event.location}</p>
-                  <p className="card-text">{new Date(event.dateTime).toLocaleString()}</p>
-                  <p className="card-text">{event.confirmedJoiners}</p>
-
-                  <form>
-                    <button
-                      type="submit"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        deleteHandler(event);
-                      }}
-                      className="btn btn-outline-danger"
-                    >
-                      Delete
-                    </button>
-                  </form>
+                    <form>
+                      <button
+                        type="submit"
+                        className="delete-button btn btn-outline-danger"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          deleteHandler(event);
+                        }}
+                      >
+                        Delete
+                      </button>
+                    </form>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-      </div>
+              );
+            })}
+        </div>
       </div>
     </div>
   );

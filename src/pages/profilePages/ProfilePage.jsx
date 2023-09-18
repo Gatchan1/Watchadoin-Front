@@ -7,46 +7,52 @@ import PublicProfilePage from "./PublicProfilePage";
 import "../../css/PublicProfile.css";
 
 export default function ProfilePage() {
-  const { user, baseUrl, loading } = useContext(authContext);
+  const { user, baseUrl, loading, getHeaders } = useContext(authContext);
   // console.log("useeer:",user)
   const { username } = useParams();
   // console.log("username: ", username)
   const navigate = useNavigate();
 
   const [publicUserData, setPublicUserData] = useState({});
+  const [profile, setProfile] = useState("");
+
+
+  useEffect(() => {
+    setProfile("");
+  }, [])
 
   useEffect(() => {
     if (loading) return;
-      if (username != user.username) { // Check if the username profile route we are trying to access belongs to a real user or should redirect to an error page.
-        axios
-          .get(baseUrl + "/users/" + username)
-          .then(({data}) => {
-            console.log("response: ", data);
-            setPublicUserData(data);
-          })
-          .catch((err) => {
-            console.log(err);
-            navigate("/404");
-          });
-      }
+    if (username != user.username) {
+      // Check if the username profile route we are trying to access belongs to a real user or should redirect to an error page.
+      axios
+        .get(baseUrl + "/users/" + username, getHeaders())
+        .then(({ data }) => {
+          console.log("response: ", data);
+          setPublicUserData(data);
+          setProfile("public");
+        })
+        .catch((err) => {
+          console.log(err);
+          navigate("/404");
+        });
+    } else setProfile("own");
     // console.log("params: ", params)
-    
   }, [loading]);
 
   return (
     <div>
-      {!loading && (username == user.username) && (
+      {!loading && profile == "own" && (
         <div>
           <OwnProfilePage />
         </div>
       )}
 
-      {!loading && (username != user.username) && publicUserData.username && (
+      {!loading && profile == "public" && publicUserData.username && (
         <div>
-          <PublicProfilePage publicUserData={publicUserData}  />
+          <PublicProfilePage publicUserData={publicUserData} />
         </div>
       )}
-
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { useState, useContext, useEffect } from "react";
 import Alert from "./Alert";
 // import { useParams } from "react-router-dom";
 import AutoComplete from "react-google-autocomplete";
+import "../css/OwnProfile.css";
 
 export default function EventUpdate({ eventInfo }) {
   const { baseUrl, getUserInfo, getHeaders } = useContext(authContext);
@@ -21,13 +22,13 @@ export default function EventUpdate({ eventInfo }) {
     }
     if (eventInfo.description) {
       setDescription(eventInfo.description);
-    } else setDescription("")
+    } else setDescription("");
     if (eventInfo.dateTime) {
       setDatetime(eventInfo.dateTime);
     } else setDatetime("");
     if (eventInfo.location) {
       setLocation(eventInfo.location);
-    } else setLocation("")
+    } else setLocation("");
   }, [eventInfo]);
 
   const dateHandler = (e) => {
@@ -52,36 +53,34 @@ export default function EventUpdate({ eventInfo }) {
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title">Update event</h5>
+            <div className="modal-title-container">
+              <h5 className="modal-title">Update event</h5>
+            </div>
             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div className="modal-body">
             <form onSubmit={submitHandler}>
-              {error != "" && <Alert message={error} setError={setError}/>}
+              {error != "" && <Alert message={error} setError={setError} />}
               <label>Title</label>
-              <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-
-              <br />
+              <input type="text" className="form-control" value={title} onChange={(e) => setTitle(e.target.value)} />
               <label>Description</label>
-              <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
-              <br />
+              <textarea id="description" className="form-control" rows="5" value={description} onChange={(e) => setDescription(e.target.value)} />
               {/* <label>Icon</label>
               <input
                 type="file"
                 placeholder="Icon"
                 value={icon}
                 onChange={(e) => setIcon(e.target.value)}
-              />
-              <br /> */}
+              /> */}
               <label>When?</label>
-              <input type="datetime-local" placeholder={datetime} value={datetime} onChange={dateHandler} data-date-format="DD MMMM YYYY" />
-              <br />
+              <input type="datetime-local" className="form-control" placeholder={datetime} value={datetime} onChange={dateHandler} data-date-format="DD MMMM YYYY" />
               <div className="mb-3">
                 <label htmlFor="location" className="form-label" value={location} onChange={(e) => setLocation(e.target.value)}>
                   Where?
                 </label>
                 <AutoComplete
-                  className="autocomplete"
+                  id="location"
+                  className="autocomplete form-control"
                   apiKey={import.meta.env.VITE_GOOGLE_MAPS}
                   options={{
                     componentRestrictions: { country: "es" },
@@ -98,7 +97,7 @@ export default function EventUpdate({ eventInfo }) {
                 />
               </div>
               <div className="modal-footer">
-                <button type="submit" className="save-changes" data-bs-dismiss="modal">
+                <button type="submit" className="save-changes btn btn-primary" data-bs-dismiss="modal">
                   Save changes
                 </button>
               </div>

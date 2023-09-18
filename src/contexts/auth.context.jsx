@@ -67,7 +67,7 @@ function AuthProviderWrapper({ children }) {
     if (!user) return;
     else {
       axios
-        .get(baseUrl + "/users/" + user.username)
+        .get(baseUrl + "/users/" + user.username, getHeaders())
         .then(({ data }) => {
           setCurrentUser(data);
           setLoadingPopulated(false);
@@ -85,7 +85,7 @@ function AuthProviderWrapper({ children }) {
     else {
       setLoadingRaw(true);
       axios
-        .get(baseUrl + "/users/" + user.username + "/raw")
+        .get(baseUrl + "/users/" + user.username + "/raw", getHeaders())
         .then(({ data }) => {
           setCurrentUserRaw(data);
           setLoadingRaw(false);

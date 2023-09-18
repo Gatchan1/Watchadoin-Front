@@ -5,7 +5,7 @@ import Alert from "../components/Alert";
 import Select from "react-select";
 
 export default function CreateInviteList() {
-  const { loadingUserInfo, user, currentUser, baseUrl, getHeaders, getUserInfo } = useContext(authContext);
+  const { currentUser, baseUrl, getHeaders, getUserInfo } = useContext(authContext);
 
   const [title, setTitle] = useState("");
   const [users, setUsers] = useState(null);
@@ -23,49 +23,57 @@ export default function CreateInviteList() {
       users,
     };
 
-    console.log("listaaaaaaaa:" , newList)
-    axios.post(baseUrl + "/lists/create", newList, getHeaders())
-    .then(()=>{
-      getUserInfo()
-    })
-    .then(()=>{
-      {window.location.href=`/${currentUser.username}`}
-    })
-    .catch(err => console.log(err))
+    axios
+      .post(baseUrl + "/lists/create", newList, getHeaders())
+      .then(() => {
+        getUserInfo();
+      })
+      .then(() => {
+        {
+          window.location.href = `/${currentUser.username}`;
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
     getUserInfo();
   }, []);
 
-  useEffect(()=>{
-    if (value) {const newValue = value.map((friend)=>{
-      return (
-        friend.value
-      )
-    })
-    setUsers(newValue)}
-  },[value])
+  useEffect(() => {
+    if (value) {
+      const newValue = value.map((friend) => {
+        return friend.value;
+      });
+      setUsers(newValue);
+    }
+  }, [value]);
 
   const options = currentUser.friendsConfirmed.map((friend) => {
     return { value: friend._id, label: friend.username };
   });
 
   return (
-    <div>
+    <div id="CreateInviteList">
       <form onSubmit={submitHandler} className="container">
-        {error != "" && <Alert message={error} setError={setError}/>}
+        {error != "" && <Alert message={error} setError={setError} />}
         <div className="col-6">
-          <label htmlFor="title">Title of the Friends Circle:</label>
-          <input type="text" id="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+          <label htmlFor="title" className="form-label">
+            Title of the Friends Circle:
+          </label>
+          <input className="form-control" type="text" id="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} />
         </div>
         <div className="col-6">
-          <label htmlFor="users">Add Friends:</label>
+          <label className="form-label">Add Friends:</label>
           <Select defaultValue={value} closeMenuOnSelect={false} onChange={setValue} options={options} isMulti={true} />
         </div>
-
-        <button type="submit">Create new InviteList</button>
+        <div className="btn-container">
+          <button type="submit" className="btn btn-primary">
+            Create new Friends Circle
+          </button>
+        </div>
       </form>
+      <hr/>
     </div>
   );
 }

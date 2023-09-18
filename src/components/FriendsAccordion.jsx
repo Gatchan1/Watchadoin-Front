@@ -1,15 +1,11 @@
-import { useState } from "react";
 import InviteList from "./InviteList";
-import FriendsOverview from "./FriendsOverview";
 import FriendsAll from "./FriendsAll";
 import FriendsPending from "./FriendsPending";
 
-//This component manages the profile components of: on one hand FriendsLists and on the other hand FriendsOverview and FriendsAll.
-
-export default function Friends() {
+export default function FriendsAccordion() {
 
   return (
-    <div id="Friends" >
+    <div id="FriendsAccordion" >
       <div className="accordion" id="accordionExample">
         <div className="accordion-item">
           <h2 className="accordion-header">

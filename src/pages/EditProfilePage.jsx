@@ -6,7 +6,7 @@ import Navbar from "../components/Navbar";
 import Alert from "../components/Alert";
 
 export default function EditProfilePage() {
-  const { isLoggedIn, currentUser, loading, baseUrl, getUserInfo } = useContext(authContext);
+  const { currentUser, loading, baseUrl, getUserInfo, getHeaders } = useContext(authContext);
   const { username } = useParams();
 
   const navigate = useNavigate();
@@ -34,16 +34,12 @@ export default function EditProfilePage() {
       body: data,
     })
       .then((resp) => resp.json())
-      .then((data) => {
-        console.log("image should be uploaded: ", data.url);
-        imageUrl = data.url;
-      })
+      .then((data) => imageUrl = data.url)
       .then(() => {
-        console.log("imageUrl:", imageUrl);
-        return axios.post(baseUrl + "/users/" + currentUser._id + "/edit", { imageUrl: imageUrl }, { new: true });
+        return axios.post(baseUrl + "/users/" + currentUser._id + "/edit", { imageUrl: imageUrl }, getHeaders(), { new: true });
       })
       .then((resp) => {
-        console.log("imagen actualizada:", resp);
+        console.log("picture updated:", resp.data);
         getUserInfo();
         setLoadingPic(false);
         setMessage("Your profile image has been changed ✔️");

@@ -1,7 +1,15 @@
 #FriendsPending img,
 .friend-icon {
+  max-height: 40px;
+  max-width: 40px;
+}
+
+.img-container {
   height: 40px;
-  max-width: 50px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .medium-size-avatar {
@@ -13,11 +21,20 @@
   height: 200px;
   max-width: 240px;
 }
-.my-event-title {
+.my-event .title {
   display: flex;
 }
-.my-event-title h5 {
+.my-event .title h5 {
   padding-top: 3px;
+}
+
+.my-event p {
+  margin: 3px 0;
+}
+
+.my-event .description {
+  font-style: italic;
+  line-height: 20px;
 }
 
 .edit-button {
@@ -25,14 +42,28 @@
   margin-left: 5px;
 }
 
-button .smallIcon {
+.edit-button .smallIcon {
   height: 1.2rem;
   width: 1.2rem;
   display: flex;
 }
 
+.delete-button {
+  margin-top: 8px;
+}
+
 #FriendsPending p {
   margin: 0;
+}
+/* Update event */
+.modal-title-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.modal-title {
+  font-size: 25px;
 }
 
 /* CreateEvent */
@@ -57,6 +88,24 @@ label.location {
   padding-right: 10px;
 }
 
+.dropdown.invite {
+  padding-bottom: 1px;
+}
+
+#CreateEvent .btn-outline-dark {
+  width: 150px;
+}
+
+#CreateEvent .btn-create-container {
+  display: flex;
+  justify-content: center;
+}
+
+#CreateEvent .btn-create {
+  padding: 10px 20px;
+}
+
+/* ---------------- MyEvents ---------------- */
 #MyEvents {
   margin: auto;
   width: 80%;
@@ -113,41 +162,42 @@ div.pac-container {
   width: 50vw;
 }
 
-#FriendsAll,
-.invite-users {
+div.row-of-friends {
   display: flex;
   flex-wrap: wrap;
+  padding: 5px 10px 10px 10px;
 }
 
-.few-friends img,
-.friend img,
-.invite-users img {
+/* .row-of-friends img {
   display: block;
   margin-left: auto;
   margin-right: auto;
-}
+} */
 
-.few-friends,
-.friend,
-.invite-user {
-  padding: 10px 3px;
-}
-
-.friend {
+div.friend-icon-container {
+  height: 70px;
+  width: fit-content;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 5px;
 }
 
-.lists {
-  padding: 10px;
+.lists h5 {
+  padding: 10px 0 0 10px;
 }
 
-.list p {
-  margin: 0;
+/* Create Invite List */
+
+#CreateInviteList div.col-6 {
+  padding-top: 10px;
 }
 
-.dropdown.invite {
-  padding-bottom: 1px;
+#CreateInviteList .btn-container {
+  display: flex;
+  justify-content: center;
+  padding: 25px 0 5px 0;
 }
 
 /* EVENT DETAILS */
@@ -162,20 +212,19 @@ div.pac-container {
   margin: 2px;
 }
 
-.invite-users {
+.row-of-friends {
   align-items: center;
   border-style: solid;
   border-radius: 10px;
   border-color: rgba(255, 125, 125, 0.5);
-  margin: 2px;
+  margin: 5px;
   padding: 0;
   justify-content: center;
 }
 
-.invite-users p {
-  align-self: start;
+.row-of-friends p {
   padding-top: 10px;
-  padding-left: 10px;
+  padding-right: 30px;
 }
 
 .event-main {

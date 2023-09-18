@@ -34,6 +34,11 @@ header {
   border-color: rgba(255, 125, 125, 0.5);
 }
 
+.upcomingEvents,
+.newEvents {
+  max-width: 45vw;
+}
+
 .upcomingEvents h2,
 .newEvents h2 {
   background-color: rgb(231, 169, 169);
@@ -43,23 +48,25 @@ header {
   padding: 20px;
 }
 
-.upcoming,
-.new-event,
-.newEvents p.noEvents {
+.upcomingEv,
+.newEv,
+.newEvents p.noEvents,
+.upcomingEvents p.noConfirmed {
   padding: 0 20px;
 }
 
-.upcoming p,
-.new-event p {
-  margin: 0;
+.upcomingEv p,
+.newEv p {
+  margin: 3px 0;
 }
 
-.upcoming .description,
-.new-event .description {
+.upcomingEv .description,
+.newEv .description {
   font-style: italic;
+  line-height: 20px;
 }
 
-.upcoming button,
+.upcomingEv button,
 .newEvents .btn-group {
   margin-top: 8px;
 }
@@ -67,17 +74,6 @@ header {
 .newEvents button.join {
   padding: 0 20px;
 }
-
-/* .Calendar {
-  height: 100px;
-  background-color: yellowgreen;
-} */
-
-/* #profile-picture{
-  width: 10%;
-  max-width: 80px;
-} */
-
 
 .fa-lemon{
   width: 100px;

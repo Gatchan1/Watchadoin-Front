@@ -3,12 +3,11 @@ import "../../src/index.css"
 import { authContext } from "../contexts/auth.context";
 import { useContext, useEffect } from "react";
 import Navbar from "../components/Navbar";
-import Calendar from "../components/Calendar";
 import ConfirmedEvents from "../components/ConfirmedEvents";
 import NewEvents from "../components/NewEvents";
 
 export default function DashboardPage() {
-  const { isLoggedIn, loading, user, getUserInfo, loadingPopulated } = useContext(authContext);
+  const { loading, user, getUserInfo, loadingPopulated } = useContext(authContext);
 
   useEffect(()=>{
     getUserInfo()

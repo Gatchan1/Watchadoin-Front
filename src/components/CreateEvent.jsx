@@ -19,11 +19,11 @@ export default function CreateEvent({ toggleCreateEvent }) {
   const [initialDropdownDataLists, setInitialDropdownDataLists] = useState([]);
   const [dropdownDataLists, setDropdownDataLists] = useState([]);
   const [selectedFriends, setSelectedFriends] = useState([]);
-  const [inviteAll, setInviteAll] = useState(false);
+  // const [inviteAll, setInviteAll] = useState(false);
 
   const uniqueSelectedFriends = Array.from(new Set(selectedFriends.map((user) => user._id))).map((id) => selectedFriends.find((user) => user._id === id));
 
-  const handleItemSelectedFriends = (clickedItem) => {
+  const addSingleFriend = (clickedItem) => {
     let currentSelectedFriends = [...selectedFriends, clickedItem];
     setSelectedFriends(currentSelectedFriends);
     setDropdownDataFriends(dropdownDataFriends.filter((friend) => friend._id !== clickedItem._id));
@@ -40,9 +40,20 @@ export default function CreateEvent({ toggleCreateEvent }) {
     );
   };
 
-  const handleItemSelectedLists = (clickedItem) => {
-    setSelectedFriends([...selectedFriends, ...clickedItem.users]);
-    setDropdownDataLists(dropdownDataLists.filter((list) => list._id !== clickedItem._id));
+  const addFromList = (clickedItem) => {
+    let currentSelectedFriends = [...selectedFriends, ...clickedItem.users];
+    setSelectedFriends(currentSelectedFriends);
+    // setDropdownDataLists(dropdownDataLists.filter((list) => list._id !== clickedItem._id));
+    setDropdownDataLists(
+      dropdownDataLists.filter((list) => {
+        let listUserIds = list.users.map((user) => user._id);
+        let selectedUserIds = currentSelectedFriends.map((user) => user._id);
+        // If every user in an inviteList is already selected, let's not show that one inviteList:
+        if (!listUserIds.every((id) => selectedUserIds.includes(id))) {
+          return list;
+        }
+      })
+    );
 
     // In the friends dropdown, show only the users that AREN'T included in the array of ids of the selected inviteList:
     let selectedUserIds = clickedItem.users.map((user) => user._id);
@@ -67,7 +78,7 @@ export default function CreateEvent({ toggleCreateEvent }) {
   };
 
   // So that the list of friends that we can invite is displayed in alphabetical order:
-  function compareFriends (a, b) {
+  function compareFriends(a, b) {
     if (a.username.toLowerCase() < b.username.toLowerCase()) {
       return -1;
     }
@@ -92,7 +103,7 @@ export default function CreateEvent({ toggleCreateEvent }) {
     };
 
     axios
-      .post(baseUrl + "/events/create", newEvent)
+      .post(baseUrl + "/events/create", newEvent, getHeaders())
       .then((res) => {
         console.log("event created", res);
         toggleCreateEvent();
@@ -108,7 +119,7 @@ export default function CreateEvent({ toggleCreateEvent }) {
   //Fetching user friends + invitelists to populate the dropdown and allow to select friends to invite
   useEffect(() => {
     axios
-      .get(baseUrl + `/users/${username}`)
+      .get(baseUrl + `/users/${username}`, getHeaders())
       .then(({ data }) => {
         setDropdownDataFriends(data.friendsConfirmed);
         setInitialDropdownDataLists(data.inviteLists);
@@ -117,18 +128,6 @@ export default function CreateEvent({ toggleCreateEvent }) {
       .catch((err) => {
         console.log(err);
       });
-
-    // -------------- CONFIGURING GOOGLE MAPS API ---------------
-    // const center = { lat: 50.064192, lng: -130.605469 };
-    // Create a bounding box with sides ~10km away from the center point
-    // const defaultBounds = {
-    //   north: center.lat + 0.1,
-    //   south: center.lat - 0.1,
-    //   east: center.lng + 0.1,
-    //   west: center.lng - 0.1};
-
-    // const input = document.getElementById("location");
-    // const autocomplete = new google.maps.places.Autocomplete(input, options);
   }, []);
 
   return (
@@ -160,6 +159,7 @@ export default function CreateEvent({ toggleCreateEvent }) {
             Where?
           </label>
           <AutoComplete
+            className="form-control"
             apiKey={import.meta.env.VITE_GOOGLE_MAPS}
             options={{
               componentRestrictions: { country: "es" },
@@ -183,14 +183,13 @@ export default function CreateEvent({ toggleCreateEvent }) {
         </div> */}
 
         {/* Dropdown to select friends to invite */}
-
         <div className="dropdown invite">
           <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
             Invite friends
           </button>
           <div className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             {dropdownDataFriends.sort(compareFriends).map((item) => (
-              <button type="button" className="dropdown-item" key={item._id} onClick={() => handleItemSelectedFriends(item)}>
+              <button type="button" className="dropdown-item" key={item._id} onClick={() => addSingleFriend(item)}>
                 {item.username}
               </button>
             ))}
@@ -204,7 +203,7 @@ export default function CreateEvent({ toggleCreateEvent }) {
           </button>
           <div className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             {dropdownDataLists.map((item) => (
-              <button type="button" className="dropdown-item" key={item._id} onClick={() => handleItemSelectedLists(item)}>
+              <button type="button" className="dropdown-item" key={item._id} onClick={() => addFromList(item)}>
                 {item.title}
               </button>
             ))}
@@ -228,13 +227,13 @@ export default function CreateEvent({ toggleCreateEvent }) {
           ))}
         </div>
 
-        {/* --------------- checkbox to invite to invite all friends ----------------- */}
-        <div className="mb-3 form-check">
+        {/* --------------- checkbox to invite all friends ----------------- */}
+        {/* <div className="mb-3 form-check">
           <input type="checkbox" className="form-check-input" onChange={() => setInviteAll(!inviteAll)} />
           <label className="form-check-label" htmlFor="exampleCheck1">
             Invite all your friends
           </label>
-        </div>
+        </div> */}
 
         {/*--------------- checkbox to allow invited to invite their friends ---------------*/}
         {/* <div className="mb-3 form-check">
@@ -244,9 +243,11 @@ export default function CreateEvent({ toggleCreateEvent }) {
           </label>
         </div>*/}
 
-        <button type="submit" className="btn btn-primary">
-          Create
-        </button>
+        <div className="btn-create-container">
+          <button type="submit" className="btn btn-primary btn-create">
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   );

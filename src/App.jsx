@@ -9,7 +9,6 @@ import ProfilePage from "./pages/profilePages/ProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
 import ErrorPage from "./pages/ErrorPage";
 import EventDetailPage from "./pages/EventDetailPage";
-import FindFriendsPage from "./pages/FindFriendsPage";
 
 function App() {
 
@@ -20,15 +19,14 @@ function App() {
       <Routes>
         <Route path="/" element={isLoggedIn ? <DashboardPage/> : <SignUpPage/>} />
         <Route path="/home" element={isLoggedIn ? <DashboardPage/> : <SignUpPage/>} />
-        <Route path="/signup" element={<SignUpPage/>} />
-        <Route path="/login" element={<LoginPage/>} />
+        <Route path="/signup" element={isLoggedIn ? <DashboardPage/> : <SignUpPage/>} />
+        <Route path="/login" element={isLoggedIn ? <DashboardPage/> : <LoginPage/>} />
         <Route path="/logout" element={<LogoutPage/>} />
-        <Route path="/:username" element={<ProfilePage/>}/>
-        <Route path="/:username/edit" element={<EditProfilePage/>} />
-        <Route path="/events/:eventId" element={<EventDetailPage/>} />
-        <Route path="/findfriends" element={<FindFriendsPage/>} />
-        <Route path="/*" element={<ErrorPage/>} />
+        <Route path="/:username" element={isLoggedIn ? <ProfilePage/> : <SignUpPage/>} />
+        <Route path="/:username/edit" element={isLoggedIn ? <EditProfilePage/> : <SignUpPage/>} />
+        <Route path="/events/:eventId" element={isLoggedIn ? <EventDetailPage/> : <SignUpPage/>} />
         <Route path="/404" element={<ErrorPage/>} />
+        <Route path="/*" element={isLoggedIn ? <ErrorPage/> : <SignUpPage/>} />
       </Routes>      
     </>
   )
