@@ -34,7 +34,7 @@ export default function InviteList() {
                     return (
                       <div className="friend-icon-container" key={user._id}>
                         <img className="friend-icon" src={user.picture} alt={user.username} />
-                        <Link className="link-styled" href={`/profile/${user.username}`}> {user.username} </Link>
+                        <Link className="link-styled" to={`/profile/${user.username}`}> {user.username} </Link>
                       </div>
                     );
                   })}

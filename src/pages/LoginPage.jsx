@@ -51,7 +51,7 @@ export default function LoginPage() {
               <label htmlFor="password" className="form-label"> Password</label>
               <input id="password" className="form-control" type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
-            <Link className="forgot" href="/forgot-password">
+            <Link className="forgot" to="/forgot-password">
               Forgot password?
             </Link>
             <div className="col-3 auth">

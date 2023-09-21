@@ -97,7 +97,7 @@ export default function Navbar() {
                     <span className="friend-icon-container">
                       <img className="friend-icon" src={searchUser.picture} alt={searchUser.username} />
                     </span>
-                    <Link className="link-styled" href={`/profile/${searchUser.username}`}>
+                    <Link className="link-styled" to={`/profile/${searchUser.username}`}>
                       {searchUser.username}
                     </Link>
                   </li>
