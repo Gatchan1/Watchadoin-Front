@@ -20,7 +20,7 @@ export default function DashboardPage() {
       <header className="dashboard">
         {/* <img id="profile-picture" src={currentUser.picture} alt="profile picture"></img> */}
         <p className="welcome">
-          Welcome, 
+          Welcome,{" "}
           <Link className="link-styled" aria-current="page" to={`/${user.username}`}>
             {user.username}
           </Link>
