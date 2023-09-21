@@ -21,6 +21,7 @@ Also I have lots of missing features I'd like to include in the future, such as:
 
 - Automatically hiding past events.
 - Editing and deleting Friends Circles.
+- Implement password retrieval.
 
 ## Installation guide
 - Fork this repo

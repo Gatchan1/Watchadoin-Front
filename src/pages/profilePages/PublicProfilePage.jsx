@@ -1,11 +1,11 @@
 import axios from "axios";
 import { authContext } from "../../contexts/auth.context";
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 
 export default function PublicProfilePage() {
-  const { baseUrl, getHeaders, currentUserRaw, getUserInfoRaw, loadingRaw } = useContext(authContext);
+  const { baseUrl, user, getHeaders, currentUserRaw, getUserInfoRaw, loadingRaw } = useContext(authContext);
   const { username } = useParams();
 
   const [publicUserRaw, setPublicUserRaw] = useState({});
@@ -118,6 +118,9 @@ export default function PublicProfilePage() {
             Revoke friendship
           </button>
         )}
+        <Link className="link-styled" aria-current="page" to={`/profile/${user.username}`}>
+          Go back to your profile
+        </Link>
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ export default function FriendsAll() {
           return (
             <div className="friend-icon-container" key={friend._id}>
               <img className="friend-icon" src={friend.picture} alt={friend.username} />
-              <Link to={`/${friend.username}`}> {friend.username} </Link>
+              <Link className="link-styled" to={`/profile/${friend.username}`}> {friend.username} </Link>
             </div>
           );
         }) : "No friends confirmed yet"}

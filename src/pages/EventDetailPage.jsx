@@ -1,7 +1,7 @@
 import axios from "axios";
 import { authContext } from "../contexts/auth.context";
 import { useContext, useRef, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import "../css/OwnProfile.css"; // I still don't quite understand why if I don't import this css here it's still applied...
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -79,7 +79,7 @@ export default function EventDetailPage() {
                 return (
                   <div className="friend-icon-container" key={joiner._id}>
                     <img className="friend-icon" src={joiner.picture} alt={joiner.username} />
-                    <a href={`/${joiner.username}`}> {joiner.username} </a>
+                    <Link className="link-styled" href={`/profile/${joiner.username}`}> {joiner.username} </Link>
                   </div>
                 );
               })}
