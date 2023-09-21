@@ -46,7 +46,7 @@ export default function Navbar() {
   }, [text]);
 
   return (
-    <nav className="navbar navbar-expand-lg">
+    <nav className="navbar navbar-expand-lg logged-in">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           <img src="/logo.png" />

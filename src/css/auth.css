@@ -10,19 +10,11 @@
   background-color: rgb(170, 249, 249)
 } */
 
-.signup-container {
-  display: flex;
+#watchadoin {
+  padding: 30px 40px;
 }
 
-#brief {
-  padding: 50px 70px;
-}
-
-#signUp {
-  padding-left: 5%;
-}
-
-#signUp h2{
+#signUp h2 {
   padding: 12px;
 }
 #login h2 {
@@ -57,4 +49,20 @@
 div.auth {
   display: flex;
   align-items: center;
+}
+
+@media only screen and (min-width: 501px) {
+  #watchadoin {
+    padding: 50px 70px;
+  }
+
+  .signup-container {
+    display: flex;
+  }
+}
+
+@media only screen and (min-width: 901px) {
+  #signUp {
+    padding-left: 5%;
+  }
 }

@@ -1,12 +1,15 @@
-.nav {
+nav {
   /* color: white; */
   font-size: 30px;
   display: flex;
-  margin-right: 50px;
   text-decoration: none;
   flex-direction: row;
   justify-content: space-between;
   font-size: 20px;
+}
+
+nav.logged-in {
+  margin-right: 50px;
 }
 
 header {
