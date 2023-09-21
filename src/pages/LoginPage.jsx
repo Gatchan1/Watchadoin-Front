@@ -38,30 +38,38 @@ export default function LoginPage() {
   return (
     <>
       <NavbarLoggedOut />
-      <div id="login">
-        <h2>Log In</h2>
-        <form onSubmit={submitHandler} className="signup-form container">
-          {error != "" && <Alert message={error} setError={setError} />}
-          <div className="row">
-            <div className="col-3">
-              <label htmlFor="username" className="form-label"> Username</label>
-              <input id="username" className="form-control" type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+      <div className="login-container">
+        <div id="login">
+          <h2>Log In</h2>
+          <form onSubmit={submitHandler} className="signup-form container">
+            {error != "" && <Alert message={error} setError={setError} />}
+            <div className="row">
+              <div>
+                <label htmlFor="username" className="form-label">
+                  {" "}
+                  Username
+                </label>
+                <input id="username" className="form-control" type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+              </div>
+              <div>
+                <label htmlFor="password" className="form-label">
+                  {" "}
+                  Password
+                </label>
+                <input id="password" className="form-control" type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+              </div>
+              <Link className="forgot" to="/forgot-password">
+                Forgot password?
+              </Link>
+              <div className="auth">
+                <button type="submit" className="login btn btn-primary">
+                  LOG IN
+                </button>
+              </div>
             </div>
-            <div className="col-3">
-              <label htmlFor="password" className="form-label"> Password</label>
-              <input id="password" className="form-control" type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </div>
-            <Link className="forgot" to="/forgot-password">
-              Forgot password?
-            </Link>
-            <div className="col-3 auth">
-              <button type="submit" className="login btn btn-primary">
-                LOG IN
-              </button>
-            </div>
-          </div>
-          {/* changeLater: Need to implement error alert */}
-        </form>
+            {/* changeLater: Need to implement error alert */}
+          </form>
+        </div>
       </div>
     </>
   );

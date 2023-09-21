@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 const authContext = createContext();
 
-const baseUrl = "https://watchadoin.fly.dev";
+const baseUrl = "http://localhost:5005";
+//"https://watchadoin.fly.dev";
 
 function AuthProviderWrapper({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false); //false

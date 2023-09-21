@@ -46,7 +46,7 @@ export default function Navbar() {
   }, [text]);
 
   return (
-    <nav className="navbar navbar-expand-lg logged-in">
+    <nav className="navbar navbar-expand-md logged-in">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           <img src="/logo.png" />
@@ -66,23 +66,6 @@ export default function Navbar() {
                 Sign out
               </Link>
             </li>
-            {/* <li className="nav-item dropdown">
-                <Link
-                  className="nav-link dropdown-toggle"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false">
-                  More</Link>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <Link className="link" to="/notifications">Notifications</Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/logout">Sign out</Link>
-                  </li>
-                </ul>
-              </li> */}
           </ul>
           <div className="search-form">
             <form className="d-flex">

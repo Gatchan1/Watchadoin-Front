@@ -1,12 +1,12 @@
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 export default function NavbarLoggedOut() {
   return (
-    <nav className="nav">
-    <Link className="navbar-brand" to="/"><img src="/logo.png"/></Link>
-    <div>
-        <Link to="/login">Log in</Link>
-    </div>
-</nav>
-  )
+    <nav className="logged-out">
+      <Link className="navbar-brand" to="/">
+        <img src="/logo.png" />
+      </Link>
+      <Link className="log-in" to="/login">Log in</Link>
+    </nav>
+  );
 }

@@ -55,7 +55,7 @@ export default function SignUpPage() {
     <>
       <NavbarLoggedOut />
       <div className="signup-container">
-        <div id="watchadoin">
+        <div id="watchadoin-descr">
           <p>Do you want to see what your friends are up to?</p>
           <p>Leave every worry aside, you are welcome to every plan you see!</p>
           <p>Join in now and enjoy an easier and more fulfilling social life. ✨</p>

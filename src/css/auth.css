@@ -1,16 +1,31 @@
-/* .nav{
-  color: white;
+nav {
+  /* color: white; */
   font-size: 30px;
-  display: flex;   
-  margin-right: 50px;
+  display: flex;
   text-decoration: none;
   flex-direction: row;
   justify-content: space-between;
   font-size: 20px;
-  background-color: rgb(170, 249, 249)
-} */
+}
 
-#watchadoin {
+nav.logged-out {
+  align-items: center;
+}
+nav.logged-out .log-in {
+  margin-right: 10px;
+}
+
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login-container {
+  display: flex;
+  justify-content: center;
+}
+
+#watchadoin-descr {
   padding: 30px 40px;
 }
 
@@ -18,7 +33,17 @@
   padding: 12px;
 }
 #login h2 {
-  padding: 10px 0 10px 50px;
+  padding: 10px;
+}
+
+#signUp {
+  width: 80vw;
+  max-width: 400px;
+}
+
+#login {
+  width: 80vw;
+  max-width: 400px;
 }
 
 #signUp input,
@@ -51,18 +76,24 @@ div.auth {
   align-items: center;
 }
 
-@media only screen and (min-width: 501px) {
-  #watchadoin {
+@media only screen and (min-width: 701px) {
+  #watchadoin-descr {
     padding: 50px 70px;
+    width: 50%;
   }
 
   .signup-container {
     display: flex;
+    flex-direction: row;
+  }
+
+  #signUp {
+    width: 40%;
   }
 }
 
 @media only screen and (min-width: 901px) {
   #signUp {
-    padding-left: 5%;
+    padding-right: 5%;
   }
 }
