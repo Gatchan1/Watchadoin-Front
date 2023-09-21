@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { authContext } from "../contexts/auth.context";
 import { useContext } from "react";
 
@@ -11,7 +12,7 @@ export default function FriendsAll() {
           return (
             <div className="friend-icon-container" key={friend._id}>
               <img className="friend-icon" src={friend.picture} alt={friend.username} />
-              <a href={`/${friend.username}`}> {friend.username} </a>
+              <Link to={`/${friend.username}`}> {friend.username} </Link>
             </div>
           );
         }) : "No friends confirmed yet"}

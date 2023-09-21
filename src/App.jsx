@@ -22,6 +22,7 @@ function App() {
         <Route path="/signup" element={isLoggedIn ? <DashboardPage/> : <SignUpPage/>} />
         <Route path="/login" element={isLoggedIn ? <DashboardPage/> : <LoginPage/>} />
         <Route path="/logout" element={<LogoutPage/>} />
+        <Route path="/profile/:username" element={isLoggedIn ? <TempProfilePage/> : <SignUpPage/>} />
         <Route path="/:username" element={isLoggedIn ? <ProfilePage/> : <SignUpPage/>} />
         <Route path="/:username/edit" element={isLoggedIn ? <EditProfilePage/> : <SignUpPage/>} />
         <Route path="/events/:eventId" element={isLoggedIn ? <EventDetailPage/> : <SignUpPage/>} />
