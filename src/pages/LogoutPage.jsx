@@ -12,6 +12,6 @@ export default function LogoutPage() {
     }, []);
 
   return (
-    <Navigate to="/login" />
+    <Navigate to="/signup" />
   )
 }
