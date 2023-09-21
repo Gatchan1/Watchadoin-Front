@@ -24,9 +24,8 @@ export default function FriendsPending() {
               <div className="img-container">
                 <img src={friendRequest.picture} alt={friendRequest.username} />
               </div>
-              <a href={`/${friendRequest.username}`}> {friendRequest.username} </a>
-              <Link className="nav-link active" aria-current="page" to={`/${friendRequest.username}`}>
-              {friendRequest.username}dsadsa
+              <Link className="link-styled" aria-current="page" to={`/profile/${friendRequest.username}`}>
+              {friendRequest.username}
               </Link>
               <button onClick={() => acceptFriend(friendRequest._id)} type="submit" className="btn btn-success">
                 Accept

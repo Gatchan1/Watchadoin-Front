@@ -1,7 +1,7 @@
 import axios from "axios";
 import { authContext } from "../contexts/auth.context";
 import { useContext, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Alert from "../components/Alert";
 import NavbarLoggedOut from "../components/NavbarLoggedOut";
 // const baseUrl = "http://localhost:5005";
@@ -51,10 +51,9 @@ export default function LoginPage() {
               <label htmlFor="password" className="form-label"> Password</label>
               <input id="password" className="form-control" type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
-            <a className="forgot" href="/forgot-password">
+            <Link className="forgot" to="/forgot-password">
               Forgot password?
-            </a>
-            {/* changeLater: this won't be an anchor */}
+            </Link>
             <div className="col-3 auth">
               <button type="submit" className="login btn btn-primary">
                 LOG IN

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const authContext = createContext();
 
-const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:5005";
+const baseUrl = "https://watchadoin.fly.dev";
 
 function AuthProviderWrapper({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false); //false

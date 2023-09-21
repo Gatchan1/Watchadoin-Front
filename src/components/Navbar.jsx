@@ -57,11 +57,8 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href={`/${username}`}>
+              <Link className="nav-link active" aria-current="page" to={`/profile/${username}`}>
                 Profile
-              </a>
-              <Link className="nav-link active" aria-current="page" to={`/${username}`}>
-                Profileee
               </Link>
             </li>
             <li>
@@ -100,9 +97,9 @@ export default function Navbar() {
                     <span className="friend-icon-container">
                       <img className="friend-icon" src={searchUser.picture} alt={searchUser.username} />
                     </span>
-                    <a className="name-link" href={`/${searchUser.username}`}>
+                    <Link className="link-styled" to={`/profile/${searchUser.username}`}>
                       {searchUser.username}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

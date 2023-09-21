@@ -9,16 +9,19 @@ Our names are Raquel Barrio, Camila Buldin and Lisa Schwetlick.
 ![Project Image](https://res.cloudinary.com/dqzjo5wsl/image/upload/v1694678259/watcha-front_hlawdu.png "Project Image")
 
 ## Deployment
-You can check the app fully deployed [here](https://www.cactuscoleccion.com/). If you wish to view the API deployment instead, check [here](https://www.cactuscoleccion.com/).
+You can check the app fully deployed [here](https://watchadoin.netlify.app/). If you wish to view the API deployment instead, check [here](https://watchadoin.fly.dev/).
 
 ## Work structure
 We used [Discord](https://discord.com/) to organize our workflow.
 
 ## Disclaimer
 I realise the loading of many pages gives an uncomfortable user experience, this is something I still have to work around.
+
 Also I have lots of missing features I'd like to include in the future, such as:
--Automatically hiding past events.
--Editing and deleting Friends Circles.
+
+- Automatically hiding past events.
+- Editing and deleting Friends Circles.
+- Implement password retrieval.
 
 ## Installation guide
 - Fork this repo

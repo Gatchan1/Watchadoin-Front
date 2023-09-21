@@ -1,6 +1,7 @@
 import { authContext } from "../contexts/auth.context";
 import { useContext, useState } from "react";
 import CreateInviteList from "./CreateInviteList";
+import { Link } from "react-router-dom";
 
 export default function InviteList() {
   const { currentUser } = useContext(authContext);
@@ -33,7 +34,7 @@ export default function InviteList() {
                     return (
                       <div className="friend-icon-container" key={user._id}>
                         <img className="friend-icon" src={user.picture} alt={user.username} />
-                        <a href={`/${user.username}`}> {user.username} </a>
+                        <Link className="link-styled" to={`/profile/${user.username}`}> {user.username} </Link>
                       </div>
                     );
                   })}
