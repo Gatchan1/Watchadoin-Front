@@ -118,6 +118,7 @@ export default function PublicProfilePage() {
             Revoke friendship
           </button>
         )}
+        <br/>
         <Link className="link-styled" aria-current="page" to={`/profile/${user.username}`}>
           Go back to your profile
         </Link>
