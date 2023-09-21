@@ -5,6 +5,7 @@ import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import LogoutPage from "./pages/LogoutPage";
 import DashboardPage from "./pages/DashboardPage";
+import TempProfilePage from "./pages/profilePages/TempProfilePage";
 import ProfilePage from "./pages/profilePages/ProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
 import ErrorPage from "./pages/ErrorPage";
