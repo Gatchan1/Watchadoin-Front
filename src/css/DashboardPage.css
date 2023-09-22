@@ -1,35 +1,25 @@
-header {
+#DashboardPage header {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.welcome {
+#DashboardPage .welcome {
   padding: 10px 0 0 50px;
 }
 
-.link {
+#DashboardPage .link {
   padding: 20px;
 }
 
-.dashboardComponents {
-  display: flex;
-  justify-content: space-around;
-}
-
-.red-border {
+#DashboardPage .red-border {
   border-style: solid;
   border-radius: 10px;
   border-color: rgba(255, 125, 125, 0.5);
 }
 
-.upcomingEvents,
-.newEvents {
-  max-width: 45vw;
-}
-
-.upcomingEvents h2,
-.newEvents h2 {
+#DashboardPage .upcomingEvents h2,
+#DashboardPage .newEvents h2 {
   background-color: rgb(231, 169, 169);
   color: white;
   font-weight: bold;
@@ -37,34 +27,60 @@ header {
   padding: 20px;
 }
 
-.upcomingEv,
-.newEv,
-.newEvents p.noEvents,
-.upcomingEvents p.noConfirmed {
+#DashboardPage .upcomingEv,
+#DashboardPage .newEv,
+#DashboardPage .newEvents p.noEvents,
+#DashboardPage .upcomingEvents p.noConfirmed {
   padding: 0 20px;
 }
 
-.upcomingEv p,
-.newEv p {
+#DashboardPage .upcomingEv p,
+#DashboardPage .newEv p {
   margin: 3px 0;
 }
 
-.upcomingEv .description,
-.newEv .description {
+#DashboardPage .upcomingEv .description,
+#DashboardPage .newEv .description {
   font-style: italic;
   line-height: 20px;
 }
 
-.upcomingEv button,
-.newEvents .btn-group {
+#DashboardPage .upcomingEv button,
+#DashboardPage .newEvents .btn-group {
   margin-top: 8px;
 }
 
-.newEvents button.join {
+#DashboardPage .newEvents button.join {
   padding: 0 20px;
 }
 
-.fa-lemon{
-  width: 100px;
-  color: #e1e510;
+@media only screen and (max-width: 700px) {
+  #DashboardPage .row1,
+  #DashboardPage .row2 {
+    width: 94%;
+    padding-bottom: 20px;
+  }
+  #DashboardPage .dashboardComponents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media only screen and (min-width: 701px) {
+  #DashboardPage .dashboardComponents {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  #DashboardPage .upcomingEvents,
+  #DashboardPage .newEvents {
+    max-width: 46vw;
+  }
+  #DashboardPage .row1 {
+    padding-left: 1vw;
+  }
+  #DashboardPage .row2 {
+    padding-right: 1vw;
+  }
 }

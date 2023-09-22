@@ -56,12 +56,12 @@ export default function Navbar() {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
+            <li className="nav-item profile-link">
               <Link className="nav-link active" aria-current="page" to={`/profile/${username}`}>
                 Profile
               </Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item sign-out">
               <Link className="nav-link active" aria-current="page" to="/logout">
                 Sign out
               </Link>
