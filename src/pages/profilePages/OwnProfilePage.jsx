@@ -21,7 +21,7 @@ export default function OwnProfilePage() {
       <div className="own-profile">
         <div className="first-section">
           <div className="edit-profile">
-            <img src={currentUser.picture} className="bigSizeAvatar" />
+            <img src={currentUser.picture} className="big-size-avatar" />
             <Link to={`/${username}/edit`}>Change profile picture</Link>
           </div>
 

@@ -57,13 +57,13 @@ export default function CreateInviteList() {
     <div id="CreateInviteList">
       <form onSubmit={submitHandler} className="container">
         {error != "" && <Alert message={error} setError={setError} />}
-        <div className="col-6">
+        <div className="max-size">
           <label htmlFor="title" className="form-label">
             Title of the Friends Circle:
           </label>
           <input className="form-control" type="text" id="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} />
         </div>
-        <div className="col-6">
+        <div className="max-size">
           <label className="form-label">Add Friends:</label>
           <Select defaultValue={value} closeMenuOnSelect={false} onChange={setValue} options={options} isMulti={true} />
         </div>
@@ -73,7 +73,6 @@ export default function CreateInviteList() {
           </button>
         </div>
       </form>
-      <hr/>
     </div>
   );
 }

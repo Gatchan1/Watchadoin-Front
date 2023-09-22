@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import CreateEvent from "./CreateEvent";
 // import EventDetail from "./EventDetail";
 import EventUpdate from "./EventUpdate";
@@ -31,7 +31,7 @@ export default function MyEvents() {
   return (
     <div id="MyEvents">
       <div className="create-event">
-        <h3>Events created by you</h3>
+        <h3>Events created by you:</h3>
 
         <button
           className="btn btn-outline-primary"
@@ -44,7 +44,6 @@ export default function MyEvents() {
         </button>
       </div>
       {showCreateEvent && <CreateEvent toggleCreateEvent={toggleCreateEvent} />}
-      <hr className="events" />
       <div className="event-cards-container">
         <div className="event-cards row">
           <EventUpdate eventInfo={modalEvent} />
@@ -56,7 +55,7 @@ export default function MyEvents() {
                   <div className="card-body my-event">
                     <div className="title">
                       <h5>{event.title}</h5>
-                      <button type="button" className="edit-button btn btn-light" data-bs-toggle="modal" data-bs-target="#eventUpdate" onClick={() => setModalEvent(event)}>
+                      <button type="button" className="edit-button btn btn-light" data-bs-toggle="modal" data-bs-target="#EventUpdate" onClick={() => setModalEvent(event)}>
                         <img className="smallIcon" src="/edit.png" />
                       </button>
                     </div>

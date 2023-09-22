@@ -50,11 +50,11 @@ export default function EditProfilePage() {
   return (
     !loading &&
     username === currentUser.username && (
-      <div>
+      <div id="EditProfilePage">
         <Navbar />
         <div>
           <form className="container">
-            <div className="mb-3 col-6">
+            <div className="mb-3 update-picture">
               <input onChange={(e) => setImage(e.target.files[0])} type="file" className="form-control" />
             </div>
             {message && <p className="goodMessage">{message}</p>}

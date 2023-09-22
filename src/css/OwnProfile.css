@@ -1,94 +1,235 @@
+#Alert {
+  background-color: rgb(255, 221, 221);
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+
+div.row-of-friends {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: rgba(255, 125, 125, 0.5);
+  margin: 5px;
+}
+
+div.friend-icon-container {
+  height: 70px;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 5px;
+}
 #FriendsPending img,
 .friend-icon {
   max-height: 40px;
   max-width: 40px;
 }
 
-.img-container {
+/* ---------Friends Accordion---------^^vvv */
+
+#OwnProfile .edit-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+}
+
+#FriendsPending .row-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#FriendsPending .img-container {
   height: 40px;
   width: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-.medium-size-avatar {
-  height: 100px;
-  max-width: 120px;
+#FriendsPending p {
+  margin: 0;
 }
 
-.bigSizeAvatar {
-  height: 200px;
-  max-width: 240px;
+#InviteList .lists h5 {
+  padding: 10px 0 0 10px;
 }
-.my-event .title {
+
+#InviteList .show-create-list {
+  margin-bottom: 10px;
+}
+
+#InviteList hr {
+  margin-top: 10px;
+}
+
+@media only screen and (max-width: 700px) {
+  #OwnProfile .first-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+  }
+
+  #OwnProfile .big-size-avatar {
+    max-height: 140px;
+    max-width: 140px;
+  }
+  #OwnProfile .edit-profile {
+    padding-bottom: 10px;
+  }
+
+  #FriendsAccordion .accordion-item {
+    width: 90vw;
+  }
+}
+
+@media only screen and (min-width: 701px) {
+  #OwnProfile .first-section {
+    display: flex;
+    justify-content: center;
+  }
+
+  #OwnProfile .big-size-avatar {
+    width: 20vw;
+    max-height: 200px;
+    max-width: 200px;
+  }
+
+  #OwnProfile .edit-profile {
+    padding-right: 5%;
+  }
+
+  #FriendsAccordion .accordion-item {
+    width: 55vw;
+  }
+}
+
+/* ---------Create Invite List--------- */
+
+#CreateInviteList {
+  background-color: rgb(241, 248, 255);
+  padding: 0 10px 8px;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: rgb(241, 248, 255);
+}
+
+#CreateInviteList div.max-size {
+  margin: auto;
+  padding-top: 10px;
+  max-width: 300px;
+}
+
+#CreateInviteList .btn-container {
+  display: flex;
+  justify-content: center;
+  padding: 25px 0 5px 0;
+}
+
+/* ---------------- MyEvents ---------------- */
+
+/* Alternative way of displaying columns. In the end I opted for a bootstrap trick */
+/* #MyEvents .event-cards {
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+  break-inside: avoid-column;
+} */
+
+#MyEvents div.create-event {
+  padding: 0 0 20px 20px;
+}
+
+#MyEvents .event-cards-container {
+  margin: auto;
+  width: 90%;
+}
+
+#MyEvents .my-event div.title {
   display: flex;
 }
-.my-event .title h5 {
+#MyEvents .my-event .title h5 {
   padding-top: 3px;
 }
-
-.my-event p {
-  margin: 3px 0;
-}
-
-.my-event .description {
-  font-style: italic;
-  line-height: 20px;
-}
-
-.edit-button {
+#MyEvents .edit-button {
   height: 30px;
   margin-left: 5px;
 }
-
-.edit-button .smallIcon {
+#MyEvents .edit-button .smallIcon {
   height: 1.2rem;
   width: 1.2rem;
   display: flex;
 }
 
-.delete-button {
+#MyEvents .my-event p {
+  margin: 3px 0;
+}
+#MyEvents .my-event .description {
+  font-style: italic;
+  line-height: 20px;
+}
+
+#MyEvents .delete-button {
   margin-top: 8px;
 }
 
-#FriendsPending p {
-  margin: 0;
+@media only screen and (min-width: 500px) {
+  #MyEvents .event-cards {
+    margin-left: 8vw;
+  }
 }
-/* Update event */
-.modal-title-container {
+
+/* ----------------Update event---------------- */
+#EventUpdate .modal-title-container {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-.modal-title {
+#EventUpdate .modal-title {
   font-size: 25px;
 }
 
-/* CreateEvent */
+/* this is so that the google-autocomplete dropdown is shown inside the modal, and not behind it */
+div.pac-container {
+  z-index: 99999999999 !important;
+}
+
+/* ----------------CreateEvent---------------- */
 #CreateEvent {
   max-width: 500px;
   margin: auto;
+  background-color: rgb(241, 248, 255);
+  padding: 0 10px 10px;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: rgb(241, 248, 255);
+  margin-bottom: 20px;
 }
 
-div.dateTime {
+#CreateEvent div.dateTime {
   display: flex;
 }
 
-div.dateTime label {
+#CreateEvent div.dateTime label {
   padding-right: 10px;
 }
 
-div.dateTime input {
+#CreateEvent div.dateTime input {
   width: 180px;
 }
 
-label.location {
+#CreateEvent label.location {
   padding-right: 10px;
 }
 
-.dropdown.invite {
+#CreateEvent .dropdown.invite {
   padding-bottom: 1px;
 }
 
@@ -105,159 +246,69 @@ label.location {
   padding: 10px 20px;
 }
 
-/* ---------------- MyEvents ---------------- */
-#MyEvents {
-  margin: auto;
-  width: 80%;
-}
-
-/* Alternative way of displaying columns. In the end I opted for a bootstrap trick */
-/* #MyEvents .event-cards {
-  columns: 2;
-  -webkit-columns: 2;
-  -moz-columns: 2;
-  break-inside: avoid-column;
-} */
-
-#MyEvents .event-cards {
-  margin-left: 8vw;
-}
-
-/* this is so that the google-autocomplete dropdown is shown inside the modal, and not behind it */
-div.pac-container {
-  z-index: 99999999999 !important;
-}
-
-#welcome {
-  padding-right: 30px;
-}
-
-.row-flex {
+/* ----------------EVENT DETAILS---------------- */
+#EventDetailPage .event-creator,
+#EventDetailPage .event-body {
   display: flex;
+  flex-direction: column;
   align-items: center;
-}
-
-#FriendsPending .row-flex {
-  justify-content: space-around;
-}
-
-.space-between {
-  justify-content: space-between;
-}
-
-#OwnProfile .first-section {
-  display: flex;
   justify-content: center;
-}
-
-#OwnProfile .edit-profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-right: 5%;
-  padding-top: 10px;
-}
-
-.accordion-item {
-  width: 50vw;
-}
-
-div.row-of-friends {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 5px 10px 10px 10px;
-}
-
-/* .row-of-friends img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-} */
-
-div.friend-icon-container {
-  height: 70px;
-  width: fit-content;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0 5px;
-}
-
-.lists h5 {
-  padding: 10px 0 0 10px;
-}
-
-/* Create Invite List */
-
-#CreateInviteList div.col-6 {
-  padding-top: 10px;
-}
-
-#CreateInviteList .btn-container {
-  display: flex;
-  justify-content: center;
-  padding: 25px 0 5px 0;
-}
-
-/* EVENT DETAILS */
-.event-creator,
-.event-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   border-style: solid;
   border-radius: 10px;
   border-color: rgba(255, 125, 125, 0.5);
   margin: 2px;
 }
 
-.row-of-friends {
-  align-items: center;
-  border-style: solid;
-  border-radius: 10px;
-  border-color: rgba(255, 125, 125, 0.5);
-  margin: 5px;
-  padding: 0;
-  justify-content: center;
+#EventDetailPage .medium-size-avatar {
+  max-height: 100px;
+  max-width: 100px;
 }
 
-.row-of-friends p {
-  padding-top: 10px;
-  padding-right: 30px;
-}
-
-.event-main {
+#EventDetailPage .event-main {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.event-creator {
+#EventDetailPage .event-creator p {
+  margin-bottom: 5px;
+}
+#EventDetailPage .event-creator p.organized {
+  padding-top: 5px;
+}
+
+#EventDetailPage .event-creator {
   width: 27vw;
+  min-height: 170px;
 }
 
-.event-body {
-  width: 68vw; /* changeLater */
+#EventDetailPage .event-body {
+  width: 68vw;
   justify-content: center;
+  min-height: 170px;
+}
+#EventDetailPage .event-body p {
+  padding: 0 10px;
 }
 
-.event-title {
+#EventDetailPage p.event-title {
   font-size: 20px;
   font-weight: bold;
 }
 
-#Alert {
-  background-color: rgb(255, 221, 221);
-  padding: 10px 15px;
-  border-radius: 10px;
+#EventDetailPage div.row-no-outline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
 }
 
-.map-container {
+#EventDetailPage .map-container {
   height: 400px;
 }
 
-.marker {
+#EventDetailPage .marker {
   background-image: url("mapbox-icon.png");
   background-size: cover;
   width: 50px;
@@ -266,10 +317,38 @@ div.friend-icon-container {
   cursor: pointer;
 }
 
-/* EDIT PROFILE PICTURE */
-.goodMessage {
+#EventDetailPage .return {
+  text-decoration: none;
+  color: rgb(198, 96, 96);
+  font-weight: bold;
+  padding: 5px;
+}
+
+@media only screen and (max-width: 385px) {
+  #EventDetailPage p.organized {
+    font-size: 15px;
+  }
+  #EventDetailPage .medium-size-avatar {
+    max-height: 60px;
+    max-width: 60px;
+  }
+}
+
+/* ----------------EDIT PROFILE PICTURE---------------- */
+
+#EditProfilePage div.update-picture {
+  padding-top: 20px;
+}
+
+#EditProfilePage.goodMessage {
   background-color: rgb(158, 253, 161);
   border-radius: 10px;
   padding: 10px 20px;
   max-width: 330px;
+}
+
+@media only screen and (min-width: 401px) {
+  #EditProfilePage div.update-picture {
+    width: 380px;
+  }
 }

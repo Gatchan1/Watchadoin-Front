@@ -84,3 +84,10 @@
     padding-right: 1vw;
   }
 }
+
+
+/* EVENT DETAIL PAGE */
+.row-of-friends p {
+  padding-top: 10px;
+  padding-right: 30px;
+}

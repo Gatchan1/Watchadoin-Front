@@ -4,12 +4,6 @@ nav.logged-in div.search-form {
 nav.logged-in .nav-link {
   padding: 7px 0 0 0;
 }
-nav.logged-in .profile-link {
-  padding-left: 20px;
-}
-nav.logged-in .sign-out {
-  padding-left: 40px;
-}
 
 nav.logged-in .navbar-brand {
   padding-top: 0px;
@@ -55,6 +49,32 @@ nav.logged-in .navbar-brand {
 nav.navbar.logged-in {
   padding-top: 15px;
   border-bottom: 1px solid #828282;
+}
+
+@media only screen and (max-width: 296px) {
+  nav.logged-in div.container-fluid {
+    padding: 0 2px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  nav.logged-in ul {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  nav.logged-in div.search-form {
+    margin: 10px 20px;
+  }
+
+}
+@media only screen and (min-width: 768px) {
+  nav.logged-in .profile-link {
+    padding-left: 20px;
+  }
+  nav.logged-in .sign-out {
+    padding-left: 40px;
+  }
 }
 
 @media only screen and (min-width: 992px) {

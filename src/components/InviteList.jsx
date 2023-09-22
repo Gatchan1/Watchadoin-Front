@@ -14,7 +14,7 @@ export default function InviteList() {
   return (
     <div id="InviteList">
       <button
-        className="btn btn-outline-primary"
+        className="btn btn-outline-primary show-create-list"
         onClick={(e) => {
           e.preventDefault();
           toggleCreateList();
@@ -23,6 +23,7 @@ export default function InviteList() {
         {!showCreateList ? <img style={{ width: "20px" }} src="plus.png" alt="create event" /> : <img style={{ width: "20px" }} src="minus.png" alt="roll up create event" />}
       </button>
       {showCreateList && <CreateInviteList />}
+      {showCreateList && <hr/>}
       {currentUser.inviteLists[0] ? (
         <div className="lists">
           {currentUser.inviteLists.map((list) => {

@@ -56,13 +56,12 @@ export default function EventDetailPage() {
   return (
     <>
       {!loading && !loadingEvent && (
-        <div>
+        <div id="EventDetailPage">
           <Navbar />
-          <hr></hr>
           <div>
             <div className="event-main">
               <div className="event-creator">
-                <p>Organized by</p>
+                <p className="organized">Organizer:</p>
                 <img className="medium-size-avatar" src={event.creator.picture} alt={event.creator.username} />
                 <p className="event-creator-name">{event.creator.username}</p>
               </div>
@@ -72,9 +71,9 @@ export default function EventDetailPage() {
                 <p className="event-description">{new Date(event.dateTime).toLocaleString()}</p>
               </div>
             </div>
-            <hr className="invitees"></hr>
             <div className="row-of-friends">
               <p>Check out who will be there: </p>
+              <div className="row-no-outline">
               {event.confirmedJoiners.map((joiner) => {
                 return (
                   <div className="friend-icon-container" key={joiner._id}>
@@ -83,10 +82,11 @@ export default function EventDetailPage() {
                   </div>
                 );
               })}
+              </div>
             </div>
-            <hr className="invitees"></hr>
 
             {lat && <div ref={mapContainer} className="map-container" />}
+            <Link className="return" to="/">↩️Return to dashboard</Link>
           </div>
         </div>
       )}

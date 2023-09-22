@@ -49,7 +49,7 @@ export default function EventUpdate({ eventInfo }) {
   };
 
   return (
-    <div className="modal" id="eventUpdate" tabIndex="-1">
+    <div id="EventUpdate" className="modal" tabIndex="-1">
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
