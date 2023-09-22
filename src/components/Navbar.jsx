@@ -61,7 +61,7 @@ export default function Navbar() {
                 Profile
               </Link>
             </li>
-            <li>
+            <li className="nav-item">
               <Link className="nav-link active" aria-current="page" to="/logout">
                 Sign out
               </Link>

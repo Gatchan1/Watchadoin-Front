@@ -15,7 +15,7 @@ export default function DashboardPage() {
   }, [loading]);
 
   return (
-    <>
+    <div id="DashboardPage">
       <Navbar />
       <header className="dashboard">
         {/* <img id="profile-picture" src={currentUser.picture} alt="profile picture"></img> */}
@@ -31,6 +31,6 @@ export default function DashboardPage() {
         <div className="row1">{!loadingPopulated && <ConfirmedEvents />}</div>
         <div className="row2">{!loadingPopulated && <NewEvents />}</div>
       </div>
-    </>
+    </div>
   );
 }
