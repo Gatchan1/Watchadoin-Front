@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import "../css/OwnProfile.css"; // I still don't quite understand why if I don't import this css here it's still applied...
 import "mapbox-gl/dist/mapbox-gl.css";
 import mapboxgl from "mapbox-gl";
+import Footer from "../components/Footer";
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX;
 
@@ -51,43 +52,51 @@ export default function EventDetailPage() {
       new mapboxgl.Marker().setLngLat({ lng, lat }).addTo(map.current);
       map.current.addControl(new mapboxgl.NavigationControl(), "top-right");
     }
-  }, [loadingEvent])
+  }, [loadingEvent]);
 
   return (
     <>
       {!loading && !loadingEvent && (
         <div id="EventDetailPage">
-          <Navbar />
-          <div>
-            <div className="event-main">
-              <div className="event-creator">
-                <p className="organized">Organizer:</p>
-                <img className="medium-size-avatar" src={event.creator.picture} alt={event.creator.username} />
-                <p className="event-creator-name">{event.creator.username}</p>
+          <div className="anti-footer">
+            <Navbar />
+            <div>
+              <div className="event-main">
+                <div className="event-creator">
+                  <p className="organized">Organizer:</p>
+                  <img className="medium-size-avatar" src={event.creator.picture} alt={event.creator.username} />
+                  <p className="event-creator-name">{event.creator.username}</p>
+                </div>
+                <div className="event-body">
+                  <p className="event-title">{event.title}</p>
+                  <p className="event-description">{event.description}</p>
+                  <p className="event-description">{new Date(event.dateTime).toLocaleString()}</p>
+                </div>
               </div>
-              <div className="event-body">
-                <p className="event-title">{event.title}</p>
-                <p className="event-description">{event.description}</p>
-                <p className="event-description">{new Date(event.dateTime).toLocaleString()}</p>
+              <div className="row-of-friends">
+                <p>Check out who will be there: </p>
+                <div className="row-no-outline">
+                  {event.confirmedJoiners.map((joiner) => {
+                    return (
+                      <div className="friend-icon-container" key={joiner._id}>
+                        <img className="friend-icon" src={joiner.picture} alt={joiner.username} />
+                        <Link className="link-styled" href={`/profile/${joiner.username}`}>
+                          {" "}
+                          {joiner.username}{" "}
+                        </Link>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-            <div className="row-of-friends">
-              <p>Check out who will be there: </p>
-              <div className="row-no-outline">
-              {event.confirmedJoiners.map((joiner) => {
-                return (
-                  <div className="friend-icon-container" key={joiner._id}>
-                    <img className="friend-icon" src={joiner.picture} alt={joiner.username} />
-                    <Link className="link-styled" href={`/profile/${joiner.username}`}> {joiner.username} </Link>
-                  </div>
-                );
-              })}
-              </div>
-            </div>
 
-            {lat && <div ref={mapContainer} className="map-container" />}
-            <Link className="return" to="/">↩️Return to dashboard</Link>
+              {lat && <div ref={mapContainer} className="map-container" />}
+              <Link className="return" to="/">
+                ↩️Return to dashboard
+              </Link>
+            </div>
           </div>
+          <Footer />
         </div>
       )}
     </>

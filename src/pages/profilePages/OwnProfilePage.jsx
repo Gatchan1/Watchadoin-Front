@@ -5,6 +5,7 @@ import { useContext, useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import FriendsAccordion from "../../components/FriendsAccordion";
 import MyEvents from "../../components/MyEvents";
+import Footer from "../../components/Footer";
 
 export default function OwnProfilePage() {
   const { username } = useParams();

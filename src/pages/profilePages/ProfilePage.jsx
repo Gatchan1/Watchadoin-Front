@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import OwnProfilePage from "./OwnProfilePage";
 import PublicProfilePage from "./PublicProfilePage";
 import "../../css/PublicProfile.css";
+import Footer from "../../components/Footer";
 
 export default function ProfilePage() {
   const { user, baseUrl, loading, getHeaders } = useContext(authContext);
@@ -16,10 +17,9 @@ export default function ProfilePage() {
   const [publicUserData, setPublicUserData] = useState({});
   const [profile, setProfile] = useState("");
 
-
   useEffect(() => {
     setProfile("");
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (loading) return;
@@ -42,17 +42,20 @@ export default function ProfilePage() {
 
   return (
     <div>
-      {!loading && profile == "own" && (
-        <div>
-          <OwnProfilePage />
-        </div>
-      )}
+      <div className="anti-footer">
+        {!loading && profile == "own" && (
+          <div>
+            <OwnProfilePage />
+          </div>
+        )}
 
-      {!loading && profile == "public" && publicUserData.username && (
-        <div>
-          <PublicProfilePage publicUserData={publicUserData} />
-        </div>
-      )}
+        {!loading && profile == "public" && publicUserData.username && (
+          <div>
+            <PublicProfilePage publicUserData={publicUserData} />
+          </div>
+        )}
+      </div>
+      <Footer />
     </div>
   );
 }

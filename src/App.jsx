@@ -10,6 +10,7 @@ import ProfilePage from "./pages/profilePages/ProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
 import ErrorPage from "./pages/ErrorPage";
 import EventDetailPage from "./pages/EventDetailPage";
+import "./app.css";
 
 function App() {
 

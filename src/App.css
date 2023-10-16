@@ -1,0 +1,19 @@
+#Footer {
+  margin-top: 30px;
+  font-size: 12px;
+}
+#Footer div.container {
+  display: flex;
+  justify-content: space-around;
+}
+#Footer p {
+  padding-right: 10px;
+}
+#Footer img.logo {
+  width: 30px;
+  padding-right: 6px;
+}
+
+div.anti-footer {
+  min-height: calc(100vh - 85px);
+}

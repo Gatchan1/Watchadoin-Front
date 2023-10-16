@@ -3,7 +3,7 @@ import { authContext } from "../contexts/auth.context";
 import { useState, useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import Alert from "../components/Alert";
+import Footer from "../components/Footer";
 
 export default function EditProfilePage() {
   const { currentUser, loading, baseUrl, getUserInfo, getHeaders } = useContext(authContext);
@@ -34,7 +34,7 @@ export default function EditProfilePage() {
       body: data,
     })
       .then((resp) => resp.json())
-      .then((data) => imageUrl = data.url)
+      .then((data) => (imageUrl = data.url))
       .then(() => {
         return axios.post(baseUrl + "/users/" + currentUser._id + "/edit", { imageUrl: imageUrl }, getHeaders(), { new: true });
       })
@@ -51,28 +51,31 @@ export default function EditProfilePage() {
     !loading &&
     username === currentUser.username && (
       <div id="EditProfilePage">
-        <Navbar />
-        <div>
-          <form className="container">
-            <div className="mb-3 update-picture">
-              <input onChange={(e) => setImage(e.target.files[0])} type="file" className="form-control" />
-            </div>
-            {message && <p className="goodMessage">{message}</p>}
-            {loadingPic && <p>Image is loading.....</p>}
-            <button onClick={uploadImage} type="submit" className="btn btn-primary">
-              Upload image
-            </button>
-            <button
-              onClick={() => {
-                navigate(`/${currentUser.username}`);
-              }}
-              type="submit"
-              className="btn btn-secondary"
-            >
-              Go back
-            </button>
-          </form>
+        <div className="anti-footer">
+          <Navbar />
+          <div>
+            <form className="container">
+              <div className="mb-3 update-picture">
+                <input onChange={(e) => setImage(e.target.files[0])} type="file" className="form-control" />
+              </div>
+              {message && <p className="goodMessage">{message}</p>}
+              {loadingPic && <p>Image is loading.....</p>}
+              <button onClick={uploadImage} type="submit" className="btn btn-primary">
+                Upload image
+              </button>
+              <button
+                onClick={() => {
+                  navigate(`/${currentUser.username}`);
+                }}
+                type="submit"
+                className="btn btn-secondary"
+              >
+                Go back
+              </button>
+            </form>
+          </div>
         </div>
+        <Footer />
       </div>
     )
   );
