@@ -10,6 +10,7 @@ export default function PublicProfile() {
   const [publicUserRaw, setPublicUserRaw] = useState({});
   const [loadingPublicUser, setLoadingPublicUser] = useState(true);
   const [friendshipStatus, setFriendshipStatus] = useState("");
+  const [loadingSpinner, setLoadingSpinner] = useState(true);
 
   function getPublicUserDataRaw() {
     axios
@@ -27,6 +28,13 @@ export default function PublicProfile() {
     getPublicUserDataRaw();
     getUserInfoRaw();
   }, []);
+
+  useEffect(() => {
+    if (!loadingPublicUser)
+      setTimeout(() => {
+        setLoadingSpinner(false);
+      }, 500);
+  }, [loadingPublicUser]);
 
   useEffect(() => {
     if (loadingRaw) return;
@@ -74,51 +82,59 @@ export default function PublicProfile() {
 
   return (
     <div id="publicProfile">
-      <h4>
-        Public profile page of {username} {!loadingPublicUser && <img className="publicAvatar" src={publicUserRaw.picture} />}
-      </h4>
+      {loadingSpinner ? (
+        <div className="spinnerContainer">
+          <span className="spinner" role="status"></span>
+        </div>
+      ) : (
+        <>
+          <h4>
+            Public profile page of {username} {!loadingPublicUser && <img className="publicAvatar" src={publicUserRaw.picture} />}
+          </h4>
 
-      {!loadingPublicUser && friendshipStatus == "TOSEND" && (
-        <button
-          onClick={() => {
-            addFriend();
-          }}
-          type="button"
-          className="btn btn-primary"
-        >
-          Send friendship request
-        </button>
+          {!loadingPublicUser && friendshipStatus == "TOSEND" && (
+            <button
+              onClick={() => {
+                addFriend();
+              }}
+              type="button"
+              className="btn btn-primary"
+            >
+              Send friendship request
+            </button>
+          )}
+          {!loadingPublicUser && friendshipStatus == "TOACCEPT" && (
+            <button
+              onClick={() => {
+                acceptFriend();
+              }}
+              type="button"
+              className="btn btn-success"
+            >
+              Accept friend request
+            </button>
+          )}
+          {!loadingPublicUser && friendshipStatus == "REQUESTED" && (
+            <button disabled className="btn btn-secondary">
+              Friendship requested
+            </button>
+          )}
+          {!loadingPublicUser && friendshipStatus == "TOREVOKE" && (
+            <button
+              onClick={() => {
+                removeFriend();
+              }}
+              className="btn btn-warning"
+            >
+              Revoke friendship
+            </button>
+          )}
+          <br />
+          <Link className="link-styled" aria-current="page" to={`/${user.username}`}>
+            Go back to your profile
+          </Link>
+        </>
       )}
-      {!loadingPublicUser && friendshipStatus == "TOACCEPT" && (
-        <button
-          onClick={() => {
-            acceptFriend();
-          }}
-          type="button"
-          className="btn btn-success"
-        >
-          Accept friend request
-        </button>
-      )}
-      {!loadingPublicUser && friendshipStatus == "REQUESTED" && (
-        <button disabled className="btn btn-secondary">
-          Friendship requested
-        </button>
-      )}
-      {!loadingPublicUser && friendshipStatus == "TOREVOKE" && (
-        <button
-          onClick={() => {
-            removeFriend();
-          }}
-          className="btn btn-warning"
-        >
-          Revoke friendship
-        </button>
-      )}
-      <br />
-      <Link className="link-styled" aria-current="page" to={`/${user.username}`}>
-        Go back to your profile
-      </Link>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { authContext } from "../contexts/auth.context";
 import { useContext, useRef, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import "../css/OwnProfile.css"; // I still don't quite understand why if I don't import this css here it's still applied...
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -10,11 +10,12 @@ import mapboxgl from "mapbox-gl";
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX;
 
 export default function EventDetailPage() {
-  const { loading, baseUrl, getHeaders, checkUser } = useContext(authContext);
+  const { loading, isLoggedIn, baseUrl, getHeaders, checkUser } = useContext(authContext);
   const { eventId } = useParams();
 
   const [event, setEvent] = useState(null);
   const [loadingEvent, setLoadingEvent] = useState(true);
+  const [loadingSpinner, setLoadingSpinner] = useState(true);
 
   const mapContainer = useRef(null);
   const map = useRef(null);
@@ -38,9 +39,13 @@ export default function EventDetailPage() {
   }, [loading]);
 
   useEffect(() => {
+    if (!loadingEvent)
+      setTimeout(() => {
+        setLoadingSpinner(false);
+      }, 500);
     if (map.current) return; // initialize map only once
     if (!mapContainer.current) return;
-    if (lat && lng) {
+    if (lat && lng && !loadingSpinner) {
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
         style: "mapbox://styles/mapbox/streets-v12",
@@ -51,51 +56,56 @@ export default function EventDetailPage() {
       new mapboxgl.Marker().setLngLat({ lng, lat }).addTo(map.current);
       map.current.addControl(new mapboxgl.NavigationControl(), "top-right");
     }
-  }, [loadingEvent]);
+  }, [loadingEvent, loadingSpinner]);
+
+  if (!loading && !isLoggedIn) return <Navigate to="/signup" />;
 
   return (
-    <>
-      {!loading && !loadingEvent && (
-        <div id="EventDetailPage">
-          <div className="anti-footer">
-            <Navbar />
-            <div>
-              <div className="event-main">
-                <div className="event-creator">
-                  <p className="organized">Organizer:</p>
-                  <img className="medium-size-avatar" src={event.creator.picture} alt={event.creator.username} />
-                  <p className="event-creator-name">{event.creator.username}</p>
-                </div>
-                <div className="event-body">
-                  <p className="event-title">{event.title}</p>
-                  <p className="event-description">{event.description}</p>
-                  <p className="event-description">{new Date(event.dateTime).toLocaleString()}</p>
-                </div>
-              </div>
-              <div className="row-of-friends">
-                <p>Check out who will be there: </p>
-                <div className="row-no-outline">
-                  {event.confirmedJoiners.map((joiner) => {
-                    return (
-                      <div className="friend-icon-container" key={joiner._id}>
-                        <img className="friend-icon" src={joiner.picture} alt={joiner.username} />
-                        <Link className="link-styled" onClick={() => checkUser(joiner.username)} to={`/${joiner.username}`}>
-                          {joiner.username}
-                        </Link>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
+    <div className="anti-footer">
+      {!loading && <Navbar />}
 
-              {lat && <div ref={mapContainer} className="map-container" />}
-              <Link className="return" to="/">
-                ↩️Return to dashboard
-              </Link>
+      {loadingSpinner ? (
+        <div className="spinnerContainer">
+          <span className="spinner" role="status"></span>
+        </div>
+      ) : (
+        <div id="EventDetailPage">
+          <div>
+            <div className="event-main">
+              <div className="event-creator">
+                <p className="organized">Organizer:</p>
+                <img className="medium-size-avatar" src={event.creator.picture} alt={event.creator.username} />
+                <p className="event-creator-name">{event.creator.username}</p>
+              </div>
+              <div className="event-body">
+                <p className="event-title">{event.title}</p>
+                <p className="event-description">{event.description}</p>
+                <p className="event-description">{new Date(event.dateTime).toLocaleString()}</p>
+              </div>
             </div>
+            <div className="row-of-friends">
+              <p>Check out who will be there: </p>
+              <div className="row-no-outline">
+                {event.confirmedJoiners.map((joiner) => {
+                  return (
+                    <div className="friend-icon-container" key={joiner._id}>
+                      <img className="friend-icon" src={joiner.picture} alt={joiner.username} />
+                      <Link className="link-styled" onClick={() => checkUser(joiner.username)} to={`/${joiner.username}`}>
+                        {joiner.username}
+                      </Link>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {lat && <div ref={mapContainer} className="map-container" />}
+            <Link className="return" to="/">
+              ↩️Return to dashboard
+            </Link>
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }

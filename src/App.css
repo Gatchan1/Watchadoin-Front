@@ -21,3 +21,29 @@
 div.anti-footer {
   min-height: calc(100vh - 65px);
 }
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #9e9e9e;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+.spinnerContainer {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
