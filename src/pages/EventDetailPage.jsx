@@ -6,12 +6,11 @@ import Navbar from "../components/Navbar";
 import "../css/OwnProfile.css"; // I still don't quite understand why if I don't import this css here it's still applied...
 import "mapbox-gl/dist/mapbox-gl.css";
 import mapboxgl from "mapbox-gl";
-import Footer from "../components/Footer";
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX;
 
 export default function EventDetailPage() {
-  const { loading, baseUrl, getHeaders } = useContext(authContext);
+  const { loading, baseUrl, getHeaders, checkUser } = useContext(authContext);
   const { eventId } = useParams();
 
   const [event, setEvent] = useState(null);
@@ -80,9 +79,8 @@ export default function EventDetailPage() {
                     return (
                       <div className="friend-icon-container" key={joiner._id}>
                         <img className="friend-icon" src={joiner.picture} alt={joiner.username} />
-                        <Link className="link-styled" href={`/profile/${joiner.username}`}>
-                          {" "}
-                          {joiner.username}{" "}
+                        <Link className="link-styled" onClick={() => checkUser(joiner.username)} to={`/${joiner.username}`}>
+                          {joiner.username}
                         </Link>
                       </div>
                     );
@@ -96,7 +94,6 @@ export default function EventDetailPage() {
               </Link>
             </div>
           </div>
-          <Footer />
         </div>
       )}
     </>

@@ -3,7 +3,6 @@ import { authContext } from "../contexts/auth.context";
 import { useState, useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 
 export default function EditProfilePage() {
   const { currentUser, loading, baseUrl, getUserInfo, getHeaders } = useContext(authContext);
@@ -75,7 +74,6 @@ export default function EditProfilePage() {
             </form>
           </div>
         </div>
-        <Footer />
       </div>
     )
   );

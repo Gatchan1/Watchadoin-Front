@@ -1,13 +1,11 @@
-import "../../css/OwnProfile.css";
-import { authContext } from "../../contexts/auth.context";
+import "../css/OwnProfile.css";
+import { authContext } from "../contexts/auth.context";
 import { useParams, Link } from "react-router-dom";
 import { useContext, useEffect } from "react";
-import Navbar from "../../components/Navbar";
-import FriendsAccordion from "../../components/FriendsAccordion";
-import MyEvents from "../../components/MyEvents";
-import Footer from "../../components/Footer";
+import FriendsAccordion from "./FriendsAccordion";
+import MyEvents from "./MyEvents";
 
-export default function OwnProfilePage() {
+export default function OwnProfile() {
   const { username } = useParams();
   const { loading, getUserInfo, currentUser, loadingPopulated } = useContext(authContext);
 
@@ -18,7 +16,6 @@ export default function OwnProfilePage() {
 
   return (
     <div id="OwnProfile">
-      <Navbar />
       <div className="own-profile">
         <div className="first-section">
           <div className="edit-profile">

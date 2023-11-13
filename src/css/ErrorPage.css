@@ -1,3 +1,5 @@
 #ErrorPage {
-    background-color: rgb(236, 162, 162);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

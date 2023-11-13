@@ -4,7 +4,6 @@ import { useContext, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import Alert from "../components/Alert";
 import NavbarLoggedOut from "../components/NavbarLoggedOut";
-import Footer from "../components/Footer";
 // const baseUrl = "http://localhost:5005";
 
 export default function LoginPage() {
@@ -34,7 +33,7 @@ export default function LoginPage() {
       .catch((err) => setError("Could not finish the process, try again"));
   };
 
-  if (!loading && isLoggedIn) return <Navigate to="/" />;
+  if (!loading && isLoggedIn) return <Navigate to="/home" />;
 
   return (
     <>
@@ -74,7 +73,6 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

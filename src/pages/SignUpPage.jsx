@@ -5,7 +5,6 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import Alert from "../components/Alert";
 import NavbarLoggedOut from "../components/NavbarLoggedOut";
-import Footer from "../components/Footer";
 
 export default function SignUpPage() {
   const [username, setUsername] = useState("");
@@ -50,7 +49,7 @@ export default function SignUpPage() {
     });
   };
 
-  if (!loading && isLoggedIn) return <Navigate to="/dashboard" />;
+  if (!loading && isLoggedIn) return <Navigate to="/home" />;
 
   return (
     <>
@@ -101,7 +100,6 @@ export default function SignUpPage() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

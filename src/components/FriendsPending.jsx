@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 
 export default function FriendsPending() {
-  const { currentUser, baseUrl, getHeaders, getUserInfo } = useContext(authContext);
+  const { currentUser, baseUrl, getHeaders, getUserInfo, checkUser } = useContext(authContext);
 
   function acceptFriend(friendId) {
     axios
@@ -14,6 +14,7 @@ export default function FriendsPending() {
       })
       .catch((err) => console.log(err));
   }
+  
 
   return (
     <div id="FriendsPending">
@@ -24,7 +25,7 @@ export default function FriendsPending() {
               <div className="img-container">
                 <img src={friendRequest.picture} alt={friendRequest.username} />
               </div>
-              <Link className="link-styled" aria-current="page" to={`/profile/${friendRequest.username}`}>
+              <Link className="link-styled" aria-current="page" onClick={() => checkUser(friendRequest.username)} to={`/${friendRequest.username}`}>
               {friendRequest.username}
               </Link>
               <button onClick={() => acceptFriend(friendRequest._id)} type="submit" className="btn btn-success">

@@ -28,11 +28,6 @@ export default function CreateInviteList() {
       .then(() => {
         getUserInfo();
       })
-      .then(() => {
-        {
-          window.location.href = `/${currentUser.username}`;
-        }
-      })
       .catch((err) => console.log(err));
   };
 

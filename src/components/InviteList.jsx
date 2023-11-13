@@ -4,7 +4,7 @@ import CreateInviteList from "./CreateInviteList";
 import { Link } from "react-router-dom";
 
 export default function InviteList() {
-  const { currentUser } = useContext(authContext);
+  const { currentUser, checkUser } = useContext(authContext);
 
   const [showCreateList, setShowCreateList] = useState(false);
   function toggleCreateList() {
@@ -23,7 +23,7 @@ export default function InviteList() {
         {!showCreateList ? <img style={{ width: "20px" }} src="plus.png" alt="create event" /> : <img style={{ width: "20px" }} src="minus.png" alt="roll up create event" />}
       </button>
       {showCreateList && <CreateInviteList />}
-      {showCreateList && <hr/>}
+      {showCreateList && <hr />}
       {currentUser.inviteLists[0] ? (
         <div className="lists">
           {currentUser.inviteLists.map((list) => {
@@ -35,7 +35,9 @@ export default function InviteList() {
                     return (
                       <div className="friend-icon-container" key={user._id}>
                         <img className="friend-icon" src={user.picture} alt={user.username} />
-                        <Link className="link-styled" to={`/profile/${user.username}`}> {user.username} </Link>
+                        <Link className="link-styled" onClick={() => checkUser(user.username)} to={`/${user.username}`}>
+                          {user.username}
+                        </Link>
                       </div>
                     );
                   })}
@@ -45,7 +47,7 @@ export default function InviteList() {
           })}
         </div>
       ) : (
-        "No Friend Circles to show"
+        <p>No Friend Circles to show</p>
       )}
     </div>
   );
