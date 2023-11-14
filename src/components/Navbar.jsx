@@ -77,12 +77,14 @@ export default function Navbar() {
               <ul className="search-dropdown" aria-label="search dropdown">
                 {searchResults.map((searchUser) => (
                   <li className="dropdown-item" key={searchUser._id}>
-                    <span className="friend-icon-container">
-                      <img className="friend-icon" src={searchUser.picture} alt={searchUser.username} />
-                    </span>
-                    <Link className="link-styled" onClick={() => checkUser(searchUser.username)} to={`/${searchUser.username}`}>
-                      {searchUser.username}
-                    </Link>
+                    <div className="friend-icon-container-row">
+                      <div>
+                        <img className="friend-icon" src={searchUser.picture} alt={searchUser.username} />
+                      </div>
+                      <Link className="link-styled" onClick={() => checkUser(searchUser.username)} to={`/${searchUser.username}`}>
+                        {searchUser.username}
+                      </Link>
+                    </div>
                   </li>
                 ))}
               </ul>
