@@ -8,7 +8,7 @@ import EditProfilePage from "./pages/EditProfilePage";
 import ErrorPage from "./pages/ErrorPage";
 import EventDetailPage from "./pages/EventDetailPage";
 import Footer from "./components/Footer";
-import "./app.css";
+import "./App.css";
 
 function App() {
   return (
