@@ -4,7 +4,7 @@ import { authContext } from "../contexts/auth.context";
 import { useContext, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import ConfirmedEvents from "../components/ConfirmedEvents";
-import NewEvents from "../components/NewEvents";
+import AvailableEvents from "../components/AvailableEvents";
 import { Navigate, Link } from "react-router-dom";
 
 export default function DashboardPage() {
@@ -44,7 +44,7 @@ export default function DashboardPage() {
               </header>
               <div className="dashboardComponents">
                 <div className="row1">{!loadingPopulated && <ConfirmedEvents />}</div>
-                <div className="row2">{!loadingPopulated && <NewEvents />}</div>
+                <div className="row2">{!loadingPopulated && <AvailableEvents />}</div>
               </div>
             </div>
           )}

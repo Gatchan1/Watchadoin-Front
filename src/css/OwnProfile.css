@@ -14,6 +14,9 @@ div.row-of-friends {
   border-color: rgba(255, 125, 125, 0.5);
   margin: 5px;
 }
+#FriendsConfirmed.row-of-friends {
+  border-width: 0;
+}
 
 div.friend-icon-container {
   height: 70px;
@@ -30,6 +33,14 @@ div.friend-icon-container {
   max-width: 40px;
 }
 
+.blue-bg {
+  background-color: rgb(241, 248, 255);
+  padding: 0 10px 8px;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: rgb(226, 241, 255);
+}
+
 /* ---------Friends Accordion---------^^vvv */
 
 #OwnProfile .edit-profile {
@@ -37,6 +48,14 @@ div.friend-icon-container {
   flex-direction: column;
   align-items: center;
   padding-top: 10px;
+}
+
+#FriendsAccordion .accordion-item {
+  border-width: 2px;
+}
+
+#FriendsAccordion button.accordion-button {
+  font-weight: bold;
 }
 
 #FriendsPending .row-flex {
@@ -57,15 +76,25 @@ div.friend-icon-container {
 }
 
 #InviteList .lists h5 {
-  padding: 10px 0 0 10px;
-}
-
-#InviteList .show-create-list {
-  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 400;
+  background-color: rgb(252, 231, 231);
+  padding: 5px 0 8px 20px;
+  border: 1px solid rgba(255, 125, 125, 0.5);
+  border-radius: 10px 10px 0 0;
+  margin: 10px 0 0 0;
 }
 
 #InviteList hr {
   margin-top: 10px;
+}
+
+#InviteList .row-of-friends {
+  padding: 6px 0;
+  margin: 0;
+  border-radius: 0 0 10px 10px;
+  border: 1px solid rgba(207, 104, 104, 0.5);
+  border-width: 0 1px 1px 1px;
 }
 
 @media only screen and (max-width: 700px) {
@@ -113,11 +142,7 @@ div.friend-icon-container {
 /* ---------Create Invite List--------- */
 
 #CreateInviteList {
-  background-color: rgb(241, 248, 255);
-  padding: 0 10px 8px;
-  border-style: solid;
-  border-radius: 10px;
-  border-color: rgb(241, 248, 255);
+  margin-top: 10px;
 }
 
 #CreateInviteList div.max-size {
@@ -205,12 +230,19 @@ div.pac-container {
 #CreateEvent {
   max-width: 500px;
   margin: auto;
-  background-color: rgb(241, 248, 255);
-  padding: 0 10px 10px;
-  border-style: solid;
-  border-radius: 10px;
-  border-color: rgb(241, 248, 255);
   margin-bottom: 20px;
+  padding: 0;
+}
+
+#CreateEvent .container {
+  padding: 10px;
+}
+
+#CreateEvent h2 {
+  background-color: rgb(167, 199, 231);
+  color: white;
+  border-radius: 8px 8px 0 0;
+  padding: 2px 10px 8px 10px;
 }
 
 #CreateEvent div.dateTime {
@@ -223,10 +255,6 @@ div.pac-container {
 
 #CreateEvent div.dateTime input {
   width: 180px;
-}
-
-#CreateEvent label.location {
-  padding-right: 10px;
 }
 
 #CreateEvent .dropdown.invite {
@@ -244,6 +272,14 @@ div.pac-container {
 
 #CreateEvent .btn-create {
   padding: 10px 20px;
+}
+
+#CreateEvent .selected-friends button {
+  background-color: rgb(255, 255, 255);
+  transition-duration: 0.2s;
+}
+#CreateEvent .selected-friends button.btn-outline-danger:hover {
+  background-color: #dc3545;
 }
 
 /* ----------------EVENT DETAILS---------------- */
@@ -306,6 +342,7 @@ div.pac-container {
 
 #EventDetailPage .map-container {
   height: 400px;
+  margin-bottom: 12px;
 }
 
 #EventDetailPage .marker {
@@ -321,7 +358,7 @@ div.pac-container {
   text-decoration: none;
   color: rgb(198, 96, 96);
   font-weight: bold;
-  padding: 5px;
+  padding-left: 5vw;
 }
 
 @media only screen and (max-width: 385px) {

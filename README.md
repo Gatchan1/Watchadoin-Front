@@ -51,11 +51,11 @@ $ npm start
 ## Components
 - Navbar
 - ConfirmedEvents
-- NewEvents
+- AvailableEvents
 - EventDetail
 - MyEvents
 - InviteLists
-- FriendsAll
+- FriendsConfirmed
 - FriendsPending
 - CreateEvent
 - EventUpdate

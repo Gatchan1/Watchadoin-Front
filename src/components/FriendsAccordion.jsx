@@ -1,5 +1,5 @@
 import InviteList from "./InviteList";
-import FriendsAll from "./FriendsAll";
+import FriendsConfirmed from "./FriendsConfirmed";
 import FriendsPending from "./FriendsPending";
 
 export default function FriendsAccordion() {
@@ -27,7 +27,7 @@ export default function FriendsAccordion() {
           </h2>
           <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
             <div className="accordion-body">
-              <FriendsAll />
+              <FriendsConfirmed />
             </div>
           </div>
         </div>

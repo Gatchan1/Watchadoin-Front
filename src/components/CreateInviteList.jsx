@@ -49,7 +49,7 @@ export default function CreateInviteList() {
   });
 
   return (
-    <div id="CreateInviteList">
+    <div id="CreateInviteList" className="blue-bg">
       <form onSubmit={submitHandler} className="container">
         {error != "" && <Alert message={error} setError={setError} />}
         <div className="max-size">

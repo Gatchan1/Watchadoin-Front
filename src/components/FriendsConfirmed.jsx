@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 import { authContext } from "../contexts/auth.context";
 import { useContext } from "react";
 
-export default function FriendsAll() {
+export default function FriendsConfirmed() {
   const { currentUser, checkUser } = useContext(authContext);
 
   return (
-    <div id="FriendsAll" className="row-of-friends">
+    <div id="FriendsConfirmed" className="row-of-friends">
       {currentUser.friendsConfirmed[0]
         ? currentUser.friendsConfirmed.map((friend) => {
             return (

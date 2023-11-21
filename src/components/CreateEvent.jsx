@@ -131,8 +131,9 @@ export default function CreateEvent({ toggleCreateEvent }) {
   }, []);
 
   return (
-    <div id="CreateEvent">
+    <div id="CreateEvent" className="blue-bg">
       <h2>Create new event</h2>
+      <div className="container">
       <form onSubmit={submitHandler}>
         <div className="mb-3">
           <label htmlFor="title" className="form-label">
@@ -211,7 +212,7 @@ export default function CreateEvent({ toggleCreateEvent }) {
         </div>
 
         {/* -------------- display all selected users --------------- */}
-        <div>
+        <div className="selected-friends">
           <p>selected friends:</p>
           {uniqueSelectedFriends.map((user) => (
             <div key={user._id} style={{ paddingBottom: "5px" }}>
@@ -249,6 +250,7 @@ export default function CreateEvent({ toggleCreateEvent }) {
           </button>
         </div>
       </form>
+      </div>
     </div>
   );
 }
