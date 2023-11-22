@@ -14,10 +14,8 @@ You can check the app fully deployed [here](https://watchadoin.netlify.app/). If
 ## Work structure
 We used [Discord](https://discord.com/) to organize our workflow.
 
-## Disclaimer
-I realise the loading of many pages gives an uncomfortable user experience, this is something I still have to work around.
-
-Also I have lots of missing features I'd like to include in the future, such as:
+## Future improvements
+There are lots of missing features I'd like to include in the future, such as:
 
 - Automatically hiding past events.
 - Editing and deleting Friends Circles.
