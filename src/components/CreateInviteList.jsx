@@ -17,8 +17,7 @@ export default function CreateInviteList() {
     if (title === "" || users === null || users.length === 0) {
       setError("Please fill in both fields");
       return;
-    } else 
-    console.log("users:", users)
+    }
     const newList = {
       title,
       users,
