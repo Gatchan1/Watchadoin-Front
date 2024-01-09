@@ -2,6 +2,7 @@ nav.logged-in div.search-form {
   margin-right: 50px;
 }
 nav.logged-in .nav-link {
+  font-size: 18px;
   padding: 7px 0 0 0;
 }
 
@@ -11,29 +12,26 @@ nav.logged-in .navbar-brand {
 .navbar-brand img {
   max-width: 200px;
 }
-
 .navbar .search-form {
   display: flex;
   flex-direction: column;
   position: relative;
 }
-
 .navbar .search-form input.form-control {
-  margin-right: 0 !important;
+  border-color: rgb(138, 131, 156);
+  max-width: 300px;
+  margin-right: 0;
   font-size: 18px;
 }
-
 .navbar .friend-icon-container-row>div {
   display: inline-block;
   width: 40px;
   text-align: center;
   margin-right: 10px;
 }
-
 .navbar .friend-icon-container-row .link-styled {
   font-size: 19px;
 }
-
 .search-dropdown {
   background-color: white;
   position: absolute;
@@ -41,13 +39,20 @@ nav.logged-in .navbar-brand {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-style: solid;
+  border: 2px solid rgba(255, 125, 125, 0.5);
   border-radius: 10px;
-  border-color: rgba(255, 125, 125, 0.5);
   margin: 2px;
   padding: 10px;
   z-index: 10;
-  width: 227px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.navbar .sign-out {
+  white-space: nowrap;
+}
+.navbar .sign-out span {
+  color: #a2a2a2;
 }
 
 nav.navbar.logged-in {
@@ -62,9 +67,14 @@ nav.navbar.logged-in {
 }
 
 @media only screen and (max-width: 767px) {
-  nav.logged-in ul {
+  #navbarSupportedContent .menu {
     display: flex;
+    flex-direction: column-reverse;
     align-items: center;
+  }
+  nav.logged-in ul.navbar-nav {
+    display: flex;
+    align-items: end;
     width: 100%;
   }
   nav.logged-in div.search-form {
@@ -72,11 +82,23 @@ nav.navbar.logged-in {
   }
 }
 @media only screen and (min-width: 768px) {
+  #navbarSupportedContent {
+    display: flex;
+    justify-content: space-around;
+  }
+  #navbarSupportedContent .menu {
+    width: 90%;
+    display: flex;
+  }
+
+  nav.logged-in .search-form {
+    width: 100%;
+  }
+  .search-dropdown {
+    width: 300px;
+  } 
   nav.logged-in .profile-link {
     padding-left: 20px;
-  }
-  nav.logged-in .sign-out {
-    padding-left: 40px;
   }
 }
 

@@ -101,7 +101,7 @@ export default function EventDetailPage() {
 
             {lat && <div ref={mapContainer} className="map-container" />}
             <Link className="return" to="/">
-              ↩️Return to dashboard
+              ↩️Return to calendar page
             </Link>
           </div>
         </div>

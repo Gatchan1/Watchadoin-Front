@@ -38,7 +38,7 @@ $ npm start
 | /signup                                   | only logged out | SignupPage               |
 | /login                                    | only logged out | LoginPage                |
 | /logout                                   | private         | LogoutPage, it redirects to login |
-| /dashboard                                | private         | DashboardPage            |
+| /calendar page                            | private         | CalendarPage            |
 | /:username                        | private         | UserProfilePage with conditional rendering |
 | /:username/edit                   | private         | EditProfilePage          |
 | /:username/event/:eventId         | private         | EventDetailPage        |

@@ -1,0 +1,164 @@
+header.tabs {
+  display: flex;
+  flex-direction: row;
+  background-color: #d9d9d9;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  overflow: hidden;
+}
+
+header.tabs .tab {
+  padding: 10px 4vw;
+  border: 2px solid rgb(130, 130, 130);
+  border-radius: 15px 15px 0 0;
+  border-bottom: none;
+  white-space: nowrap;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);}
+
+header.tabs div {
+  display: inline;
+  width: 30%;
+  border-bottom: 2px solid rgb(192, 192, 192);
+}
+header.tabs .tab {
+  font-size: 18px;
+  font-weight: 600;
+  color: black;
+  text-decoration: none;
+}
+header.tabs .tab.inactive {
+  background-color: rgb(223, 223, 223);
+  border-bottom: 2px solid rgb(192, 192, 192);
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.25);
+  transition-duration: 0.2s;
+}
+header.tabs .tab.active {
+  background-color: white;
+  border-bottom: none;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+}
+header.tabs .tab.inactive:hover {
+  background-color: rgb(238, 238, 238);
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+
+}
+header.tabs .tab.active:hover {
+  cursor: default;
+}
+
+/* #CalendarPage .welcome {
+  padding: 10px 0 0 50px;
+  font-size: 18px;
+} */
+
+#CalendarPage .link {
+  padding: 20px;
+}
+
+#CalendarPage .red-border {
+  border-style: solid;
+  border-radius: 10px;
+  border-color: rgba(255, 125, 125, 0.5);
+}
+
+#CalendarPage .confirmedEvents {
+  background-color: rgb(237, 255, 240);
+}
+#CalendarPage .newEvents {
+  background-color: rgb(255, 253, 230);
+}
+#CalendarPage .confirmedEvents h4 {
+  background-color: rgb(112, 172, 123);
+  color: white;
+}
+#CalendarPage .newEvents h4 {
+  background-color: rgb(251, 184, 0);
+  color: white;
+}
+
+#CalendarPage .confirmedEvents h2,
+#CalendarPage .newEvents h2 {
+  background-color: rgb(231, 169, 169);
+  color: white;
+  font-weight: bold;
+  border-radius: 7px 7px 0 0;
+  padding: 20px;
+}
+
+#CalendarPage .event-title,
+#CalendarPage .event-body,
+#CalendarPage .confirmedEvents p.noConfirmed,
+#CalendarPage .newEvents p.noEvents {
+  padding: 0 20px;
+}
+#CalendarPage .event-title {
+  padding-bottom: 2px
+}
+
+#CalendarPage .confirmedEv p,
+#CalendarPage .newEv p {
+  margin: 3px 0;
+}
+
+#CalendarPage .confirmedEv .description,
+#CalendarPage .newEv .description {
+  font-style: italic;
+  line-height: 20px;
+}
+
+#CalendarPage .confirmedEv button,
+#CalendarPage .newEvents .btn-group {
+  margin-top: 8px;
+}
+
+#CalendarPage .confirmedEv button {
+  background-color: white;
+  transition-duration: 0.2s;
+}
+#CalendarPage .confirmedEv button:hover {
+  font-weight: 600;
+  padding: 6px 12px 6px 11px;
+  background-color: rgb(251, 184, 0);
+}
+
+#CalendarPage .newEvents button.join {
+  padding: 0 20px;
+}
+
+@media only screen and (max-width: 700px) {
+  #CalendarPage .row1,
+  #CalendarPage .row2 {
+    width: 94%;
+    padding-bottom: 20px;
+  }
+  #CalendarPage .calendarComponents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media only screen and (min-width: 701px) {
+  #CalendarPage .calendarComponents {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  #CalendarPage .confirmedEvents,
+  #CalendarPage .newEvents {
+    max-width: 46vw;
+  }
+  #CalendarPage .row1 {
+    padding-left: 1vw;
+  }
+  #CalendarPage .row2 {
+    padding-right: 1vw;
+  }
+}
+
+
+/* EVENT DETAIL PAGE */
+.row-of-friends p {
+  padding-top: 10px;
+  padding-right: 30px;
+}

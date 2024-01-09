@@ -131,7 +131,7 @@ export default function PublicProfile() {
           )}
           <br />
           <Link className="link-styled" aria-current="page" to={`/${user.username}`}>
-            Go back to your profile
+            Go back to your main hub
           </Link>
         </>
       )}

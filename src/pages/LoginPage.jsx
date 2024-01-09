@@ -33,7 +33,7 @@ export default function LoginPage() {
       .catch((err) => setError("Could not finish the process, try again"));
   };
 
-  if (!loading && isLoggedIn) return <Navigate to="/home" />;
+  if (!loading && isLoggedIn) return <Navigate to="/" />;
 
   return (
     <>

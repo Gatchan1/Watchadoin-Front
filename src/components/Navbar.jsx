@@ -55,40 +55,37 @@ export default function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item profile-link">
-              <Link className="nav-link active" aria-current="page" to={`/${username}`}>
-                Profile
-              </Link>
-            </li>
-            <li className="nav-item sign-out">
-              <Link className="nav-link active" aria-current="page" to="/logout">
-                Sign out
-              </Link>
-            </li>
-          </ul>
-          <div className="search-form">
-            <form className="d-flex">
-              <input className="form-control me-2" type="search" placeholder="Search users" aria-label="Search" value={text} onChange={(e) => setText(e.target.value)} />
-            </form>
+          <div className="menu">
+            <div className="search-form">
+              <form className="d-flex">
+                <input className="form-control" type="search" placeholder="Search users" aria-label="Search" value={text} onChange={(e) => setText(e.target.value)} />
+              </form>
 
-            {searchResults.length === 0 || (searchResults.length === allUsers.length && "")}
-            {searchResults.length > 0 && (
-              <ul className="search-dropdown" aria-label="search dropdown">
-                {searchResults.map((searchUser) => (
-                  <li className="dropdown-item" key={searchUser._id}>
-                    <div className="friend-icon-container-row">
-                      <div>
-                        <img className="friend-icon" src={searchUser.picture} alt={searchUser.username} />
+              {searchResults.length === 0 || (searchResults.length === allUsers.length && "")}
+              {searchResults.length > 0 && (
+                <ul className="search-dropdown" aria-label="search dropdown">
+                  {searchResults.map((searchUser) => (
+                    <li className="dropdown-item" key={searchUser._id}>
+                      <div className="friend-icon-container-row">
+                        <div>
+                          <img className="friend-icon" src={searchUser.picture} alt={searchUser.username} />
+                        </div>
+                        <Link className="link-styled" onClick={() => checkUser(searchUser.username)} to={`/${searchUser.username}`}>
+                          {searchUser.username}
+                        </Link>
                       </div>
-                      <Link className="link-styled" onClick={() => checkUser(searchUser.username)} to={`/${searchUser.username}`}>
-                        {searchUser.username}
-                      </Link>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            )}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+            <ul className="navbar-nav">
+              <li className="nav-item sign-out">
+                <Link className="nav-link active" aria-current="page" to="/logout">
+                  Sign out <span>({username})</span>
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

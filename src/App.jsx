@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import SignUpPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
 import LogoutPage from "./pages/LogoutPage";
-import DashboardPage from "./pages/DashboardPage";
+import CalendarPage from "./pages/CalendarPage";
 import ProfilePage from "./pages/ProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
 import ErrorPage from "./pages/ErrorPage";
@@ -14,8 +14,7 @@ function App() {
   return (
     <>
         <Routes>
-          <Route path="/" element={<DashboardPage />} />
-          <Route path="/home" element={<DashboardPage />} />
+          <Route path="/" element={<CalendarPage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/logout" element={<LogoutPage />} />

@@ -41,6 +41,10 @@ div.friend-icon-container {
   border-color: rgb(226, 241, 255);
 }
 
+#OwnProfile .first-section {
+  margin: 25px 0;
+}
+
 /* ---------Friends Accordion---------^^vvv */
 
 #OwnProfile .edit-profile {

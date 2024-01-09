@@ -114,8 +114,6 @@ export default function CreateEvent({ toggleCreateEvent }) {
       });
   };
 
-  //------------------ CREATE NOTIFICATION (maybe)---------------------
-
   //Fetching user friends + invitelists to populate the dropdown and allow to select friends to invite
   useEffect(() => {
     axios

@@ -21,22 +21,33 @@ export default function OwnProfile() {
 
   return (
     <div id="OwnProfile">
-    {loadingSpinner ? <div className="spinnerContainer">
+      {loadingSpinner ? (
+        <div className="spinnerContainer">
           <span className="spinner" role="status"></span>
-        </div> :
-      <div className="own-profile">
-        <div className="first-section">
-          <div className="edit-profile">
-            <img src={currentUser.picture} className="big-size-avatar" />
-            <Link to={`/${username}/edit`}>Change profile picture</Link>
-          </div>
-
-          {!loadingPopulated && <FriendsAccordion />}
         </div>
-        <hr />
-        {!loadingPopulated && <MyEvents />}
-      </div>
-    }
+      ) : (
+        <div className="own-profile">
+          <header className="tabs">
+            <div></div>
+            <Link to="/" className="tab inactive">
+              Calendar
+            </Link>
+            <div></div>
+            <Link className="tab active">Main Hub</Link>
+            <div></div>
+          </header>
+          <div className="first-section">
+            <div className="edit-profile">
+              <img src={currentUser.picture} className="big-size-avatar" />
+              <Link to={`/${username}/edit`}>Change profile picture</Link>
+            </div>
+
+            {!loadingPopulated && <FriendsAccordion />}
+          </div>
+          <hr />
+          {!loadingPopulated && <MyEvents />}
+        </div>
+      )}
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import axios from "axios";
-import "../css/DashboardPage.css";
+import "../css/CalendarPage.css";
 import { authContext } from "../contexts/auth.context";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
@@ -34,7 +34,7 @@ export default function AvailableEvents() {
   return (
     <div className="newEvents red-border">
       <h2>Possible plans</h2>
-      {/* We don't need to use a loading state here because these components only render after loading. (See DashboardPage) */}
+      {/* We don't need to use a loading state here because these components only render after loading. (See CalendarPage) */}
       {currentUser.eventsPending.length == 0 && <p className="noEvents">No new events</p>}
 
       {currentUser.eventsPending.length !== 0 &&

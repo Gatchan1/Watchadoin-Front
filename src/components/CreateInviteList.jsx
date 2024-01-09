@@ -9,15 +9,16 @@ export default function CreateInviteList() {
 
   const [title, setTitle] = useState("");
   const [users, setUsers] = useState(null);
-  const [value, setValue] = useState(null);
+  const [selectedOptions, setSelectedOptions] = useState(null);
   const [error, setError] = useState("");
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (title == "" || users == []) {
+    if (title === "" || users === null || users.length === 0) {
       setError("Please fill in both fields");
       return;
-    }
+    } else 
+    console.log("users:", users)
     const newList = {
       title,
       users,
@@ -28,6 +29,10 @@ export default function CreateInviteList() {
       .then(() => {
         getUserInfo();
       })
+      .then(() => {
+        setSelectedOptions(null);
+        setTitle("");
+      })
       .catch((err) => console.log(err));
   };
 
@@ -36,13 +41,13 @@ export default function CreateInviteList() {
   }, []);
 
   useEffect(() => {
-    if (value) {
-      const newValue = value.map((friend) => {
+    if (selectedOptions) {
+      const newUsers = selectedOptions.map((friend) => {
         return friend.value;
       });
-      setUsers(newValue);
+      setUsers(newUsers);
     }
-  }, [value]);
+  }, [selectedOptions]);
 
   const options = currentUser.friendsConfirmed.map((friend) => {
     return { value: friend._id, label: friend.username };
@@ -60,7 +65,7 @@ export default function CreateInviteList() {
         </div>
         <div className="max-size">
           <label className="form-label">Add Friends:</label>
-          <Select defaultValue={value} closeMenuOnSelect={false} onChange={setValue} options={options} isMulti={true} />
+          <Select value={selectedOptions} closeMenuOnSelect={false} onChange={setSelectedOptions} options={options} isMulti={true} />
         </div>
         <div className="btn-container">
           <button type="submit" className="btn btn-primary">

@@ -1,4 +1,4 @@
-import "../css/DashboardPage.css";
+import "../css/CalendarPage.css";
 import "../../src/index.css";
 import { authContext } from "../contexts/auth.context";
 import { useContext, useEffect, useState } from "react";
@@ -7,7 +7,7 @@ import ConfirmedEvents from "../components/ConfirmedEvents";
 import AvailableEvents from "../components/AvailableEvents";
 import { Navigate, Link } from "react-router-dom";
 
-export default function DashboardPage() {
+export default function CalendarPage() {
   const { loading, isLoggedIn, user, getUserInfo, loadingPopulated } = useContext(authContext);
   const [loadingSpinner, setLoadingSpinner] = useState(true);
 
@@ -22,7 +22,7 @@ export default function DashboardPage() {
   if (!loading && !isLoggedIn) return <Navigate to="/signup" />;
 
   return (
-    <div id="DashboardPage" className="anti-footer">
+    <div id="CalendarPage" className="anti-footer">
       {loadingSpinner ? (
         <div className="spinnerContainer">
           <span className="spinner" role="status"></span>
@@ -32,17 +32,14 @@ export default function DashboardPage() {
           {!loading && isLoggedIn && (
             <div>
               <Navbar />
-              <header className="dashboard">
-                {/* <img id="profile-picture" src={currentUser.picture} alt="profile picture"></img> */}
-                <p className="welcome">
-                  Welcome,{" "}
-                  <Link className="link-styled" aria-current="page" to={`/${user.username}`}>
-                    {user.username}
-                  </Link>
-                  ! 👋
-                </p>
+              <header className="tabs">
+                <div></div>
+                <Link className="tab active">Calendar</Link>
+                <div></div>
+                <Link to={user.username} className="tab inactive">Main Hub</Link>
+                <div></div>
               </header>
-              <div className="dashboardComponents">
+              <div className="calendarComponents">
                 <div className="row1">{!loadingPopulated && <ConfirmedEvents />}</div>
                 <div className="row2">{!loadingPopulated && <AvailableEvents />}</div>
               </div>
