@@ -47,6 +47,10 @@ div.friend-icon-container {
 
 /* ---------Friends Accordion---------^^vvv */
 
+#OwnProfile .accordion-button {
+  font-size: 17px;
+}
+
 #OwnProfile .edit-profile {
   display: flex;
   flex-direction: column;
@@ -83,7 +87,7 @@ div.friend-icon-container {
   position: relative;
 }
 #InviteList .list .heading {
-  background-color: rgb(252, 231, 231);
+  background-color: rgb(243, 236, 255);
   padding: 5px 0 8px 20px;
   border: 1px solid rgba(255, 125, 125, 0.5);
   border-radius: 10px 10px 0 0;
@@ -102,7 +106,7 @@ div.friend-icon-container {
   font-size: 12px;
   border: none;
   border-radius: 7px;
-  background-color: rgb(251, 195, 195);
+  background-color: rgb(255, 208, 208);
   margin-right: 5px;
   transition-duration: 0.2s;
 }
@@ -129,7 +133,12 @@ div.friend-icon-container {
   margin: 0;
   position: absolute;
   top: 0;
-  left: 50%;
+  right: 0;
+}
+
+#AlertDeleteList button.yesDelete,
+#AlertDeleteEvent button.yesDelete {
+  margin-right: 5px;
 }
 
 @media only screen and (max-width: 700px) {
@@ -213,6 +222,10 @@ div.friend-icon-container {
 
 #MyEvents .my-event div.title {
   display: flex;
+  justify-content: space-between;
+}
+#MyEvents .my-event div.flex {
+  display: flex;
 }
 #MyEvents .my-event .title h5 {
   padding-top: 3px;
@@ -227,6 +240,17 @@ div.friend-icon-container {
   display: flex;
 }
 
+#MyEvents .card .delete {
+  font-size: 12px;
+  border: none;
+  border-radius: 7px;
+  background-color: white;
+  transition-duration: 0.2s;
+}
+#MyEvents .card .delete:hover {
+  background-color: rgb(255, 208, 208);
+}
+
 #MyEvents .my-event p {
   margin: 3px 0;
 }
@@ -235,8 +259,14 @@ div.friend-icon-container {
   line-height: 20px;
 }
 
-#MyEvents .delete-button {
-  margin-top: 8px;
+#AlertDeleteEvent {
+  background-color: rgb(255, 243, 192);
+  padding: 10px 15px;
+  border-radius: 10px;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 @media only screen and (min-width: 500px) {

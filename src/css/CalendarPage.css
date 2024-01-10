@@ -46,10 +46,9 @@ header.tabs .tab.active:hover {
   cursor: default;
 }
 
-/* #CalendarPage .welcome {
-  padding: 10px 0 0 50px;
-  font-size: 18px;
-} */
+#CalendarPage .calendarComponents {
+  margin-top: 20px;
+}
 
 #CalendarPage .link {
   padding: 20px;

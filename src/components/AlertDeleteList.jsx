@@ -24,7 +24,7 @@ export default function AlertDeleteList({ list, setIdToDelete }) {
     <div id="AlertDeleteList">
       <form onSubmit={deleteHandler}>
         <p>Are you sure?</p>
-        <button type="submit" className="btn btn-outline-danger">
+        <button type="submit" className="btn btn-outline-danger yesDelete">
           Yes, delete
         </button>
         <button type="button" className="btn btn-outline-dark" onClick={dismissHandler}>

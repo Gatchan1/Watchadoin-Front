@@ -1,33 +1,22 @@
 import { authContext } from "../contexts/auth.context";
 import { useContext, useState } from "react";
-import axios from "axios";
 import CreateInviteList from "./CreateInviteList";
 import AlertDeleteList from "./AlertDeleteList";
 import { Link } from "react-router-dom";
 
 export default function InviteList() {
-  const { currentUser, baseUrl, getHeaders, checkUser } = useContext(authContext);
+  const { currentUser, checkUser } = useContext(authContext);
 
   const [showCreateList, setShowCreateList] = useState(false);
-  const [IdToDelete, setIdToDelete] = useState("");
+  const [idToDelete, setIdToDelete] = useState("");
 
   function toggleCreateList() {
     showCreateList ? setShowCreateList(false) : setShowCreateList(true);
   }
 
-  const askDeleteList = (list) => {
-    setIdToDelete(list._id)
-  };
-
   return (
     <div id="InviteList">
-      <button
-        className="btn btn-outline-primary show-create-list"
-        onClick={(e) => {
-          e.preventDefault();
-          toggleCreateList();
-        }}
-      >
+      <button className="btn btn-outline-primary show-create-list" onClick={() => toggleCreateList()}>
         {!showCreateList ? <img style={{ width: "20px" }} src="plus.png" alt="create event" /> : <img style={{ width: "20px" }} src="minus.png" alt="roll up create event" />}
       </button>
       {showCreateList && <CreateInviteList />}
@@ -37,16 +26,10 @@ export default function InviteList() {
           {currentUser.inviteLists.map((list) => {
             return (
               <div className="list" key={list._id}>
-              { IdToDelete === list._id && <AlertDeleteList list={list} setIdToDelete={setIdToDelete}/>}
+                {idToDelete === list._id && <AlertDeleteList list={list} setIdToDelete={setIdToDelete} />}
                 <div className="heading">
                   <h5>{list.title}</h5>
-                  <button
-                    className="delete"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      askDeleteList(list);
-                    }}
-                  >
+                  <button className="delete" onClick={() => setIdToDelete(list._id)}>
                     ❌
                   </button>
                 </div>

@@ -2,30 +2,19 @@ import { useState, useContext } from "react";
 import CreateEvent from "./CreateEvent";
 // import EventDetail from "./EventDetail";
 import EventUpdate from "./EventUpdate";
-import axios from "axios";
+import AlertDeleteEvent from "./AlertDeleteEvent";
 import { authContext } from "../contexts/auth.context";
 // import { useParams } from "react-router-dom";
 
 export default function MyEvents() {
-  const { baseUrl, getHeaders, getUserInfo, currentUser } = useContext(authContext);
-  const [showCreateEvent, setShowCreateEvent] = useState(false);
-  // const { username } = useParams();
-  // const [error, setError] = useState("");
+  const { currentUser } = useContext(authContext);
 
+  const [showCreateEvent, setShowCreateEvent] = useState(false);
+  const [idToDelete, setIdToDelete] = useState("");
   const [modalEvent, setModalEvent] = useState("");
 
   function toggleCreateEvent() {
     showCreateEvent ? setShowCreateEvent(false) : setShowCreateEvent(true);
-  }
-
-  function deleteHandler(eventInfo) {
-    axios
-      .post(baseUrl + `/events/${eventInfo._id}/delete`, {}, getHeaders())
-      .then((resp) => {
-        console.log("evento eliminado:", resp);
-        getUserInfo();
-      })
-      .catch((err) => console.log(err) /* setError("Could not finish the process, try again", err) */);
   }
 
   return (
@@ -33,13 +22,7 @@ export default function MyEvents() {
       <div className="create-event">
         <h3>Events created by you:</h3>
 
-        <button
-          className="btn btn-outline-primary"
-          onClick={(e) => {
-            e.preventDefault();
-            toggleCreateEvent();
-          }}
-        >
+        <button className="btn btn-outline-primary" onClick={() => toggleCreateEvent()}>
           {!showCreateEvent ? <img style={{ width: "20px" }} src="plus.png" alt="create event" /> : <img style={{ width: "20px" }} src="minus.png" alt="roll up create event" />}
         </button>
       </div>
@@ -54,10 +37,15 @@ export default function MyEvents() {
                 <div key={event._id} className="card" style={{ width: "25rem", breakInside: "avoid-column" }}>
                   <div className="card-body my-event">
                     <div className="title">
+                    <div className="flex">
                       <h5>{event.title}</h5>
                       <button type="button" className="edit-button btn btn-light" data-bs-toggle="modal" data-bs-target="#EventUpdate" onClick={() => setModalEvent(event)}>
                         <img className="smallIcon" src="/edit.png" />
                       </button>
+                    </div>
+                      <button className="delete btn btn-outline-danger" onClick={() => setIdToDelete(event._id)}>
+                      ❌
+                    </button>
                     </div>
                     {/* <img className="card-text" src={event.icon} alt="event icon"/> */}
                     <p className="card-text description">{event.description}</p>
@@ -65,18 +53,7 @@ export default function MyEvents() {
                     <p className="card-text">{new Date(event.dateTime).toLocaleString()}</p>
                     <p className="card-text">Confirmed atendees: {event.confirmedJoiners.length}</p>
 
-                    <form>
-                      <button
-                        type="submit"
-                        className="delete-button btn btn-outline-danger"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          deleteHandler(event);
-                        }}
-                      >
-                        Delete
-                      </button>
-                    </form>
+                    {idToDelete === event._id && <AlertDeleteEvent event={event} setIdToDelete={setIdToDelete} />}
                   </div>
                 </div>
               );
