@@ -226,6 +226,7 @@ div.friend-icon-container {
 }
 #MyEvents .my-event div.flex {
   display: flex;
+  align-items: center;
 }
 #MyEvents .my-event .title h5 {
   padding-top: 3px;
@@ -233,6 +234,7 @@ div.friend-icon-container {
 #MyEvents .edit-button {
   height: 30px;
   margin-left: 5px;
+  margin-bottom: 4px;
 }
 #MyEvents .edit-button .smallIcon {
   height: 1.2rem;
