@@ -14,6 +14,8 @@ export default function EventUpdate({ eventInfo }) {
   const [icon, setIcon] = useState("");
   const [datetime, setDatetime] = useState("");
   const [location, setLocation] = useState("");
+  const [lat, setLat] = useState("");
+  const [lng, setLng] = useState("");
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -24,20 +26,20 @@ export default function EventUpdate({ eventInfo }) {
       setDescription(eventInfo.description);
     } else setDescription("");
     if (eventInfo.dateTime) {
-      setDatetime(eventInfo.dateTime);
+      const date = new Date(eventInfo.dateTime);
+      const fixedDate = new Date(date - date.getTimezoneOffset()*60000);
+      setDatetime(fixedDate.toISOString().slice(0,-1));
     } else setDatetime("");
     if (eventInfo.location) {
       setLocation(eventInfo.location);
     } else setLocation("");
   }, [eventInfo]);
 
-  const dateHandler = (e) => {
-    setDatetime(e.target.value);
-  };
   const submitHandler = (e) => {
     e.preventDefault();
 
-    const event = { title, description, icon, dateTime: datetime, location };
+    const coordinates = { lat, lng };
+    const event = { title, description, icon, dateTime: datetime, location, coordinates };
     console.log("@@@", event);
     axios
       .post(baseUrl + `/events/${eventInfo._id}/update`, event, getHeaders())
@@ -73,7 +75,7 @@ export default function EventUpdate({ eventInfo }) {
                 onChange={(e) => setIcon(e.target.value)}
               /> */}
               <label>When?</label>
-              <input type="datetime-local" className="form-control" placeholder={datetime} value={datetime} onChange={dateHandler} data-date-format="DD MMMM YYYY" />
+              <input type="datetime-local" className="form-control" value={datetime} onChange={(e) => setDatetime(e.target.value)} data-date-format="DD MMMM YYYY" />
               <div className="mb-3">
                 <label htmlFor="location" className="form-label" value={location} onChange={(e) => setLocation(e.target.value)}>
                   Where?
@@ -89,7 +91,7 @@ export default function EventUpdate({ eventInfo }) {
                     types: ["establishment", "geocode"],
                   }}
                   onPlaceSelected={(place) => {
-                    setLocation(place.formatted_address);
+                    setLocation(place.name);
                     setLat(place.geometry.location.lat());
                     setLng(place.geometry.location.lng());
                     console.log("address: ", place);

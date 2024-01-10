@@ -78,12 +78,15 @@ div.friend-icon-container {
 #FriendsPending p {
   margin: 0;
 }
+#InviteList .list {
+  margin-bottom: 10px;
+  position: relative;
+}
 #InviteList .list .heading {
   background-color: rgb(252, 231, 231);
   padding: 5px 0 8px 20px;
   border: 1px solid rgba(255, 125, 125, 0.5);
   border-radius: 10px 10px 0 0;
-  margin: 10px 0 0 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -117,6 +120,16 @@ div.friend-icon-container {
   border-radius: 0 0 10px 10px;
   border: 1px solid rgba(207, 104, 104, 0.5);
   border-width: 0 1px 1px 1px;
+}
+
+#AlertDeleteList {
+  background-color: rgb(255, 243, 192);
+  padding: 10px 15px;
+  border-radius: 10px;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 50%;
 }
 
 @media only screen and (max-width: 700px) {

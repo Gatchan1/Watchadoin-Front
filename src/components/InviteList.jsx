@@ -2,20 +2,21 @@ import { authContext } from "../contexts/auth.context";
 import { useContext, useState } from "react";
 import axios from "axios";
 import CreateInviteList from "./CreateInviteList";
+import AlertDeleteList from "./AlertDeleteList";
 import { Link } from "react-router-dom";
 
 export default function InviteList() {
   const { currentUser, baseUrl, getHeaders, checkUser } = useContext(authContext);
 
   const [showCreateList, setShowCreateList] = useState(false);
+  const [IdToDelete, setIdToDelete] = useState("");
+
   function toggleCreateList() {
     showCreateList ? setShowCreateList(false) : setShowCreateList(true);
   }
 
-  const deleteList = (list) => {
-    axios.post(baseUrl + `/lists/${list._id}/remove`, getHeaders())
-    .then((resp) => console.log("The requested list has been deleted: ", resp.data))
-    .catch((err) => console.log(err));
+  const askDeleteList = (list) => {
+    setIdToDelete(list._id)
   };
 
   return (
@@ -36,13 +37,14 @@ export default function InviteList() {
           {currentUser.inviteLists.map((list) => {
             return (
               <div className="list" key={list._id}>
+              { IdToDelete === list._id && <AlertDeleteList list={list} setIdToDelete={setIdToDelete}/>}
                 <div className="heading">
                   <h5>{list.title}</h5>
                   <button
                     className="delete"
                     onClick={(e) => {
                       e.preventDefault();
-                      deleteList(list);
+                      askDeleteList(list);
                     }}
                   >
                     ❌
