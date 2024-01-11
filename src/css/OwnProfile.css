@@ -66,12 +66,24 @@ div.friend-icon-container {
   font-weight: bold;
 }
 
+#FriendsAccordion #collapseOne .accordion-body {
+  padding: 16px 0;
+}
+
 #FriendsPending .row-flex {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 2px 4%;
 }
-
+#FriendsPending .row-flex.colored {
+  background-color: rgb(247, 240, 230);
+}
+#FriendsPending div.noWrap {
+  display: flex;
+  flex-wrap: nowrap;
+}
 #FriendsPending .img-container {
   height: 40px;
   width: 40px;
@@ -79,9 +91,16 @@ div.friend-icon-container {
   justify-content: center;
   align-items: center;
 }
+#FriendsPending button.friendReq.btn-success{
+  margin-right: 1vw;
+}
+#FriendsPending button.friendReq{
+  padding: 6px 4px;
+}
 #FriendsPending p {
   margin: 0;
 }
+
 #InviteList .list {
   margin-bottom: 10px;
   position: relative;
@@ -180,6 +199,11 @@ div.friend-icon-container {
 
   #FriendsAccordion .accordion-item {
     width: 55vw;
+  }
+
+  #FriendsPending .row-flex {
+    padding-left: 10%;
+    padding-right: 10%;
   }
 }
 

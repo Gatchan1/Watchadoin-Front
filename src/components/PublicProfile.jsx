@@ -60,7 +60,7 @@ export default function PublicProfile() {
 
   function removeFriend() {
     axios
-      .post(baseUrl + "/friendstatus/" + publicUserRaw._id + "/remove", {}, getHeaders())
+      .post(baseUrl + "/friendstatus/" + publicUserRaw._id + "/revoke", {}, getHeaders())
       .then(() => {
         getPublicUserDataRaw();
         getUserInfoRaw();

@@ -14,23 +14,38 @@ export default function FriendsPending() {
       })
       .catch((err) => console.log(err));
   }
-  
+
+  function rejectFriend(friendId) {
+    axios
+      .post(baseUrl + "/friendstatus/" + friendId + "/" + "reject", {}, getHeaders())
+      .then(() => {
+        getUserInfo();
+      })
+      .catch((err) => console.log(err));
+  }
 
   return (
     <div id="FriendsPending">
-      {currentUser.friendsPending.map((friendRequest) => {
+      {currentUser.friendsPending.map((friendRequest, index) => {
+        let bgColor;
+        if (index % 2 !== 0) bgColor = "colored";
         return (
           <div key={friendRequest._id}>
-            <div className="row-flex">
+            <div className={"row-flex " + (bgColor ? bgColor : "")}>
               <div className="img-container">
                 <img src={friendRequest.picture} alt={friendRequest.username} />
               </div>
               <Link className="link-styled" aria-current="page" onClick={() => checkUser(friendRequest.username)} to={`/${friendRequest.username}`}>
-              {friendRequest.username}
+                {friendRequest.username}
               </Link>
-              <button onClick={() => acceptFriend(friendRequest._id)} type="submit" className="btn btn-success">
-                Accept
-              </button>
+              <div className="noWrap">
+                <button onClick={() => acceptFriend(friendRequest._id)} type="submit" className="btn btn-success friendReq">
+                  Accept
+                </button>
+                <button onClick={() => rejectFriend(friendRequest._id)} type="submit" className="btn btn-warning friendReq">
+                  Reject
+                </button>
+              </div>
             </div>
           </div>
         );
