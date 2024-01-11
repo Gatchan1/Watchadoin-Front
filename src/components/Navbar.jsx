@@ -10,6 +10,7 @@ export default function Navbar() {
 
   const [allUsers, setAllUsers] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
+  const [displayResults, setDisplayResults] = useState(false);
   const [text, setText] = useState("");
 
   //Get all users from database
@@ -58,11 +59,23 @@ export default function Navbar() {
           <div className="menu">
             <div className="search-form">
               <form className="d-flex">
-                <input className="form-control" type="search" placeholder="Search users" aria-label="Search" value={text} onChange={(e) => setText(e.target.value)} />
+                <input
+                  className="form-control"
+                  type="search"
+                  placeholder="Search users"
+                  aria-label="Search"
+                  value={text}
+                  onFocus={() => {
+                    setTimeout(() => setDisplayResults(true), 200);
+                  }}
+                  onBlur={() => {
+                    setTimeout(() => setDisplayResults(false), 200);
+                  }}
+                  onChange={(e) => setText(e.target.value)}
+                />
               </form>
 
-              {searchResults.length === 0 || (searchResults.length === allUsers.length && "")}
-              {searchResults.length > 0 && (
+              {searchResults.length > 0 && displayResults && (
                 <ul className="search-dropdown" aria-label="search dropdown">
                   {searchResults.map((searchUser) => (
                     <li className="dropdown-item" key={searchUser._id}>

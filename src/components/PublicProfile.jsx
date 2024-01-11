@@ -14,7 +14,7 @@ export default function PublicProfile() {
 
   function getPublicUserDataRaw() {
     axios
-      .get(baseUrl + "/users/" + username + "/raw", getHeaders())
+      .get(baseUrl + "/users/" +  username + "/raw", getHeaders())
       .then(({ data }) => {
         setPublicUserRaw(data);
         setLoadingPublicUser(false);
@@ -27,7 +27,7 @@ export default function PublicProfile() {
   useEffect(() => {
     getPublicUserDataRaw();
     getUserInfoRaw();
-  }, []);
+  }, [username]);
 
   useEffect(() => {
     if (!loadingPublicUser)
