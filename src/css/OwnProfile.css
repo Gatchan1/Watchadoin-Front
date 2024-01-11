@@ -34,11 +34,11 @@ div.friend-icon-container {
 }
 
 .blue-bg {
-  background-color: rgb(241, 248, 255);
+  background-color: rgb(234, 245, 255);
   padding: 0 10px 8px;
   border-style: solid;
   border-radius: 10px;
-  border-color: rgb(226, 241, 255);
+  border-color: rgb(219, 237, 255);
 }
 
 #OwnProfile .first-section {
@@ -99,6 +99,7 @@ div.friend-icon-container {
 }
 #FriendsPending p {
   margin: 0;
+  text-align: center;
 }
 
 #InviteList .list {
@@ -235,7 +236,7 @@ div.friend-icon-container {
   break-inside: avoid-column;
 } */
 
-#MyEvents div.create-event {
+#MyEvents header {
   padding: 0 0 20px 20px;
 }
 
@@ -299,6 +300,9 @@ div.friend-icon-container {
   #MyEvents .event-cards {
     margin-left: 8vw;
   }
+  #MyEvents header {
+    margin: 0 10%;
+  }
 }
 
 /* ----------------Update event---------------- */
@@ -330,7 +334,7 @@ div.pac-container {
 }
 
 #CreateEvent h2 {
-  background-color: rgb(167, 199, 231);
+  background-color: rgb(143, 191, 238);
   color: white;
   border-radius: 8px 8px 0 0;
   padding: 2px 10px 8px 10px;

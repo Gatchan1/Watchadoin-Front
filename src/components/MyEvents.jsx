@@ -19,13 +19,13 @@ export default function MyEvents() {
 
   return (
     <div id="MyEvents">
-      <div className="create-event">
+      <header>
         <h3>Events created by you:</h3>
 
         <button className="btn btn-outline-primary" onClick={() => toggleCreateEvent()}>
           {!showCreateEvent ? <img style={{ width: "20px" }} src="plus.png" alt="create event" /> : <img style={{ width: "20px" }} src="minus.png" alt="roll up create event" />}
         </button>
-      </div>
+      </header>
       {showCreateEvent && <CreateEvent toggleCreateEvent={toggleCreateEvent} />}
       <div className="event-cards-container">
         <div className="event-cards row">
