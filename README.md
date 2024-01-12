@@ -1,10 +1,10 @@
 # PROJECT NAME - FRONT END
 
-This is a fork of the final project of our web development bootcamp at Ironhack Barcelona. It's a MERN Stack application, check the backend repository [here](https://github.com/Gatchan1/watchadoin-back).
+This is a fork of the final project of the web development bootcamp at Ironhack Barcelona. It's a MERN Stack application, check the backend repository [here](https://github.com/Gatchan1/watchadoin-back).
 Watchadoin' is an event planner app. You will be able to know what your friends are up to and join in on their plans. If you can see a plan it means you are "invited" to attend.
 
 ## About us
-Our names are Raquel Barrio, Camila Buldin and Lisa Schwetlick.
+My name is Raquel Barrio, and the original project was built between me, Camila Buldin and Lisa Schwetlick. It has undergone a lot of changes since then, in this current fork.
 
 ![Project Image](https://res.cloudinary.com/dqzjo5wsl/image/upload/v1694678259/watcha-front_hlawdu.png "Project Image")
 
