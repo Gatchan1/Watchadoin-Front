@@ -124,6 +124,23 @@ header.tabs .tab.active:hover {
   padding: 0 20px;
 }
 
+#CalendarPage .btn-group {
+  position: relative;
+}
+
+#CalendarPage #AlertRejectEvent {
+  background-color: rgb(255, 243, 192);
+  padding: 10px 15px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 150%;
+}
+
 @media only screen and (max-width: 700px) {
   #CalendarPage .row1,
   #CalendarPage .row2 {

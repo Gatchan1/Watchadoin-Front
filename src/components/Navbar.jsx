@@ -5,7 +5,7 @@ import "../css/Navbar.css";
 import axios from "axios";
 
 export default function Navbar() {
-  const { user, baseUrl, loading, currentUser, getHeaders, checkUser } = useContext(authContext);
+  const { user, baseUrl, loading, currentUser, getHeaders } = useContext(authContext);
   const { username } = user;
 
   const [allUsers, setAllUsers] = useState([]);
@@ -83,7 +83,7 @@ export default function Navbar() {
                         <div>
                           <img className="friend-icon" src={searchUser.picture} alt={searchUser.username} />
                         </div>
-                        <Link className="link-styled" onClick={() => checkUser(searchUser.username)} to={`/${searchUser.username}`}>
+                        <Link className="link-styled" to={`/${searchUser.username}`}>
                           {searchUser.username}
                         </Link>
                       </div>

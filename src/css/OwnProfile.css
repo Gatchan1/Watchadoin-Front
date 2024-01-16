@@ -157,7 +157,8 @@ div.friend-icon-container {
 }
 
 #AlertDeleteList button.yesDelete,
-#AlertDeleteEvent button.yesDelete {
+#AlertDeleteEvent button.yesDelete,
+#CalendarPage #AlertRejectEvent button.yesDelete {
   margin-right: 5px;
 }
 
@@ -512,8 +513,13 @@ div.pac-container {
 #EventDetailPage .return {
   text-decoration: none;
   color: rgb(198, 96, 96);
+  background-color: inherit;
+  border: none;
   font-weight: bold;
-  padding-left: 5vw;
+  margin-left: 5vw;
+}
+#EventDetailPage .return span:hover {
+  text-decoration: underline;
 }
 
 @media only screen and (max-width: 385px) {

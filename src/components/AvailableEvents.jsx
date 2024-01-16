@@ -1,27 +1,18 @@
 import axios from "axios";
 import "../css/CalendarPage.css";
 import { authContext } from "../contexts/auth.context";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import AlertRejectEvent from "./AlertRejectEvent";
 
 export default function AvailableEvents() {
   const { currentUser, getUserInfo, baseUrl, getHeaders } = useContext(authContext);
+  const [eventToReject, setEventToReject] = useState();
 
   //------------- FUNCTIONS FOR BUTTONS --------------------
   const joinEvent = (eventId) => {
     axios
       .post(baseUrl + "/events/" + eventId + "/accept", {}, getHeaders())
-      .then(() => {
-        getUserInfo();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const rejectEvent = (eventId) => {
-    axios
-      .post(baseUrl + "/events/" + eventId + "/reject", {}, getHeaders())
       .then(() => {
         getUserInfo();
       })
@@ -50,9 +41,10 @@ export default function AvailableEvents() {
                 <button type="button" className="join btn btn-success" onClick={() => joinEvent(event._id)}>
                   Join
                 </button>
-                <button type="button" className="reject btn btn-danger" onClick={() => rejectEvent(event._id)}>
+                <button type="button" className="reject btn btn-danger" onClick={() => setEventToReject(event._id)}>
                   Reject
                 </button>
+                {event._id === eventToReject && <AlertRejectEvent eventId={event._id} setEventToReject={setEventToReject} />}
               </div>
 
               <div className="moreinfo">

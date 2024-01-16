@@ -26,7 +26,6 @@ export default function ConfirmedEvents() {
     const events = [...currentUser.eventsCreated, ...currentUser.eventsJoined];
     events.sort(compareEvents);
     setConfirmedEvents(events);
-    console.log("eventos ordenados: ", events);
   }, [currentUser]);
 
   const unjoinEvent = (eventId) => {

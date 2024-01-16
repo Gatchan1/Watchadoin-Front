@@ -4,7 +4,7 @@ import CreateEvent from "./CreateEvent";
 import EventUpdate from "./EventUpdate";
 import AlertDeleteEvent from "./AlertDeleteEvent";
 import { authContext } from "../contexts/auth.context";
-// import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function MyEvents() {
   const { currentUser } = useContext(authContext);
@@ -72,7 +72,7 @@ export default function MyEvents() {
         break;
       }
     }
-  }, [eventsOrder]);
+  }, [eventsOrder, currentUser]);
 
   function toggleCreateEvent() {
     showCreateEvent ? setShowCreateEvent(false) : setShowCreateEvent(true);
@@ -89,7 +89,7 @@ export default function MyEvents() {
     let order;
     eventsOrder === down ? (order = up) : (order = down);
     setEventsOrder(order);
-    setCookie("wd_eventorder", order, 7);
+    setCookie("wd_eventorder", order, 30);
   }
 
   return (
@@ -141,7 +141,7 @@ export default function MyEvents() {
                   <div className="card-body my-event">
                     <div className="title">
                       <div className="flex">
-                        <h5>{event.title}</h5>
+                      <Link to={`/events/${event._id}`}><h5>{event.title}</h5></Link>
                         <button type="button" className="edit-button btn btn-light" data-bs-toggle="modal" data-bs-target="#EventUpdate" onClick={() => setModalEvent(event)}>
                           <img className="smallIcon" src="/edit.png" />
                         </button>
@@ -156,7 +156,7 @@ export default function MyEvents() {
                     <p className="card-text">{new Date(event.dateTime).toLocaleString()}</p>
                     <p className="card-text">Confirmed atendees: {event.confirmedJoiners.length}</p>
 
-                    {idToDelete === event._id && <AlertDeleteEvent event={event} setIdToDelete={setIdToDelete} />}
+                    {idToDelete === event._id && <AlertDeleteEvent eventId={event._id} setIdToDelete={setIdToDelete} />}
                   </div>
                 </div>
               );

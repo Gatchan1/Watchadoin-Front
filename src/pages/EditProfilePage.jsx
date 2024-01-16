@@ -67,7 +67,7 @@ export default function EditProfilePage() {
               onClick={() => {
                 navigate(`/${currentUser.username}`);
               }}
-              type="submit"
+              type="button"
               className="btn btn-secondary"
             >
               Go back

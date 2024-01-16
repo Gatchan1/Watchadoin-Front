@@ -1,5 +1,6 @@
+import axios from "axios";
 import { authContext } from "../contexts/auth.context";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import "../css/PublicProfile.css";
 import "../App.css";
@@ -8,17 +9,35 @@ import PublicProfile from "../components/PublicProfile";
 import Navbar from "../components/Navbar";
 
 export default function ProfilePage() {
-  const { user, loading, isLoggedIn, checkUser, publicUserData, loadingCheckUser } = useContext(authContext);
-  const { username } = useParams();
+  const { user, loading, isLoggedIn, baseUrl, getHeaders} = useContext(authContext);
   const navigate = useNavigate();
+  const { username } = useParams();
+  
+  const [loadingPublicUser, setLoadingPublicUser] = useState(true);
+  const [publicUserData, setPublicUserData] = useState({});
+
+  function getPublicUserData(name) {
+    axios
+      .get(baseUrl + "/users/" +  name + "/raw", getHeaders())
+      .then(({ data }) => {
+        setPublicUserData(data);
+        setLoadingPublicUser(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        navigate("/404");
+      });
+  }
 
   useEffect(() => {
+    setLoadingPublicUser(true);
     if (loading) return;
     if (!loading && !isLoggedIn) navigate("/signup");
-    else if (username != user.username) checkUser(username);
+    else if (!loading && username != user.username ) {
+      getPublicUserData(username)}
     // Check if the username profile route we are trying to access
     // belongs to a real user or should redirect to an error page.
-  }, [loading]);
+  }, [loading, username]);
 
   if (!loading && !isLoggedIn) return <Navigate to="/signup" />;
 
@@ -31,13 +50,13 @@ export default function ProfilePage() {
         </div>
       )}
 
-      {!loading && username != user.username && publicUserData && (
+      {!loadingPublicUser && username != user.username && publicUserData && (
         <div>
-          <PublicProfile />
+          <PublicProfile userData={publicUserData} getPublicUserData={getPublicUserData} loadingPublicUser={loadingPublicUser}/>
         </div>
       )}
 
-      {!loadingCheckUser && !publicUserData && <Navigate to="/404" />}
+      {!loadingPublicUser && username != user.username && !publicUserData && <Navigate to="/404" />}
     </div>
   );
 }

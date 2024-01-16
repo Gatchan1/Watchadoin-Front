@@ -10,7 +10,7 @@ import mapboxgl from "mapbox-gl";
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX;
 
 export default function EventDetailPage() {
-  const { loading, isLoggedIn, baseUrl, getHeaders, checkUser } = useContext(authContext);
+  const { loading, isLoggedIn, baseUrl, getHeaders } = useContext(authContext);
   const { eventId } = useParams();
 
   const [event, setEvent] = useState(null);
@@ -27,7 +27,6 @@ export default function EventDetailPage() {
     axios
       .get(baseUrl + "/events/" + eventId, getHeaders())
       .then(({ data }) => {
-        console.log("response: ", data);
         setEvent(data);
         setLoadingEvent(false);
         setLat(data.coordinates.lat);
@@ -86,23 +85,30 @@ export default function EventDetailPage() {
             <div className="row-of-friends">
               <p>Check out who will be there: </p>
               <div className="row-no-outline">
-                {event.confirmedJoiners.map((joiner) => {
-                  return (
-                    <div className="friend-icon-container" key={joiner._id}>
-                      <img className="friend-icon" src={joiner.picture} alt={joiner.username} />
-                      <Link className="link-styled" onClick={() => checkUser(joiner.username)} to={`/${joiner.username}`}>
-                        {joiner.username}
-                      </Link>
-                    </div>
-                  );
-                })}
+                  <div className="friend-icon-container" key={event.creator._id}>
+                    <img className="friend-icon" src={event.creator.picture} alt={event.creator.username} />
+                    <Link className="link-styled" to={`/${event.creator.username}`}>
+                      {event.creator.username}
+                    </Link>
+                  </div>
+                {event.confirmedJoiners[0] &&
+                  event.confirmedJoiners.map((joiner) => {
+                    return (
+                      <div className="friend-icon-container" key={joiner._id}>
+                        <img className="friend-icon" src={joiner.picture} alt={joiner.username} />
+                        <Link className="link-styled" to={`/${joiner.username}`}>
+                          {joiner.username}
+                        </Link>
+                      </div>
+                    );
+                  })}
               </div>
             </div>
 
             {lat && <div ref={mapContainer} className="map-container" />}
-            <Link className="return" to="/">
-              ↩️Return to calendar page
-            </Link>
+            <button className="return" onClick={() => history.back()}>
+              ↩️ <span>Go back</span>
+            </button>
           </div>
         </div>
       )}
