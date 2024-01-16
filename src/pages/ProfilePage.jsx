@@ -12,7 +12,7 @@ export default function ProfilePage() {
   const { user, loading, isLoggedIn, baseUrl, getHeaders} = useContext(authContext);
   const navigate = useNavigate();
   const { username } = useParams();
-  
+
   const [loadingPublicUser, setLoadingPublicUser] = useState(true);
   const [publicUserData, setPublicUserData] = useState({});
 

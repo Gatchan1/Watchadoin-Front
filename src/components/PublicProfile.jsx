@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';  
 import axios from "axios";
 import { authContext } from "../contexts/auth.context";
 import { useContext, useEffect, useState } from "react";
@@ -122,4 +123,15 @@ export default function PublicProfile({userData, getPublicUserData, loadingPubli
       )}
     </div>
   );
+}
+
+PublicProfile.propTypes = {
+  userData: PropTypes.shape({
+    _id: PropTypes.string,
+    friendsPending: PropTypes.array,
+    friendsConfirmed: PropTypes.array,
+    picture: PropTypes.string,
+  }),
+  getPublicUserData: PropTypes.func,
+  loadingPublicUser: PropTypes.bool
 }

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';  
 import { authContext } from "../contexts/auth.context";
 import { useContext } from "react";
 import axios from "axios";
@@ -33,4 +34,9 @@ export default function AlertDeleteList({ listId, setIdToDelete }) {
       </form>
     </div>
   );
+}
+
+AlertDeleteList.propTypes = {
+  listId: PropTypes.string,
+  setIdToDelete: PropTypes.func
 }

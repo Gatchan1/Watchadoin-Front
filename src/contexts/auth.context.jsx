@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';  
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -114,6 +115,10 @@ function AuthProviderWrapper({ children }) {
   };
 
   return <authContext.Provider value={exposedValues}>{children}</authContext.Provider>;
+}
+
+AuthProviderWrapper.propTypes = {
+  children: PropTypes.any
 }
 
 export { authContext, AuthProviderWrapper };

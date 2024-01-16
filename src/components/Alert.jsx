@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';  
 import "../css/OwnProfile.css";
 
 export default function AlertModal({ message, setError }) {
@@ -13,4 +14,9 @@ export default function AlertModal({ message, setError }) {
       </button>
     </div>
   );
+}
+
+AlertModal.propTypes = {
+  message: PropTypes.string,
+  setError: PropTypes.func
 }

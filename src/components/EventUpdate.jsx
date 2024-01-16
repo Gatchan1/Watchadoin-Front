@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';  
 import axios from "axios";
 import { authContext } from "../contexts/auth.context";
 import { useState, useContext, useEffect } from "react";
@@ -40,11 +41,10 @@ export default function EventUpdate({ eventInfo }) {
 
     const coordinates = { lat, lng };
     const event = { title, description, icon, dateTime: datetime, location, coordinates };
-    console.log("@@@", event);
     axios
       .post(baseUrl + `/events/${eventInfo._id}/update`, event, getHeaders())
       .then((resp) => {
-        console.log("evento actualizado:", resp);
+        console.log("updated event:", resp.data);
         getUserInfo();
       })
       .catch((err) => setError("Could not finish the process, try again", err));
@@ -94,7 +94,7 @@ export default function EventUpdate({ eventInfo }) {
                     setLocation(place.name);
                     setLat(place.geometry.location.lat());
                     setLng(place.geometry.location.lng());
-                    console.log("address: ", place);
+                    // console.log("address: ", place);
                   }}
                 />
               </div>
@@ -109,4 +109,14 @@ export default function EventUpdate({ eventInfo }) {
       </div>
     </div>
   );
+}
+
+EventUpdate.propTypes = {
+  eventInfo: PropTypes.shape({
+    _id: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    dateTime: PropTypes.string,
+    location: PropTypes.string,
+  })
 }

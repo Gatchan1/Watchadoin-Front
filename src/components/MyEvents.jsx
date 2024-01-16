@@ -11,7 +11,7 @@ export default function MyEvents() {
 
   const [showCreateEvent, setShowCreateEvent] = useState(false);
   const [idToDelete, setIdToDelete] = useState("");
-  const [modalEvent, setModalEvent] = useState("");
+  const [modalEvent, setModalEvent] = useState({});
   const [showOrderOptions, setShowOrderOptions] = useState(false);
   const [events, setEvents] = useState([]);
   const [eventsOrder, setEventsOrder] = useState("creation-down");
