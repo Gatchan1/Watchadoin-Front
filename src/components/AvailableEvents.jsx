@@ -1,13 +1,30 @@
+import PropTypes from 'prop-types';  
 import axios from "axios";
 import "../css/CalendarPage.css";
 import { authContext } from "../contexts/auth.context";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AlertRejectEvent from "./AlertRejectEvent";
 
-export default function AvailableEvents() {
+export default function AvailableEvents( {simpleDate} ) {
   const { currentUser, getUserInfo, baseUrl, getHeaders } = useContext(authContext);
+
   const [eventToReject, setEventToReject] = useState();
+  const [availableEvents, setAvailableEvents] = useState([]);
+
+  useEffect(() => {
+    eventsSetup();
+  }, [currentUser]);
+
+  const eventsSetup = () => {
+    const events = [...currentUser.eventsPending];
+    const todayDate = simpleDate(new Date());
+    const filterPastDates = events.filter((event) => {
+      const date = simpleDate(new Date(event.dateTime));
+      return date >= todayDate;
+    });
+    setAvailableEvents(filterPastDates);
+  };
 
   //------------- FUNCTIONS FOR BUTTONS --------------------
   const joinEvent = (eventId) => {
@@ -26,10 +43,10 @@ export default function AvailableEvents() {
     <div className="newEvents red-border">
       <h2>Possible plans</h2>
       {/* We don't need to use a loading state here because these components only render after loading. (See CalendarPage) */}
-      {currentUser.eventsPending.length == 0 && <p className="noEvents">No new events</p>}
+      {availableEvents.length == 0 && <p className="noEvents">No new events</p>}
 
-      {currentUser.eventsPending.length !== 0 &&
-        currentUser.eventsPending.map((event) => (
+      {availableEvents.length !== 0 &&
+        availableEvents.map((event) => (
           <div className="newEv" key={event._id}>
             <h4 className="event-title">{event.title}</h4>
             <div className="event-body">
@@ -56,4 +73,8 @@ export default function AvailableEvents() {
         ))}
     </div>
   );
+}
+
+AvailableEvents.propTypes = {
+  simpleDate: PropTypes.func
 }
