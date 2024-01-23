@@ -107,7 +107,7 @@ header.tabs .tab.active:hover {
 #Calendar .main {
   /* background-color: rgb(255, 255, 255); */
   padding: 32px 14px 18px 10px;
-  background-image: url("calendar.png");
+  background-image: url("../assets/calendar.png");
   background-size: cover;
   background-repeat: no-repeat;
 }
