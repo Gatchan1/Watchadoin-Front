@@ -157,7 +157,8 @@ div.friend-icon-container {
 }
 
 #AlertDeleteList button.yesDelete,
-#AlertDeleteEvent button.yesDelete {
+#AlertDeleteEvent button.yesDelete,
+#CalendarPage #AlertRejectEvent button.yesDelete {
   margin-right: 5px;
 }
 
@@ -238,6 +239,55 @@ div.friend-icon-container {
 
 #MyEvents header {
   padding: 0 0 20px 20px;
+  margin-right: 5%;
+}
+#MyEvents .preference-container {
+  display: flex;
+  justify-content: end;
+}
+
+#MyEvents .preference {
+  width: max-content;
+}
+#MyEvents .preference-btns {
+  display: flex;
+}
+#MyEvents .preference button.show {
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: white;
+  width: 100%;
+  padding: 5px 8px;
+  transition-duration: 0.2s;
+  display: flex;
+  align-items: center;
+}
+#MyEvents .preference button.show.open {
+  display: flex;
+  justify-content: space-around;
+}
+#MyEvents .preference button.show p {
+  margin: 0 5px 0 0;
+}
+#MyEvents .preference button.order {
+  border: 1px solid black;
+  border-radius: 10px;
+  transition-duration: 0.2s;
+  height: 54px;
+}
+#MyEvents .preference button.left {
+  margin-right: 3px;
+}
+#MyEvents .preference button.active {
+  background-color: rgb(207, 255, 234);
+}
+#MyEvents .preference button.show:hover,
+#MyEvents .preference button.active:hover,
+#MyEvents .preference button.inactive:hover {
+  background-color: rgb(186, 227, 255);
+}
+#MyEvents .preference button.inactive {
+  background-color: rgb(233, 233, 233);
 }
 
 #MyEvents .event-cards-container {
@@ -248,6 +298,7 @@ div.friend-icon-container {
 #MyEvents .my-event div.title {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 #MyEvents .my-event div.flex {
   display: flex;
@@ -257,9 +308,8 @@ div.friend-icon-container {
   padding-top: 3px;
 }
 #MyEvents .edit-button {
-  height: 30px;
-  margin-left: 5px;
-  margin-bottom: 4px;
+  margin-left: 8px;
+  padding: 4px 6px 6px 8px;
 }
 #MyEvents .edit-button .smallIcon {
   height: 1.2rem;
@@ -273,6 +323,7 @@ div.friend-icon-container {
   border-radius: 7px;
   background-color: white;
   transition-duration: 0.2s;
+  padding: 6px 8px;
 }
 #MyEvents .card .delete:hover {
   background-color: rgb(255, 208, 208);
@@ -296,12 +347,22 @@ div.friend-icon-container {
   right: 0;
 }
 
+@media only screen and (max-width: 500px) {
+  #MyEvents .preference button.order {
+    width: 100px;
+    height: 54px;
+  }
+}
+
 @media only screen and (min-width: 500px) {
   #MyEvents .event-cards {
     margin-left: 8vw;
   }
   #MyEvents header {
     margin: 0 10%;
+  }
+  #MyEvents .preference button {
+    padding: 0 10px;
   }
 }
 
@@ -452,8 +513,13 @@ div.pac-container {
 #EventDetailPage .return {
   text-decoration: none;
   color: rgb(198, 96, 96);
+  background-color: inherit;
+  border: none;
   font-weight: bold;
-  padding-left: 5vw;
+  margin-left: 5vw;
+}
+#EventDetailPage .return span:hover {
+  text-decoration: underline;
 }
 
 @media only screen and (max-width: 385px) {

@@ -1,15 +1,20 @@
+import PropTypes from 'prop-types';  
 import axios from "axios";
 import { authContext } from "../contexts/auth.context";
 import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-export default function ConfirmedEvents() {
+export default function ConfirmedEvents( {simpleDate} ) {
   const { currentUser, getUserInfo, baseUrl, getHeaders } = useContext(authContext);
 
   const [confirmedEvents, setConfirmedEvents] = useState([]);
 
+  useEffect(() => {
+    eventsSetup();
+  }, [currentUser]);
+
   // So that the list of confirmed events is displayed in order of date and title:
-  function compareEvents(a, b) {
+  const compareEvents = (a, b) => {
     if (a.dateTime < b.dateTime) return -1;
     if (a.dateTime > b.dateTime) return 1;
     if (a.dateTime === b.dateTime) {
@@ -20,14 +25,18 @@ export default function ConfirmedEvents() {
         return 1;
       } else return 0;
     }
-  }
+  };
 
-  useEffect(() => {
+  const eventsSetup = () => {
     const events = [...currentUser.eventsCreated, ...currentUser.eventsJoined];
     events.sort(compareEvents);
-    setConfirmedEvents(events);
-    console.log("eventos ordenados: ", events);
-  }, [currentUser]);
+    const todayDate = simpleDate(new Date());
+    const filterPastDates = events.filter((event) => {
+      const date = simpleDate(new Date(event.dateTime));
+      return date >= todayDate;
+    });
+    setConfirmedEvents(filterPastDates);
+  };
 
   const unjoinEvent = (eventId) => {
     axios
@@ -71,4 +80,8 @@ export default function ConfirmedEvents() {
         })}
     </div>
   );
+}
+
+ConfirmedEvents.propTypes = {
+  simpleDate: PropTypes.func
 }

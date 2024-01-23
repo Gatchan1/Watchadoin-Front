@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 
 export default function FriendsPending() {
-  const { currentUser, baseUrl, getHeaders, getUserInfo, checkUser } = useContext(authContext);
+  const { currentUser, baseUrl, getHeaders, getUserInfo } = useContext(authContext);
 
   function acceptFriend(friendId) {
     axios
@@ -35,7 +35,7 @@ export default function FriendsPending() {
               <div className="img-container">
                 <img src={friendRequest.picture} alt={friendRequest.username} />
               </div>
-              <Link className="link-styled" aria-current="page" onClick={() => checkUser(friendRequest.username)} to={`/${friendRequest.username}`}>
+              <Link className="link-styled" aria-current="page" to={`/${friendRequest.username}`}>
                 {friendRequest.username}
               </Link>
               <div className="noWrap">

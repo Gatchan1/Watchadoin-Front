@@ -1,33 +1,19 @@
+import PropTypes from 'prop-types';  
 import axios from "axios";
 import { authContext } from "../contexts/auth.context";
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
-export default function PublicProfile() {
+export default function PublicProfile({userData, getPublicUserData, loadingPublicUser}) {
   const { baseUrl, user, getHeaders, currentUserRaw, getUserInfoRaw, loadingRaw } = useContext(authContext);
   const { username } = useParams();
 
-  const [publicUserRaw, setPublicUserRaw] = useState({});
-  const [loadingPublicUser, setLoadingPublicUser] = useState(true);
   const [friendshipStatus, setFriendshipStatus] = useState("");
   const [loadingSpinner, setLoadingSpinner] = useState(true);
 
-  function getPublicUserDataRaw() {
-    axios
-      .get(baseUrl + "/users/" +  username + "/raw", getHeaders())
-      .then(({ data }) => {
-        setPublicUserRaw(data);
-        setLoadingPublicUser(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
   useEffect(() => {
-    getPublicUserDataRaw();
     getUserInfoRaw();
-  }, [username]);
+  }, []);
 
   useEffect(() => {
     if (!loadingPublicUser)
@@ -40,17 +26,17 @@ export default function PublicProfile() {
     if (loadingRaw) return;
     if (loadingPublicUser) return;
 
-    if (!currentUserRaw.friendsPending.includes(publicUserRaw._id) && !publicUserRaw.friendsPending.includes(currentUserRaw._id) && !currentUserRaw.friendsConfirmed.includes(publicUserRaw._id)) setFriendshipStatus("TOSEND");
-    else if (currentUserRaw.friendsPending.includes(publicUserRaw._id)) setFriendshipStatus("TOACCEPT");
-    else if (publicUserRaw.friendsPending.includes(currentUserRaw._id)) setFriendshipStatus("REQUESTED");
-    else if (currentUserRaw.friendsConfirmed.includes(publicUserRaw._id)) setFriendshipStatus("TOREVOKE");
-  }, [currentUserRaw, publicUserRaw]);
+    if (!currentUserRaw.friendsPending.includes(userData._id) && !userData.friendsPending.includes(currentUserRaw._id) && !currentUserRaw.friendsConfirmed.includes(userData._id)) setFriendshipStatus("TOSEND");
+    else if (currentUserRaw.friendsPending.includes(userData._id)) setFriendshipStatus("TOACCEPT");
+    else if (userData.friendsPending.includes(currentUserRaw._id)) setFriendshipStatus("REQUESTED");
+    else if (currentUserRaw.friendsConfirmed.includes(userData._id)) setFriendshipStatus("TOREVOKE");
+  }, [currentUserRaw, userData, loadingPublicUser]);
 
   function addFriend() {
     axios
-      .post(baseUrl + "/friendstatus/" + publicUserRaw._id + "/sendrequest", {}, getHeaders())
+      .post(baseUrl + "/friendstatus/" + userData._id + "/sendrequest", {}, getHeaders())
       .then(() => {
-        getPublicUserDataRaw();
+        getPublicUserData(username);
       })
       .catch((err) => {
         console.log(err);
@@ -60,9 +46,9 @@ export default function PublicProfile() {
 
   function removeFriend() {
     axios
-      .post(baseUrl + "/friendstatus/" + publicUserRaw._id + "/revoke", {}, getHeaders())
+      .post(baseUrl + "/friendstatus/" + userData._id + "/revoke", {}, getHeaders())
       .then(() => {
-        getPublicUserDataRaw();
+        getPublicUserData(username);
         getUserInfoRaw();
       })
       .catch((err) => {
@@ -73,7 +59,7 @@ export default function PublicProfile() {
 
   function acceptFriend() {
     axios
-      .post(baseUrl + "/friendstatus/" + publicUserRaw._id + "/" + "accept", {}, getHeaders())
+      .post(baseUrl + "/friendstatus/" + userData._id + "/" + "accept", {}, getHeaders())
       .then(() => {
         getUserInfoRaw();
       })
@@ -89,7 +75,7 @@ export default function PublicProfile() {
       ) : (
         <>
           <h4>
-            Public profile page of {username} {!loadingPublicUser && <img className="publicAvatar" src={publicUserRaw.picture} />}
+            Public profile page of {username} {!loadingPublicUser && <img className="publicAvatar" src={userData.picture} />}
           </h4>
 
           {!loadingPublicUser && friendshipStatus == "TOSEND" && (
@@ -137,4 +123,15 @@ export default function PublicProfile() {
       )}
     </div>
   );
+}
+
+PublicProfile.propTypes = {
+  userData: PropTypes.shape({
+    _id: PropTypes.string,
+    friendsPending: PropTypes.array,
+    friendsConfirmed: PropTypes.array,
+    picture: PropTypes.string,
+  }),
+  getPublicUserData: PropTypes.func,
+  loadingPublicUser: PropTypes.bool
 }

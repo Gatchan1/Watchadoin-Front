@@ -6,9 +6,12 @@ export default function ErrorPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       navigate("/");
     }, 5000);
+    return () => { // Return callback to run on unmount.
+      window.clearInterval(timeoutId);
+    };
   }, []);
 
   return (

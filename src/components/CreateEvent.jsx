@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';  
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
@@ -104,8 +105,8 @@ export default function CreateEvent({ toggleCreateEvent }) {
 
     axios
       .post(baseUrl + "/events/create", newEvent, getHeaders())
-      .then((res) => {
-        console.log("event created", res);
+      .then((resp) => {
+        console.log("event created", resp.data);
         toggleCreateEvent();
         getUserInfo();
       })
@@ -251,4 +252,8 @@ export default function CreateEvent({ toggleCreateEvent }) {
       </div>
     </div>
   );
+}
+
+CreateEvent.propTypes = {
+  toggleCreateEvent: PropTypes.func
 }

@@ -5,7 +5,7 @@ import AlertDeleteList from "./AlertDeleteList";
 import { Link } from "react-router-dom";
 
 export default function InviteList() {
-  const { currentUser, checkUser } = useContext(authContext);
+  const { currentUser } = useContext(authContext);
 
   const [showCreateList, setShowCreateList] = useState(false);
   const [idToDelete, setIdToDelete] = useState("");
@@ -26,7 +26,7 @@ export default function InviteList() {
           {currentUser.inviteLists.map((list) => {
             return (
               <div className="list" key={list._id}>
-                {idToDelete === list._id && <AlertDeleteList list={list} setIdToDelete={setIdToDelete} />}
+                {idToDelete === list._id && <AlertDeleteList listId={list._id} setIdToDelete={setIdToDelete} />}
                 <div className="heading">
                   <h5>{list.title}</h5>
                   <button className="delete" onClick={() => setIdToDelete(list._id)}>
@@ -38,7 +38,7 @@ export default function InviteList() {
                     return (
                       <div className="friend-icon-container" key={user._id}>
                         <img className="friend-icon" src={user.picture} alt={user.username} />
-                        <Link className="link-styled" onClick={() => checkUser(user.username)} to={`/${user.username}`}>
+                        <Link className="link-styled" to={`/${user.username}`}>
                           {user.username}
                         </Link>
                       </div>

@@ -1,14 +1,15 @@
+import PropTypes from 'prop-types';  
 import { authContext } from "../contexts/auth.context";
 import { useContext } from "react";
 import axios from "axios";
 
-export default function AlertDeleteList({ list, setIdToDelete }) {
+export default function AlertDeleteList({ listId, setIdToDelete }) {
   const { baseUrl, getHeaders, getUserInfo } = useContext(authContext);
 
   const deleteHandler = (e) => {
     e.preventDefault();
     axios
-      .post(baseUrl + `/lists/${list._id}/remove`, getHeaders())
+      .post(baseUrl + `/lists/${listId}/remove`, getHeaders())
       .then((resp) => {
         console.log("The requested list has been deleted: ", resp.data);
         getUserInfo();
@@ -33,4 +34,9 @@ export default function AlertDeleteList({ list, setIdToDelete }) {
       </form>
     </div>
   );
+}
+
+AlertDeleteList.propTypes = {
+  listId: PropTypes.string,
+  setIdToDelete: PropTypes.func
 }

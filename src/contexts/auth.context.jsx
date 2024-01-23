@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';  
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -16,8 +17,6 @@ function AuthProviderWrapper({ children }) {
   const [loadingRaw, setLoadingRaw] = useState(true);
   const [loadingUserInfo, setLoadingUserInfo] = useState(true);
   const [currentUserRaw, setCurrentUserRaw] = useState({});
-  const [publicUserData, setPublicUserData] = useState(null);
-  const [loadingCheckUser, setLoadingCheckUser] = useState(true);
 
   const navigate = useNavigate();
 
@@ -56,6 +55,7 @@ function AuthProviderWrapper({ children }) {
           setUser(null);
           setLoading(false);
           navigate("/");
+          console.log(err);
         });
     } else {
       setIsLoggedIn(false);
@@ -99,21 +99,6 @@ function AuthProviderWrapper({ children }) {
     }
   };
 
-  function checkUser(username) {
-    // Check if the username profile route we are trying to access belongs to a real user or should redirect to an error page.
-    axios
-      .get(baseUrl + "/users/" + username, getHeaders())
-      .then(({ data }) => {
-        console.log("response: ", data);
-        setPublicUserData(data);
-        setLoadingCheckUser(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        navigate("/404");
-      });
-  }
-
   let exposedValues = {
     isLoggedIn,
     user,
@@ -128,11 +113,13 @@ function AuthProviderWrapper({ children }) {
     loadingUserInfo,
     loadingRaw,
     loadingPopulated,
-    checkUser,
-    loadingCheckUser,
-    publicUserData,
   };
+
   return <authContext.Provider value={exposedValues}>{children}</authContext.Provider>;
+}
+
+AuthProviderWrapper.propTypes = {
+  children: PropTypes.any
 }
 
 export { authContext, AuthProviderWrapper };
