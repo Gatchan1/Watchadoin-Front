@@ -66,7 +66,7 @@ export default function Navbar() {
                   aria-label="Search"
                   value={text}
                   onFocus={() => {
-                    setTimeout(() => setDisplayResults(true), 200);
+                    setDisplayResults(true);
                   }}
                   onBlur={() => {
                     setTimeout(() => setDisplayResults(false), 200);

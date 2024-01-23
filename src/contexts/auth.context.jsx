@@ -55,6 +55,7 @@ function AuthProviderWrapper({ children }) {
           setUser(null);
           setLoading(false);
           navigate("/");
+          console.log(err);
         });
     } else {
       setIsLoggedIn(false);

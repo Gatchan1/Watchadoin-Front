@@ -13,7 +13,8 @@ header.tabs .tab {
   border-radius: 15px 15px 0 0;
   border-bottom: none;
   white-space: nowrap;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);}
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}
 
 header.tabs div {
   display: inline;
@@ -29,21 +30,227 @@ header.tabs .tab {
 header.tabs .tab.inactive {
   background-color: rgb(223, 223, 223);
   border-bottom: 2px solid rgb(192, 192, 192);
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.25);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
   transition-duration: 0.2s;
 }
 header.tabs .tab.active {
   background-color: white;
   border-bottom: none;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
 }
 header.tabs .tab.inactive:hover {
   background-color: rgb(238, 238, 238);
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
-
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
 }
 header.tabs .tab.active:hover {
   cursor: default;
+}
+
+#Calendar {
+  display: flex;
+  width: 100%;
+}
+
+#Calendar div.relative {
+  /* margin-right: 50%; */
+  display: flex;
+  position: relative;
+  height: fit-content;
+  min-height: 278px;
+  /* this min-height should be a var!! bc it's the same for the events-container */
+}
+
+#Calendar h4 {
+  text-align: center;
+}
+
+#Calendar .button {
+  width: 34px;
+}
+
+#Calendar button.left,
+#Calendar button.right {
+  position: absolute;
+  top: 50%;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+}
+#Calendar button.left {
+  left: 0;
+}
+#Calendar button.right {
+  right: 0;
+}
+
+#Calendar .week-days,
+#Calendar .week {
+  display: flex;
+}
+
+#Calendar .week-day,
+#Calendar .day,
+#Calendar .day-empty {
+  margin: 1px 2px;
+  width: 30px;
+  text-align: center;
+}
+
+#Calendar .week-day {
+  border-bottom: 1px solid black;
+}
+#Calendar .days-container {
+  margin-top: 2px;
+}
+
+#Calendar .main {
+  /* background-color: rgb(255, 255, 255); */
+  padding: 32px 14px 18px 10px;
+  background-image: url("calendar.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#Calendar .day {
+  padding: 1px;
+  background-color: rgb(211, 241, 246);
+  border: 2px solid rgb(211, 241, 246);
+  border-radius: 15px;
+}
+
+#Calendar .day.confirmed:hover,
+#Calendar .day.possible:hover,
+#Calendar .day.mixed:hover {
+  cursor: pointer;
+}
+
+#Calendar .day.confirmed {
+  background-color: rgb(158, 225, 172);
+  border: 2px solid rgb(120, 205, 139);
+}
+#Calendar .day.possible {
+  background-color: rgb(244, 229, 134);
+  border: 2px solid rgb(240, 195, 34);
+}
+#Calendar .day.mixed {
+  background-color: rgb(158, 225, 172);
+  border: 2px solid rgb(240, 195, 34);
+}
+#Calendar .day.inactive {
+  background-color: rgb(226, 226, 226);
+  border: 2px solid rgb(226, 226, 226);
+}
+
+#Calendar .events-main header {
+  display: flex;
+  justify-content: space-between;
+}
+
+#Calendar .events-main header .button {
+  width: 50px;
+  display: flex;
+  margin-top: 5px;
+  align-items: flex-start;
+  justify-content: end;
+}
+#Calendar .events-main header button {
+  /* margin-left: 22px; */
+  padding: 0;
+  font-size: 12px;
+  background-color: inherit;
+  border: 0;
+}
+
+#Calendar .events-main {
+  border: 1px solid black;
+  border-radius: 6px;
+  min-width: 200px;
+  max-width: 300px;
+  /* height: fit-content; */
+  padding: 0 8px 8px;
+}
+#Calendar h5 {
+  margin: 8px;
+  width: 100%;
+  text-align: center;
+}
+#Calendar .event {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 10px;
+  border-radius: 10px;
+}
+#Calendar .event .title-container {
+  width: 100%;
+}
+#Calendar .event h6 {
+  margin: 0 10px 0 0;
+  text-align: center;
+}
+#Calendar .event p {
+  margin: 0;
+}
+#Calendar .event.created,
+#Calendar .event.joined {
+  background-color: rgb(194, 242, 204);
+  border: 1px solid rgb(158, 225, 172);
+}
+#Calendar .event.pending {
+  background-color: rgb(255, 243, 168);
+  border: 1px solid rgb(240, 195, 34);
+}
+
+@media only screen and (max-width: 700px) {
+  #Calendar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #Calendar .calendar-container {
+    width: fit-content;
+  }
+
+  #Calendar .events-container {
+    margin-top: -18px;
+    z-index: 1;
+  }
+  #Calendar .events-main {
+    background-color: white;
+  }
+}
+
+@media only screen and (min-width: 701px) {
+  #Calendar .calendar-container {
+    width: 51%;
+    display: flex;
+    justify-content: flex-end;
+  }
+  #Calendar div.relative {
+    display: flex;
+    justify-content: center;
+  }
+  #Calendar .events-container {
+    display: flex;
+  align-items: center;
+    min-height: 278px;
+    /* margin-left: 20px; */
+    position: absolute;
+    left: 52%;
+    z-index: 1;
+  }
+  #Calendar .events-main {
+    background-color: white;
+    min-height: 180px;
+  }
+  #Calendar .events {
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    justify-content: center;
+  }
 }
 
 #CalendarPage .calendarComponents {
@@ -91,7 +298,7 @@ header.tabs .tab.active:hover {
   padding: 0 20px;
 }
 #CalendarPage .event-title {
-  padding-bottom: 2px
+  padding-bottom: 2px;
 }
 
 #CalendarPage .confirmedEv p,
@@ -171,7 +378,6 @@ header.tabs .tab.active:hover {
     padding-right: 1vw;
   }
 }
-
 
 /* EVENT DETAIL PAGE */
 .row-of-friends p {
